@@ -4551,7 +4551,7 @@ setting_infos = [
             Boss Key for Ganon's Castle.
 
             Reading the diary of Dampé the gravekeeper
-            will tell you the location of one
+            as adult will tell you the location of one
             of the Hookshots.
 
             Talking to Ganondorf in his boss room will
