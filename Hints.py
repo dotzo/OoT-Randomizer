@@ -1569,6 +1569,10 @@ def buildMiscItemHints(world, messages):
 
             update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')))
 
+            if hint_type == 'dampe_diary':
+                update_message_by_id(messages, data['id']-2, str(GossipText(text, ['Green'], prefix='')))
+            
+
 
 def get_raw_text(string):
     text = ''
