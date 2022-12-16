@@ -1,8 +1,9 @@
 import random
-from collections import OrderedDict
 from decimal import Decimal, ROUND_UP
+from Hints import HintArea
 
 from Item import ItemFactory, ItemInfo
+from Location import DisableType, Location
 from Utils import random_choices
 
 
@@ -76,7 +77,6 @@ ludicrous_items_base = [
     'Farores Wind',
     'Nayrus Love',
     'Stone of Agony',
-    'Ice Arrows',
     'Deku Stick Capacity',
     'Deku Nut Capacity'
 ]
@@ -121,7 +121,9 @@ ludicrous_items_extended = [
     'Small Key Ring (Water Temple)',
     'Small Key Ring (Bottom of the Well)',
     'Small Key Ring (Gerudo Training Ground)',
-    'Magic Bean Pack'
+    'Magic Bean Pack',
+    'Ice Arrows',
+    'Blue Fire Arrows',
 ]
 
 ludicrous_exclusions = [
@@ -209,18 +211,19 @@ deku_scrubs_items = {
     'Buy Deku Seeds (30)': [('Arrows (30)', 3), ('Deku Seeds (30)', 1)],
 }
 
-trade_items = OrderedDict([
-    ("pocket_egg",   "Pocket Egg"),
-    ("pocket_cucco", "Pocket Cucco"),
-    ("cojiro",       "Cojiro"),
-    ("odd_mushroom", "Odd Mushroom"),
-    ("poachers_saw", "Poachers Saw"),
-    ("broken_sword", "Broken Sword"),
-    ("prescription", "Prescription"),
-    ("eyeball_frog", "Eyeball Frog"),
-    ("eyedrops",     "Eyedrops"),
-    ("claim_check",  "Claim Check"),
-])
+trade_items = (
+    "Pocket Egg",
+    "Pocket Cucco",
+    "Cojiro",
+    "Odd Mushroom",
+    #"Odd Potion",
+    "Poachers Saw",
+    "Broken Sword",
+    "Prescription",
+    "Eyeball Frog",
+    "Eyedrops",
+    "Claim Check",
+)
 
 normal_bottles = [bottle for bottle in sorted(ItemInfo.bottles) if bottle not in ['Deliver Letter', 'Sell Big Poe']] + ['Bottle with Big Poe']
 song_list = [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'Song'], key=lambda x: x.index)]
@@ -242,7 +245,7 @@ IGNORE_LOCATION = 'Recovery Heart'
 pending_junk_pool = []
 junk_pool = []
 
-exclude_from_major = [ 
+exclude_from_major = [
     'Deliver Letter',
     'Sell Big Poe',
     'Magic Bean',
@@ -253,15 +256,15 @@ exclude_from_major = [
     'Bombchus (20)',
     'Odd Potion',
     'Triforce Piece',
-    'Heart Container', 
-    'Piece of Heart', 
+    'Heart Container',
+    'Piece of Heart',
     'Piece of Heart (Treasure Chest Game)',
 ]
 
 item_groups = {
     'Junk': remove_junk_items,
     'JunkSong': ('Prelude of Light', 'Serenade of Water'),
-    'AdultTrade': list(trade_items.values()),
+    'AdultTrade': trade_items,
     'Bottle': normal_bottles,
     'Spell': ('Dins Fire', 'Farores Wind', 'Nayrus Love'),
     'Shield': ('Deku Shield', 'Hylian Shield'),
@@ -272,6 +275,10 @@ item_groups = {
     'ProgressItem': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Item' and item.advancement]),
     'MajorItem': sorted([name for name, item in ItemInfo.items.items() if item.type in ['Item', 'Song'] and item.advancement and name not in exclude_from_major]),
     'DungeonReward': [item.name for item in sorted([i for n, i in ItemInfo.items.items() if i.type == 'DungeonReward'], key=lambda x: x.special['item_id'])],
+    'Map': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Map']),
+    'Compass': sorted([name for name, item in ItemInfo.items.items() if item.type == 'Compass']),
+    'BossKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'BossKey']),
+    'SmallKey': sorted([name for name, item in ItemInfo.items.items() if item.type == 'SmallKey']),
 
     'ForestFireWater': ('Forest Medallion', 'Fire Medallion', 'Water Medallion'),
     'FireWater': ('Fire Medallion', 'Water Medallion'),
@@ -434,14 +441,21 @@ def get_pool_core(world):
         # Kokiri Sword
         elif location.vanilla_item == 'Kokiri Sword':
             shuffle_item = world.settings.shuffle_kokiri_sword
+        
+        # Ice Arrows/Blue Fire Arrows
+        elif location.vanilla_item == 'Ice Arrows':
+            if world.settings.blue_fire_arrows:
+                item = 'Blue Fire Arrows'
+            shuffle_item = True
 
         # Weird Egg
         elif location.vanilla_item == 'Weird Egg':
-            if world.settings.skip_child_zelda:
+            if world.settings.shuffle_child_trade == 'skip_child_zelda':
                 item = IGNORE_LOCATION
                 shuffle_item = False
+                world.state.collect(ItemFactory('Weird Egg'))
             else:
-                shuffle_item = world.settings.shuffle_weird_egg
+                shuffle_item = world.settings.shuffle_child_trade != 'vanilla'
 
         # Ocarinas
         elif location.vanilla_item == 'Ocarina':
@@ -491,12 +505,8 @@ def get_pool_core(world):
 
         # Adult Trade Item
         elif location.vanilla_item == 'Pocket Egg':
-            trade_item_options = list(trade_items.keys())
-            earliest_trade = trade_item_options.index(world.settings.logic_earliest_adult_trade)
-            latest_trade = trade_item_options.index(world.settings.logic_latest_adult_trade)
-            if earliest_trade > latest_trade:
-                earliest_trade, latest_trade = latest_trade, earliest_trade
-            item = trade_items[random.choice(trade_item_options[earliest_trade:latest_trade + 1])]
+            potential_trade_items = world.settings.adult_trade_start if world.settings.adult_trade_start else trade_items
+            item = random.choice(potential_trade_items)
             world.selected_adult_trade_item = item
             shuffle_item = True
 
@@ -504,11 +514,55 @@ def get_pool_core(world):
         elif location.vanilla_item == 'Small Key (Thieves Hideout)':
             shuffle_item = world.settings.shuffle_hideoutkeys != 'vanilla'
             if (world.settings.gerudo_fortress == 'open'
-                    or world.settings.gerudo_fortress == 'fast' and location.name != 'Hideout Jail Guard (1 Torch)'):
+                    or world.settings.gerudo_fortress == 'fast' and location.name != 'Hideout 1 Torch Jail Gerudo Key'):
                 item = IGNORE_LOCATION
                 shuffle_item = False
             if shuffle_item and world.settings.gerudo_fortress == 'normal' and 'Thieves Hideout' in world.settings.key_rings:
-                item = get_junk_item()[0] if location.name != 'Hideout Jail Guard (1 Torch)' else 'Small Key Ring (Thieves Hideout)'
+                item = get_junk_item()[0] if location.name != 'Hideout 1 Torch Jail Gerudo Key' else 'Small Key Ring (Thieves Hideout)'
+
+        # Freestanding Rupees and Hearts
+        elif location.type in ['ActorOverride', 'Freestanding', 'RupeeTower']:
+            if world.settings.shuffle_freestanding_items == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_freestanding_items == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+            elif world.settings.shuffle_freestanding_items == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Pots
+        elif location.type in ['Pot', 'FlyingPot']:
+            if world.settings.shuffle_pots == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_pots == 'dungeons' and (location.dungeon is not None or location.parent_region.is_boss_room):
+                shuffle_item = True
+            elif world.settings.shuffle_pots == 'overworld' and not (location.dungeon is not None or location.parent_region.is_boss_room):
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Crates
+        elif location.type in ['Crate', 'SmallCrate']:
+            if world.settings.shuffle_crates == 'all':
+                shuffle_item = True
+            elif world.settings.shuffle_crates == 'dungeons' and location.dungeon is not None:
+                shuffle_item = True
+            elif world.settings.shuffle_crates == 'overworld' and location.dungeon is None:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
+
+        # Beehives
+        elif location.type == 'Beehive':
+            if world.settings.shuffle_beehives:
+                shuffle_item = True
+            else:
+                shuffle_item = False
+                location.disabled = DisableType.DISABLED
 
         # Dungeon Items
         elif location.dungeon is not None:
@@ -546,7 +600,7 @@ def get_pool_core(world):
             # Handle dungeon item.
             if shuffle_setting is not None and not shuffle_item:
                 dungeon_collection.append(ItemFactory(item))
-                if shuffle_setting in ['remove', 'startwith', 'triforce']:
+                if shuffle_setting in ['remove', 'startwith']:
                     world.state.collect(dungeon_collection[-1])
                     item = get_junk_item()[0]
                     shuffle_item = True
@@ -616,7 +670,7 @@ def get_pool_core(world):
     if world.settings.shuffle_ganon_bosskey == 'on_lacs':
         placed_items['ToT Light Arrows Cutscene'] = 'Boss Key (Ganons Castle)'
 
-    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts']:
+    if world.settings.shuffle_ganon_bosskey in ['stones', 'medallions', 'dungeons', 'tokens', 'hearts', 'triforce']:
         placed_items['Gift from Sages'] = 'Boss Key (Ganons Castle)'
         pool.extend(get_junk_item())
     else:

@@ -1,15 +1,15 @@
 import logging
 import os
 import random
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import urllib.request
 from urllib.error import URLError, HTTPError
 import json
 from enum import Enum
 import itertools
 
-from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table
-from Item import MakeEventItem
+from HintList import getHint, getMulti, getHintGroup, getUpgradeHintList, hintExclusions, misc_item_hint_table, misc_location_hint_table
+from Item import Item, MakeEventItem
 from Messages import COLOR_MAP, update_message_by_id
 from Region import Region
 from Search import Search
@@ -24,7 +24,7 @@ bingoBottlesForHints = (
 )
 
 defaultHintDists = [
-    'balanced.json', 'bingo.json', 'chaos.json', 'ddr.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
+    'balanced.json', 'bingo.json', 'chaos.json', 'coop2.json', 'ddr.json', 'league.json', 'mw3.json', 'scrubs.json', 'strong.json', 'tournament.json', 'useless.json', 'very_strong.json', 'very_strong_magic.json', 'weekly.json'
 ]
 
 unHintableWothItems = ['Triforce Piece', 'Gold Skulltula Token']
@@ -302,49 +302,50 @@ class HintAreaNotFound(RuntimeError):
 
 
 class HintArea(Enum):
-    # internal name          prepositions        display name                  color         internal dungeon name
+    # internal name          prepositions        display name                  short name                color         internal dungeon name
     #                        vague     clear
-    ROOT                   = 'in',     'in',     "Link's Pocket",              'White',      None
-    HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Light Blue', None
-    LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Light Blue', None
-    MARKET                 = 'in',     'in',     'the Market',                 'Light Blue', None
-    TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Light Blue', None
-    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         'Light Blue', None # required for warp songs
-    HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Light Blue', None
-    OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     'Light Blue', None
-    INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      'Light Blue', 'Ganons Castle'
-    KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              'Green',      None
-    DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              'Green',      'Deku Tree'
-    LOST_WOODS             = 'in',     'in',     'the Lost Woods',             'Green',      None
-    SACRED_FOREST_MEADOW   = 'at',     'at',     'the Sacred Forest Meadow',   'Green',      None
-    FOREST_TEMPLE          = 'in',     'in',     'the Forest Temple',          'Green',      'Forest Temple'
-    DEATH_MOUNTAIN_TRAIL   = 'on',     'on',     'the Death Mountain Trail',   'Red',        None
-    DODONGOS_CAVERN        = 'within', 'in',     "Dodongo's Cavern",           'Red',        'Dodongos Cavern'
-    GORON_CITY             = 'in',     'in',     'Goron City',                 'Red',        None
-    DEATH_MOUNTAIN_CRATER  = 'in',     'in',     'the Death Mountain Crater',  'Red',        None
-    FIRE_TEMPLE            = 'on',     'in',     'the Fire Temple',            'Red',        'Fire Temple'
-    ZORA_RIVER             = 'at',     'at',     "Zora's River",               'Blue',       None
-    ZORAS_DOMAIN           = 'at',     'at',     "Zora's Domain",              'Blue',       None
-    ZORAS_FOUNTAIN         = 'at',     'at',     "Zora's Fountain",            'Blue',       None
-    JABU_JABUS_BELLY       = 'in',     'inside', "Jabu Jabu's Belly",          'Blue',       'Jabu Jabus Belly'
-    ICE_CAVERN             = 'inside', 'in'    , 'the Ice Cavern',             'Blue',       'Ice Cavern'
-    LAKE_HYLIA             = 'at',     'at',     'Lake Hylia',                 'Blue',       None
-    WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           'Blue',       'Water Temple'
-    KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           'Pink',       None
-    BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     'Pink',       'Bottom of the Well'
-    GRAVEYARD              = 'in',     'in',     'the Graveyard',              'Pink',       None
-    SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          'Pink',       'Shadow Temple'
-    GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              'Yellow',     None
-    GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          'Yellow',     None
-    GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', 'Yellow',     'Gerudo Training Ground'
-    HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      'Yellow',     None
-    DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        'Yellow',     None
-    SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          'Yellow',     'Spirit Temple'
+    ROOT                   = 'in',     'in',     "Link's pocket",              'Free',                   'White',      None
+    HYRULE_FIELD           = 'in',     'in',     'Hyrule Field',               'Hyrule Field',           'Light Blue', None
+    LON_LON_RANCH          = 'at',     'at',     'Lon Lon Ranch',              'Lon Lon Ranch',          'Light Blue', None
+    MARKET                 = 'in',     'in',     'the Market',                 'Market',                 'Light Blue', None
+    TEMPLE_OF_TIME         = 'inside', 'inside', 'the Temple of Time',         'Temple of Time',         'Light Blue', None
+    CASTLE_GROUNDS         = 'on',     'on',     'the Castle Grounds',         None,                     'Light Blue', None # required for warp songs
+    HYRULE_CASTLE          = 'at',     'at',     'Hyrule Castle',              'Hyrule Castle',          'Light Blue', None
+    OUTSIDE_GANONS_CASTLE  = None,     None,     "outside Ganon's Castle",     "Outside Ganon's Castle", 'Light Blue', None
+    INSIDE_GANONS_CASTLE   = 'inside', None,     "inside Ganon's Castle",      "Inside Ganon's Castle",  'Light Blue', 'Ganons Castle'
+    GANONDORFS_CHAMBER     = 'in',     'in',     "Ganondorf's Chamber",        "Ganondorf's Chamber",    'Light Blue', None
+    KOKIRI_FOREST          = 'in',     'in',     'Kokiri Forest',              "Kokiri Forest",          'Green',      None
+    DEKU_TREE              = 'inside', 'inside', 'the Deku Tree',              "Deku Tree",              'Green',      'Deku Tree'
+    LOST_WOODS             = 'in',     'in',     'the Lost Woods',             "Lost Woods",             'Green',      None
+    SACRED_FOREST_MEADOW   = 'at',     'at',     'the Sacred Forest Meadow',   "Sacred Forest Meadow",   'Green',      None
+    FOREST_TEMPLE          = 'in',     'in',     'the Forest Temple',          "Forest Temple",          'Green',      'Forest Temple'
+    DEATH_MOUNTAIN_TRAIL   = 'on',     'on',     'the Death Mountain Trail',   "Death Mountain Trail",   'Red',        None
+    DODONGOS_CAVERN        = 'within', 'in',     "Dodongo's Cavern",           "Dodongo's Cavern",       'Red',        'Dodongos Cavern'
+    GORON_CITY             = 'in',     'in',     'Goron City',                 "Goron City",             'Red',        None
+    DEATH_MOUNTAIN_CRATER  = 'in',     'in',     'the Death Mountain Crater',  "Death Mountain Crater",  'Red',        None
+    FIRE_TEMPLE            = 'on',     'in',     'the Fire Temple',            "Fire Temple",            'Red',        'Fire Temple'
+    ZORA_RIVER             = 'at',     'at',     "Zora's River",               "Zora's River",           'Blue',       None
+    ZORAS_DOMAIN           = 'at',     'at',     "Zora's Domain",              "Zora's Domain",          'Blue',       None
+    ZORAS_FOUNTAIN         = 'at',     'at',     "Zora's Fountain",            "Zora's Fountain",        'Blue',       None
+    JABU_JABUS_BELLY       = 'in',     'inside', "Jabu Jabu's Belly",          "Jabu Jabu's Belly",      'Blue',       'Jabu Jabus Belly'
+    ICE_CAVERN             = 'inside', 'in'    , 'the Ice Cavern',             "Ice Cavern",             'Blue',       'Ice Cavern'
+    LAKE_HYLIA             = 'at',     'at',     'Lake Hylia',                 "Lake Hylia",             'Blue',       None
+    WATER_TEMPLE           = 'under',  'in',     'the Water Temple',           "Water Temple",           'Blue',       'Water Temple'
+    KAKARIKO_VILLAGE       = 'in',     'in',     'Kakariko Village',           "Kakariko Village",       'Pink',       None
+    BOTTOM_OF_THE_WELL     = 'within', 'at',     'the Bottom of the Well',     "Bottom of the Well",     'Pink',       'Bottom of the Well'
+    GRAVEYARD              = 'in',     'in',     'the Graveyard',              "Graveyard",              'Pink',       None
+    SHADOW_TEMPLE          = 'within', 'in',     'the Shadow Temple',          "Shadow Temple",          'Pink',       'Shadow Temple'
+    GERUDO_VALLEY          = 'at',     'at',     'Gerudo Valley',              "Gerudo Valley",          'Yellow',     None
+    GERUDO_FORTRESS        = 'at',     'at',     "Gerudo's Fortress",          "Gerudo's Fortress",      'Yellow',     None
+    GERUDO_TRAINING_GROUND = 'within', 'on',     'the Gerudo Training Ground', "Gerudo Training Ground", 'Yellow',     'Gerudo Training Ground'
+    HAUNTED_WASTELAND      = 'in',     'in',     'the Haunted Wasteland',      "Haunted Wasteland",      'Yellow',     None
+    DESERT_COLOSSUS        = 'at',     'at',     'the Desert Colossus',        "Desert Colossus",        'Yellow',     None
+    SPIRIT_TEMPLE          = 'inside', 'in',     'the Spirit Temple',          "Spirit Temple",          'Yellow',     'Spirit Temple'
 
     # Performs a breadth first search to find the closest hint area from a given spot (region, location, or entrance).
     # May fail to find a hint if the given spot is only accessible from the root and not from any other region with a hint area
     @staticmethod
-    def at(spot):
+    def at(spot, use_alt_hint=False):
         if isinstance(spot, Region):
             original_parent = spot
         else:
@@ -362,6 +363,8 @@ class HintArea(Enum):
                 parent_region = current_spot.parent_region
 
             if parent_region.hint and (original_parent.name == 'Root' or parent_region.name != 'Root'):
+                if use_alt_hint and parent_region.alt_hint:
+                    return parent_region.alt_hint
                 return parent_region.hint
 
             spot_queue.extend(list(filter(lambda ent: ent not in already_checked, parent_region.entrances)))
@@ -369,10 +372,10 @@ class HintArea(Enum):
         raise HintAreaNotFound('No hint area could be found for %s [World %d]' % (spot, spot.world.id))
 
     @classmethod
-    def get_dungeon_hint_area(cls, dungeon_name: str):
-        if dungeon_name.find("(") != -1 and dungeon_name.find(")") != -1:
+    def for_dungeon(cls, dungeon_name: str):
+        if '(' in dungeon_name and ')' in dungeon_name:
             # A dungeon item name was passed in - get the name of the dungeon from it.
-            dungeon_name = dungeon_name[dungeon_name.index("(")+1:dungeon_name.index(")")]
+            dungeon_name = dungeon_name[dungeon_name.index('(') + 1:dungeon_name.index(')')]
 
         if dungeon_name == "Thieves Hideout":
             # Special case for Thieves' Hideout - change this if it gets its own hint area.
@@ -383,18 +386,26 @@ class HintArea(Enum):
                 return hint_area
         return None
 
+    def preposition(self, clearer_hints):
+        return self.value[1 if clearer_hints else 0]
+
     def __str__(self):
         return self.value[2]
+
+    # used for dungeon reward locations in the pause menu
+    @property
+    def short_name(self):
+        return self.value[3]
 
     # Hint areas are further grouped into colored sections of the map by association with the medallions.
     # These colors are used to generate the text boxes for shuffled warp songs.
     @property
     def color(self):
-        return self.value[3]
+        return self.value[4]
 
     @property
     def dungeon_name(self):
-        return self.value[4]
+        return self.value[5]
 
     @property
     def is_dungeon(self):
@@ -405,9 +416,6 @@ class HintArea(Enum):
             if dungeon.name == self.dungeon_name:
                 return dungeon.is_dungeon_item(item)
         return False
-
-    def preposition(self, clearer_hints):
-        return self.value[1 if clearer_hints else 0]
 
     # Formats the hint text for this area with proper grammar.
     # Dungeons are hinted differently depending on the clearer_hints setting.
@@ -468,7 +476,9 @@ def get_checked_areas(world, checked):
             location = world.get_location(check)
         except Exception:
             return check
-        return HintArea.at(location)
+        # Don't consider dungeons as already hinted from the reward hint on the Temple of Time altar
+        if location.type != 'Boss': #TODO or shuffled dungeon rewards
+            return HintArea.at(location)
 
     return set(get_area_from_name(check) for check in checked)
 
@@ -514,21 +524,14 @@ def get_goal_hint(spoiler, world, checked):
         return None
 
     goals = goal_category.goals
-    goal_locations = []
+    category_locations = []
 
-    # Choose random goal and check if any locations are already hinted.
-    # If all locations for a goal are hinted, remove the goal from the list and try again.
-    # If all locations for all goals are hinted, try remaining goal categories
+    # Collect unhinted locations for the category across all category goals.
+    # If all locations for all goals in the category are hinted, try remaining goal categories
     # If all locations for all goal categories are hinted, return no hint.
-    while not goal_locations:
-        if not goals:
-            del world.goal_categories[goal_category.name]
-            goal_category = get_goal_category(spoiler, world, world.goal_categories)
-            if not goal_category:
-                return None
-            else:
-                goals = goal_category.goals
+    while not category_locations:
 
+        # Filter hinted goals until every goal in the category has been hinted.
         weights = []
         zero_weights = True
         for goal in goals:
@@ -536,30 +539,64 @@ def get_goal_hint(spoiler, world, checked):
                 zero_weights = False
             weights.append(goal.weight)
 
-        if zero_weights:
-            goal = random.choice(goals)
-        else:
-            goal = random.choices(goals, weights=weights)[0]
+        # Collect set of unhinted locations for the category. Reduces the bias
+        # from locations in multiple goals for the category.
+        category_locations = []
+        location_reverse_map = defaultdict(list)
+        for goal in goals:
+            if zero_weights or goal.weight > 0:
+                goal_locations = list(filter(lambda location:
+                    location not in category_locations
+                    and location[0].name not in checked
+                    and location[0].name not in world.hint_exclusions
+                    and location[0].name not in world.hint_type_overrides['goal']
+                    and location[0].item.name not in world.item_hint_type_overrides['goal']
+                    and location[0].item.name not in unHintableWothItems,
+                    goal.required_locations))
+                for location in goal_locations:
+                    location_reverse_map[location[0]].append(goal)
+                category_locations.extend(goal_locations)
 
-        goal_locations = list(filter(lambda location:
-            location[0].name not in checked
-            and location[0].name not in world.hint_exclusions
-            and location[0].name not in world.hint_type_overrides['goal']
-            and location[0].item.name not in world.item_hint_type_overrides['goal']
-            and location[0].item.name not in unHintableWothItems,
-            goal.required_locations))
+        if not category_locations:
+            del world.goal_categories[goal_category.name]
+            goal_category = get_goal_category(spoiler, world, world.goal_categories)
+            if not goal_category:
+                return None
+            else:
+                goals = goal_category.goals
 
-        if not goal_locations:
-            goals.remove(goal)
-
-    # Goal weight to zero mitigates double hinting this goal
-    # Once all goals in a category are 0, selection is true random
-    goal.weight = 0
-    location_tuple = random.choice(goal_locations)
+    location_tuple = random.choice(category_locations)
     location = location_tuple[0]
     world_ids = location_tuple[3]
     world_id = random.choice(world_ids)
     checked.add(location.name)
+    goal = random.choice(location_reverse_map[location])
+
+    # Make sure this wasn't the last hintable location for other goals.
+    # If so, set weights to zero. This is important for one-hint-per-goal.
+    # Locations are unique per-category, so we don't have to check the others.
+    for other_goal in goals:
+        if not zero_weights and other_goal.weight <= 0:
+            continue
+
+        required_locations = [loc[0] for loc in other_goal.required_locations]
+        goal_locations = list(filter(lambda loc:
+            loc.name not in checked
+            and loc.name not in world.hint_exclusions
+            and loc.name not in world.hint_type_overrides['goal']
+            and loc.item.name not in world.item_hint_type_overrides['goal']
+            and loc.item.name not in unHintableWothItems,
+            required_locations))
+        if not goal_locations:
+            other_goal.weight = 0
+            if world.one_hint_per_goal and location in required_locations:
+                # Replace randomly chosen goal with the goal that has all its locations
+                # hinted without being directly hinted itself.
+                goal = other_goal
+
+    # Goal weight to zero mitigates double hinting this goal
+    # Once all goals in a category are 0, selection is true random
+    goal.weight = 0
 
     location_text = HintArea.at(location).text(world.settings.clearer_hints)
     if world_id == world.id:
@@ -1087,8 +1124,21 @@ def buildGossipHints(spoiler, worlds):
     checkedLocations = dict()
     # Add misc. item hint locations to "checked" locations if the respective hint is reachable without the hinted item.
     for world in worlds:
+        for location in world.hinted_dungeon_reward_locations.values():
+            if 'altar' in world.settings.misc_hints and not world.settings.enhance_map_compass and can_reach_hint(worlds, world.get_location('ToT Child Altar Hint' if location.item.info.stone else 'ToT Adult Altar Hint'), location):
+                item_world = location.world
+                if item_world.id not in checkedLocations:
+                    checkedLocations[item_world.id] = set()
+                checkedLocations[item_world.id].add(location.name)
         for hint_type, location in world.misc_hint_item_locations.items():
             if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_item_hint_table[hint_type]['hint_location']), location):
+                item_world = location.world
+                if item_world.id not in checkedLocations:
+                    checkedLocations[item_world.id] = set()
+                checkedLocations[item_world.id].add(location.name)
+        for hint_type in world.misc_hint_location_items.keys():
+            location = world.get_location(misc_location_hint_table[hint_type]['item_location'])
+            if hint_type in world.settings.misc_hints and can_reach_hint(worlds, world.get_location(misc_location_hint_table[hint_type]['hint_location']), location):
                 item_world = location.world
                 if item_world.id not in checkedLocations:
                     checkedLocations[item_world.id] = set()
@@ -1415,8 +1465,8 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
     child_text = '\x08'
     if include_rewards:
         bossRewardsSpiritualStones = [
-            ('Kokiri Emerald',   'Green'), 
-            ('Goron Ruby',       'Red'), 
+            ('Kokiri Emerald',   'Green'),
+            ('Goron Ruby',       'Red'),
             ('Zora Sapphire',    'Blue'),
         ]
         child_text += getHint('Spiritual Stone Text Start', world.settings.clearer_hints).text + '\x04'
@@ -1452,12 +1502,17 @@ def buildAltarHints(world, messages, include_rewards=True, include_wincons=True)
 
 # pulls text string from hintlist for reward after sending the location to hintlist.
 def buildBossString(reward, color, world):
-    for location in world.get_filled_locations():
-        if location.item.name == reward:
-            item_icon = chr(location.item.special['item_id'])
-            location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
-            return str(GossipText("\x08\x13%sOne %s..." % (item_icon, location_text), [color], prefix='')) + '\x04'
-    return ''
+    item_icon = chr(Item(reward).special['item_id'])
+    if reward in world.distribution.effective_starting_items and world.distribution.effective_starting_items[reward].count > 0:
+        if world.settings.clearer_hints:
+            text = GossipText(f"\x08\x13{item_icon}One #@ already has#...", [color], prefix='')
+        else:
+            text = GossipText(f"\x08\x13{item_icon}One in #@'s pocket#...", [color], prefix='')
+    else:
+        location = world.hinted_dungeon_reward_locations[reward]
+        location_text = HintArea.at(location).text(world.settings.clearer_hints, preposition=True)
+        text = GossipText(f"\x08\x13{item_icon}One {location_text}...", [color], prefix='')
+    return str(text) + '\x04'
 
 
 def buildBridgeReqsString(world):
@@ -1548,7 +1603,7 @@ def buildMiscItemHints(world, messages):
                     text = data['custom_item_text'].format(area='#your pocket#', item=item)
             elif hint_type in world.misc_hint_item_locations:
                 location = world.misc_hint_item_locations[hint_type]
-                area = HintArea.at(location).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
+                area = HintArea.at(location, use_alt_hint=data['use_alt_hint']).text(world.settings.clearer_hints, world=None if location.world.id == world.id else location.world.id + 1)
                 if item == data['default_item']:
                     text = data['default_item_text'].format(area=area)
                 else:
@@ -1568,6 +1623,18 @@ def buildMiscItemHints(world, messages):
                 text = text.replace(find, replace)
 
             update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')))
+
+
+def buildMiscLocationHints(world, messages):
+    for hint_type, data in misc_location_hint_table.items():
+        text = data['location_fallback']
+        if hint_type in world.settings.misc_hints:
+            location = world.misc_hint_locations[hint_type]
+            if hint_type in world.misc_hint_location_items:
+                item = world.misc_hint_location_items[hint_type]
+                text = data['location_text'].format(item=getHint(getItemGenericName(item), world.settings.clearer_hints).text)
+
+        update_message_by_id(messages, data['id'], str(GossipText(text, ['Green'], prefix='')), 0x23)
 
 
 def get_raw_text(string):

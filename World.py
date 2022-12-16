@@ -6,11 +6,11 @@ import json
 
 from Entrance import Entrance
 from Goals import Goal, GoalCategory
-from HintList import getRequiredHints, misc_item_hint_table
+from HintList import getRequiredHints, misc_item_hint_table, misc_location_hint_table
 from Hints import HintArea, hint_dist_keys, HintDistFiles
 from Item import ItemFactory, ItemInfo, MakeEventItem
 from Location import Location, LocationFactory
-from LocationList import business_scrubs
+from LocationList import business_scrubs, location_groups
 from Plandomizer import InvalidFileException
 from Region import Region, TimeOfDay
 from RuleParser import Rule_AST_Transformer
@@ -33,7 +33,9 @@ class World(object):
         self.shop_prices = {}
         self.scrub_prices = {}
         self.maximum_wallets = 0
+        self.hinted_dungeon_reward_locations = {}
         self.misc_hint_item_locations = {}
+        self.misc_hint_location_items = {}
         self.triforce_count = 0
         self.total_starting_triforce_count = 0
         self.bingosync_url = None
@@ -181,7 +183,7 @@ class World(object):
         self.added_hint_types = {}
         self.item_added_hint_types = {}
         self.hint_exclusions = set()
-        if settings.skip_child_zelda:
+        if settings.shuffle_child_trade == 'skip_child_zelda':
             self.hint_exclusions.add('Song from Impa')
         self.hint_type_overrides = {}
         self.item_hint_type_overrides = {}
@@ -225,7 +227,9 @@ class World(object):
 
         self.always_hints = [hint.name for hint in getRequiredHints(self)]
 
+        self.dungeon_rewards_hinted = 'altar' in settings.misc_hints or settings.enhance_map_compass
         self.misc_hint_items = {hint_type: self.hint_dist_user.get('misc_hint_items', {}).get(hint_type, data['default_item']) for hint_type, data in misc_item_hint_table.items()}
+        self.misc_hint_locations = {hint_type: self.hint_dist_user.get('misc_hint_locations', {}).get(hint_type, data['item_location']) for hint_type, data in misc_location_hint_table.items()}
 
         self.state = State(self)
 
@@ -417,7 +421,7 @@ class World(object):
         if self.settings.chicken_count_random and 'chicken_count' not in dist_keys:
             self.settings.chicken_count = random.randint(0, 7)
             self.randomized_list.append('chicken_count')
-        
+
         # Determine dungeons with shortcuts
         dungeons = ['Deku Tree', 'Dodongos Cavern', 'Jabu Jabus Belly', 'Forest Temple', 'Fire Temple', 'Water Temple', 'Shadow Temple', 'Spirit Temple']
         if (self.settings.dungeon_shortcuts_choice == 'random'):
@@ -458,7 +462,7 @@ class World(object):
         for trial in self.skipped_trials:
             if trial not in chosen_trials and trial not in dist_chosen:
                 self.skipped_trials[trial] = True
-        
+
 
         # Determine empty and MQ Dungeons (avoid having both empty & MQ dungeons unless necessary)
         mq_dungeon_pool = list(self.dungeon_mq)
@@ -480,7 +484,7 @@ class World(object):
             if len(empty_dungeon_pool) < nb_to_pick:
                 non_empty = 8 - dist_num_empty - len(empty_dungeon_pool)
                 raise RuntimeError(f"On world {self.id+1}, {dist_num_empty} dungeons are set to empty and {non_empty} to non-empty. Can't reach {self.settings.empty_dungeons_count} empty dungeons.")
-            
+
             # Prioritize non-MQ dungeons
             non_mq, mq = [], []
             for dung in empty_dungeon_pool:
@@ -506,7 +510,7 @@ class World(object):
             if len(mq_dungeon_pool) < nb_to_pick:
                 non_mq = 8 - dist_num_mq - len(mq_dungeon_pool)
                 raise RuntimeError(f"On world {self.id+1}, {dist_num_mq} dungeons are set to MQ and {non_mq} to non-MQ. Can't reach {self.settings.mq_dungeons_count} MQ dungeons.")
-       
+
             # Prioritize non-empty dungeons
             non_empty, empty = [], []
             for dung in mq_dungeon_pool:
@@ -517,7 +521,7 @@ class World(object):
             if nb_to_pick > 0:
                 for dung in random.sample(empty, nb_to_pick):
                     self.dungeon_mq[dung] = True
-            
+
         self.settings.mq_dungeons_count = list(self.dungeon_mq.values()).count(True)
         self.distribution.configure_randomized_settings(self)
 
@@ -532,8 +536,12 @@ class World(object):
                 new_region.scene = region['scene']
             if 'hint' in region:
                 new_region.hint_name = region['hint']
+            if 'alt_hint' in region:
+                new_region.alt_hint_name = region['alt_hint']
             if 'dungeon' in region:
                 new_region.dungeon = region['dungeon']
+            if 'is_boss_room' in region:
+                new_region.is_boss_room = region['is_boss_room']
             if 'time_passes' in region:
                 new_region.time_passes = region['time_passes']
                 new_region.provides_time = TimeOfDay.ALL
@@ -572,10 +580,7 @@ class World(object):
                     new_exit.rule_string = rule
                     if self.settings.logic_rules != 'none':
                         self.parser.parse_spot_rule(new_exit)
-                    if new_exit.never:
-                        logging.getLogger('').debug('Dropping unreachable exit: %s', new_exit.name)
-                    else:
-                        new_region.exits.append(new_exit)
+                    new_region.exits.append(new_exit)
             self.regions.append(new_region)
 
 
@@ -676,20 +681,9 @@ class World(object):
         'Shadow Medallion',
         'Light Medallion'
     )
-    boss_location_names = (
-        'Queen Gohma',
-        'King Dodongo',
-        'Barinade',
-        'Phantom Ganon',
-        'Volvagia',
-        'Morpha',
-        'Bongo Bongo',
-        'Twinrova',
-        'Links Pocket'
-    )
     def fill_bosses(self, bossCount=9):
         boss_rewards = ItemFactory(self.rewardlist, self)
-        boss_locations = [self.get_location(loc) for loc in self.boss_location_names]
+        boss_locations = [self.get_location(loc) for loc in location_groups['Boss']]
 
         placed_prizes = [loc.item.name for loc in boss_locations if loc.item is not None]
         unplaced_prizes = [item for item in boss_rewards if item.name not in placed_prizes]
@@ -1120,18 +1114,6 @@ class World(object):
     def get_shuffled_entrances(self, type=None, only_primary=False):
         return [entrance for entrance in self.get_shufflable_entrances(type=type, only_primary=only_primary) if entrance.shuffled]
 
-
-    def get_boss_map(self):
-        map = dict((boss, boss) for boss in self.boss_location_names)
-        if self.settings.shuffle_bosses == 'off':
-            return map
-
-        for type in ('ChildBoss', 'AdultBoss'):
-            for entrance in self.get_shuffled_entrances(type, True):
-                if 'boss' not in entrance.data:
-                    continue
-                map[entrance.data['boss']] = entrance.replaces.data['boss']
-        return map
 
     def region_has_shortcuts(self, region_name):
         region = self.get_region(region_name)

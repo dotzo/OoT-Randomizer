@@ -244,8 +244,8 @@ entrance_shuffle_table = [
                         ('KF Storms Grotto -> Kokiri Forest',                               { 'grotto_id': 0x1B })),
     ('Grotto',          ('Zoras Domain -> ZD Storms Grotto',                                { 'grotto_id': 0x1C, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x58 }),
                         ('ZD Storms Grotto -> Zoras Domain',                                { 'grotto_id': 0x1C })),
-    ('Grotto',          ('Gerudo Fortress -> GF Storms Grotto',                             { 'grotto_id': 0x1D, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x5D }),
-                        ('GF Storms Grotto -> Gerudo Fortress',                             { 'grotto_id': 0x1D })),
+    ('Grotto',          ('GF Entrances Behind Crates -> GF Storms Grotto',                  { 'grotto_id': 0x1D, 'entrance': 0x036D, 'content': 0xFF, 'scene': 0x5D }),
+                        ('GF Storms Grotto -> GF Entrances Behind Crates',                  { 'grotto_id': 0x1D })),
     ('Grotto',          ('GV Fortress Side -> GV Storms Grotto',                            { 'grotto_id': 0x1E, 'entrance': 0x05BC, 'content': 0xF0, 'scene': 0x5A }),
                         ('GV Storms Grotto -> GV Fortress Side',                            { 'grotto_id': 0x1E })),
     ('Grotto',          ('GV Grotto Ledge -> GV Octorok Grotto',                            { 'grotto_id': 0x1F, 'entrance': 0x05AC, 'content': 0xF2, 'scene': 0x5A }),
@@ -269,7 +269,7 @@ entrance_shuffle_table = [
     ('Overworld',       ('Lost Woods -> GC Woods Warp',                                     { 'index': 0x04E2 }),
                         ('GC Woods Warp -> Lost Woods',                                     { 'index': 0x04D6 })),
     ('Overworld',       ('Lost Woods -> Zora River',                                        { 'index': 0x01DD }),
-                        ('Zora River -> Lost Woods',                                        { 'index': 0x04DA })),
+                        ('Zora River -> LW Underwater Entrance',                            { 'index': 0x04DA })),
     ('Overworld',       ('LW Beyond Mido -> SFM Entryway',                                  { 'index': 0x00FC }),
                         ('SFM Entryway -> LW Beyond Mido',                                  { 'index': 0x01A9 })),
     ('Overworld',       ('LW Bridge -> Hyrule Field',                                       { 'index': 0x0185 }),
@@ -350,49 +350,49 @@ def _add_boss_entrances():
             'exit_blue_warp': reverse['blue_warp']
         }
 
-    for type, source, target, boss, dungeon, index, rindex, addresses in [
+    for type, source, target, dungeon, index, rindex, addresses in [
         (
-            'ChildBoss', 'Deku Tree Boss Door', 'Gohma Boss Room', 'Queen Gohma',
+            'ChildBoss', 'Deku Tree Boss Door', 'Queen Gohma Boss Room',
             'KF Outside Deku Tree -> Deku Tree Lobby',
             0x040f, 0x0252, [ 0xB06292, 0xBC6162, 0xBC60AE ]
         ),
         (
-            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room', 'King Dodongo',
+            'ChildBoss', 'Dodongos Cavern Boss Door', 'King Dodongo Boss Room',
             'Death Mountain -> Dodongos Cavern Beginning',
             0x040b, 0x00c5, [ 0xB062B6, 0xBC616E ]
         ),
         (
-            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room', 'Barinade',
+            'ChildBoss', 'Jabu Jabus Belly Boss Door', 'Barinade Boss Room',
             'Zoras Fountain -> Jabu Jabus Belly Beginning',
             0x0301, 0x0407, [ 0xB062C2, 0xBC60C2 ]
         ),
         (
-            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room', 'Phantom Ganon',
+            'AdultBoss', 'Forest Temple Boss Door', 'Phantom Ganon Boss Room',
             'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',
             0x000c, 0x024E, [ 0xB062CE, 0xBC6182 ]
         ),
         (
-            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room', 'Volvagia',
+            'AdultBoss', 'Fire Temple Boss Door', 'Volvagia Boss Room',
             'DMC Fire Temple Entrance -> Fire Temple Lower',
             0x0305, 0x0175, [ 0xB062DA, 0xBC60CE ]
         ),
         (
-            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room', 'Morpha',
+            'AdultBoss', 'Water Temple Boss Door', 'Morpha Boss Room',
             'Lake Hylia -> Water Temple Lobby',
             0x0417, 0x0423, [ 0xB062E6, 0xBC6196 ]
         ),
         (
-            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room', 'Twinrova',
+            'AdultBoss', 'Spirit Temple Boss Door', 'Twinrova Boss Room',
             'Desert Colossus -> Spirit Temple Lobby',
             0x008D, 0x02F5, [ 0xB062F2, 0xBC6122 ]
         ),
         (
-            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room', 'Bongo Bongo',
+            'AdultBoss', 'Shadow Temple Boss Door', 'Bongo Bongo Boss Room',
             'Graveyard Warp Pad Region -> Shadow Temple Entryway',
             0x0413, 0x02B2, [ 0xB062FE, 0xBC61AA ]
         )
     ]:
-        d = {'index': index, 'patch_addresses': addresses, 'boss': boss}
+        d = {'index': index, 'patch_addresses': addresses}
         d.update(dungeon_data[dungeon])
         entrance_shuffle_table.append(
             (type, (f"{source} -> {target}", d), (f"{target} -> {source}", {'index': rindex}))
@@ -454,6 +454,10 @@ def shuffle_random_entrances(worlds):
 
         if worlds[0].settings.spawn_positions:
             one_way_entrance_pools['Spawn'] = world.get_shufflable_entrances(type='Spawn')
+            if 'child' not in worlds[0].settings.spawn_positions:
+                one_way_entrance_pools['Spawn'].remove(world.get_entrance('Child Spawn -> KF Links House'))
+            elif 'adult' not in worlds[0].settings.spawn_positions:
+                one_way_entrance_pools['Spawn'].remove(world.get_entrance('Adult Spawn -> Temple of Time'))
 
         if worlds[0].settings.warp_songs:
             one_way_entrance_pools['WarpSong'] = world.get_shufflable_entrances(type='WarpSong')
@@ -787,10 +791,12 @@ def check_entrances_compatibility(entrance, target, rollbacks=(), placed_one_way
         except HintAreaNotFound:
             pass # not connected to a hint area yet, will be checked when shuffling two-way entrances
         else:
-            for placed_entrance in (*rollbacks, *placed_one_way_entrances):
+            # Check all already placed entrances of the same type (including priority entrances placed separately)
+            for rollback in (*rollbacks, *placed_one_way_entrances):
                 try:
-                    if HintArea.at(placed_entrance[0].connected_region) == hint_area:
-                        raise EntranceShuffleError(f'Another one-way entrance already leads to {hint_area}')
+                    placed_entrance = rollback[0]
+                    if entrance.type == placed_entrance.type and HintArea.at(placed_entrance.connected_region) == hint_area:
+                        raise EntranceShuffleError(f'Another {entrance.type} entrance already leads to {hint_area}')
                 except HintAreaNotFound:
                     pass
 
@@ -820,16 +826,30 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
-        # If ALR is enabled, ensure all locations we want to keep reachable are indeed still reachable
-        # Otherwise, just continue if the game is still beatable
-        if not (world.check_beatable_only and max_search.can_beat_game(False)):
+        if world.check_beatable_only:
+            if worlds[0].settings.reachable_locations == 'goals':
+                # If this entrance is required for a goal, it must be placed somewhere reachable.
+                # We also need to check to make sure the game is beatable, since custom goals might not imply that.
+                predicate = lambda state: state.won() and state.has_all_item_goals()
+            else:
+                # If the game is not beatable without this entrance, it must be placed somewhere reachable.
+                predicate = State.won
+            perform_access_check = not max_search.can_beat_game(scan_for_items=False, predicate=predicate)
+        else:
+            # All entrances must be placed somewhere reachable.
+            perform_access_check = True
+        if perform_access_check:
             max_search.visit_locations(locations_to_ensure_reachable)
             for location in locations_to_ensure_reachable:
                 if not max_search.visited(location):
                     raise EntranceShuffleError('%s is unreachable' % location.name)
 
-    if world.shuffle_interior_entrances and (any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none') and \
-       (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior']):
+    if (
+        world.shuffle_interior_entrances and (
+            (world.dungeon_rewards_hinted and False) or #TODO enable if boss reward shuffle and/or mixed pools bosses are on
+            any(hint_type in world.settings.misc_hints for hint_type in misc_item_hint_table) or world.settings.hints != 'none'
+        ) and (entrance_placed == None or entrance_placed.type in ['Interior', 'SpecialInterior'])
+    ):
         # Ensure Kak Potion Shop entrances are in the same hint area so there is no ambiguity as to which entrance is used for hints
         potion_front_entrance = get_entrance_replacing(world.get_region('Kak Potion Shop Front'), 'Kakariko Village -> Kak Potion Shop Front')
         potion_back_entrance = get_entrance_replacing(world.get_region('Kak Potion Shop Back'), 'Kak Backyard -> Kak Potion Shop Back')
@@ -881,14 +901,16 @@ def validate_world(world, worlds, entrance_placed, locations_to_ensure_reachable
     # so the restriction also needs to be checked here
     for idx1 in range(len(placed_one_way_entrances)):
         try:
-            hint_area1 = HintArea.at(placed_one_way_entrances[idx1][0].connected_region)
+            entrance1 = placed_one_way_entrances[idx1][0]
+            hint_area1 = HintArea.at(entrance1.connected_region)
         except HintAreaNotFound:
             pass
         else:
             for idx2 in range(idx1):
                 try:
-                    if hint_area1 == HintArea.at(placed_one_way_entrances[idx2][0].connected_region):
-                        raise EntranceShuffleError(f'Multiple one-way entrances lead to {hint_area1}')
+                    entrance2 = placed_one_way_entrances[idx2][0]
+                    if entrance1.type == entrance2.type and hint_area1 == HintArea.at(entrance2.connected_region):
+                        raise EntranceShuffleError(f'Multiple {entrance1.type} entrances lead to {hint_area1}')
                 except HintAreaNotFound:
                     pass
 
