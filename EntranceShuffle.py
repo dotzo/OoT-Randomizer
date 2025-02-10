@@ -436,9 +436,9 @@ def set_entrances(worlds: list[World], savewarps_to_connect: list[tuple[Entrance
         savewarp.connect(savewarp.replaces.connected_region)
 
     for world in worlds:
-        if world.settings.logic_rules != 'glitched':
+        #if world.settings.logic_rules != 'glitched':
             # Set entrance data for all entrances, even those we aren't shuffling
-            set_all_entrances_data(world)
+        set_all_entrances_data(world)
 
 # Shuffles entrances that need to be shuffled in all worlds
 def shuffle_random_entrances(worlds: list[World]) -> None:
@@ -955,6 +955,9 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
             CHILD_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
             ADULT_FORBIDDEN.append('Phantom Ganon Boss Room -> Forest Temple Before Boss')
 
+        if world.settings.logic_rules != 'glitchless': 
+            CHILD_FORBIDDEN.remove('GV Carpenter Tent -> GV Fortress Side')
+
         for entrance in world.get_shufflable_entrances():
             if entrance.shuffled:
                 if entrance.replaces:
@@ -967,6 +970,7 @@ def validate_world(world: World, worlds: list[World], entrance_placed: Optional[
                     raise EntranceShuffleError('%s is potentially accessible as child' % entrance.name)
                 elif entrance.name in ADULT_FORBIDDEN and not entrance_unreachable_as(entrance, 'adult', already_checked=[entrance.reverse]):
                     raise EntranceShuffleError('%s is potentially accessible as adult' % entrance.name)
+
 
     if locations_to_ensure_reachable:
         max_search = Search.max_explore([w.state for w in worlds], itempool)
