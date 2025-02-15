@@ -5,7 +5,7 @@
         "locations": {
             "Spirit Temple MQ Entrance Front Left Chest": "True",
             "Spirit Temple MQ Entrance Front Right Chest": "(Silver_Rupee_Spirit_Temple_Lobby_and_Lower_Adult, 5)",
-            "Spirit Temple MQ Entrance Back Left Chest": "(here(can_blash_or_smash) and 
+            "Spirit Temple MQ Entrance Back Left Chest": "(here(can_blast_or_smash) and 
                 (can_use(Slingshot) or can_use(Bow)))
                 or can_gdv
                 or (glitch_spirit_mq_lobby_eye and (can_use(Slingshot) or can_use(Bow)))",
@@ -55,7 +55,7 @@
             "Spirit Temple Shared": "
                 (Small_Key_Spirit_Temple, 2) and
                 (has_bombchus or at('Adult Spirit Temple', (Small_Key_Spirit_Temple, 7) and
-                    logic_rusted_switches and Megaton_Hammer)"
+                    logic_rusted_switches and Megaton_Hammer))"
         }
     },
     {
@@ -264,7 +264,7 @@
                 can_play(Song_of_Time) and can_play(Eponas_Song) and can_play(Suns_Song) and
                 can_play(Song_of_Storms) and can_play(Zeldas_Lullaby)
                     ) or
-                    ((Fish or Bugs) and can_shield and glitch_spirit_mq_symphony_lullaby))
+                    ((Fish or Bugs) and can_shield and glitch_spirit_mq_symphony_lullaby)
                 )"
         }
     },

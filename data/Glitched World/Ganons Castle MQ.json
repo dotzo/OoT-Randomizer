@@ -118,7 +118,7 @@
         "exits": {
             "Ganons Castle Water Trial Ending": "(Silver_Rupee_Ganons_Castle_Water_Trial, 5)
                 and (Blue_Fire or (is_glitched and glitch_ledge_clip and logic_hovers_recoil and can_use(Hover_Boots))
-                ))"
+                )"
         }
     },
     {

@@ -41,11 +41,11 @@
             "Bottom of the Well MQ First Hallway ReDead": "can_kill_redead",
             "Bottom of the Well MQ Center Room Pitfall Skulltula": "
                 has_soul(Skulltula) and 
-                (
                 (can_blast_or_smash
                 or can_use(Dins_Fire) 
                 or (can_play(Zeldas_Lullaby) and 
-                    (Slingshot or (logic_botw_fq_pits and can_kill_skulltula))))",
+                    (Slingshot or (logic_botw_mq_pits and can_kill_skulltula)))
+                )",
             "Bottom of the Well MQ Basement Wallmaster": "can_kill_wallmaster",
             "Bottom of the Well MQ Basement Invisible Skulltula 1": "
                 can_kill_skulltula and (logic_lens_botw_mq or can_use(Lens_of_Truth))",

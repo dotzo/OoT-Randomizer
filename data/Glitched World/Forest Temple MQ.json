@@ -135,18 +135,6 @@
         }
     },
     {
-        "region_name": "Forest Temple Floormaster Room",
-        "dungeon": "Forest Temple",
-        "locations": {
-            "Forest Temple MQ ReDead Chest": "True"
-        },
-        "exits": {
-            "Forest Temple NW Outdoors": "True",
-            "Forest Temple NW Outdoors Freestandings": "True",
-            "Forest Temple Floormaster Room": "True"
-        }
-    },
-    {
         "region_name": "Forest Temple NW Outdoors",
         "dungeon": "Forest Temple",
         "locations": {
@@ -174,6 +162,32 @@
             "Forest Temple Outdoors High Balconies": "can_use(Fire_Arrows) or (can_gdv and can_isg)",
             "Forest Temple Outside Upper Ledge": "can_hover or can_megajump",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)"
+        }
+    },
+    {
+        "region_name": "Forest Temple Outside Upper Ledge",
+        "dungeon": "Forest Temple",
+        "events": {
+            "Forest Temple Twisted Hallway Switch": "True"
+        },
+        "locations": {
+            "Forest Temple MQ ReDead Chest": "has_soul(Redead_and_Gibdo)",
+            "Forest Temple MQ ReDead Room ReDead": "has_soul(Redead_and_Gibdo)"
+        },
+        "exits": {
+            "Forest Temple NW Outdoors": "True",
+            "Forest Temple NW Outdoors Freestandings": "True",
+            "Forest Temple Floormaster Room": "True"
+        }
+    },
+    {
+        "region_name": "Forest Temple Floormaster Room",
+        "dungeon": "Forest Temple",
+        "locations": {
+            "Forest Temple MQ Floormaster": "has_soul(Floormaster)"
+        },
+        "exits": {
+            "Forest Temple Outside Upper Ledge": "has_soul(Floormaster)"
         }
     },
     {

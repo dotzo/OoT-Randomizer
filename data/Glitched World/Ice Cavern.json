@@ -49,8 +49,7 @@
                 can_lunge_storage or
                 (is_adult and is_glitched and 
                     (first_person_item or Bombs or (can_shield and can_use(Hover_Boots)))
-                )
-)"
+                )"
         }
     },
     {

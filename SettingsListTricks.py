@@ -1770,7 +1770,10 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     a flame wall before it can rise up to block you.
                     In this case to do it without taking damage is
                     especially precise.
-                    '''},
+                    '''}
+}
+
+advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
 
     '(Glitch) Lunge Storage': {
@@ -1870,7 +1873,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the ability to change direction opens up a few 
                     more locations. 
                     '''}, 
-    '(GGJ) Hoverboots Recoil': {
+    '(Advanced) Hoverboots Recoil': {
         'name'    : 'logic_hovers_recoil',
         'tags'    : ("Glitch","Adult",),
         'tooltip' : '''\
@@ -1900,7 +1903,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     ignore hitboxes of actors to walk through
                     boulders and NPCs. 
                     '''},
-'(Glitch) Weirdshot': {
+    '(Glitch) Weirdshot': {
         'name'    : 'glitch_weirdshot',
         'tags'    : ("Glitch","Adult","Bouldersanity", "Entrance Shuffle",),
         'tooltip' : '''\
@@ -1911,7 +1914,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     without hammer or strength or pressing 
                     switches under unmovable boulders. 
                     '''},
-    '(GGJ) Damage Boost': {
+    '(Advanced) Damage Boost': {
         'name'    : 'logic_damage_boost',
         'tags'    : ("GGJ","Child","Adult",),
         'tooltip' : '''\
@@ -1920,7 +1923,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     crossing obstacles. This is not suitable
                     for OHKO. 
                     '''},
-    '(GGJ) Wallwalking': {
+    '(Advanced) Wallwalking': {
         'name'    : 'logic_wallwalking',
         'tags'    : ("GGJ","Child","Adult",),
         'tooltip' : '''\
@@ -1929,7 +1932,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     is not available to reach items. 
                     '''},
 
-    '(GGJ) Glitchless Megaflip': {
+    '(Advanced) Glitchless Megaflip': {
         'name'    : 'logic_glitchless_megaflip',
         'tags'    : ("GGJ",),
         'tooltip' : '''\
@@ -1975,7 +1978,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Requires only sword and shield. Useful
                     for access to entrance without Navi call. 
                     '''},
-    '(GGJ) LH Tree GS with only Hookshot': {
+    '(Advanced) LH Tree GS with only Hookshot': {
         'name'    : 'logic_lh_tree_gs_hookshot',
         'tags'    : ("GGJ","Adult",),
         'tooltip' : '''\
@@ -2049,20 +2052,20 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the red ice around King Zora to permanently
                     disappear. 
                     '''},
-    '(GGJ) GV Broken Bridge with Hookshot': {
+    '(Advanced) GV Broken Bridge with Hookshot': {
         'name'    : 'logic_gv_bridge_hookshot',
         'tags'    : ("Glitch","Adult",),
         'tooltip' : '''\
                     Cross the GV bridge with hookshot extension. 
                     '''},
-    '(GGJ) GV Broken Bridge with Hammer Recoil Boost': {
+    '(Advanced) GV Broken Bridge with Hammer Recoil Boost': {
         'name'    : 'logic_gv_bridge_hammer_recoil',
         'tags'    : ("Glitch","Adult",),
         'tooltip' : '''\
                     Cross the GV bridge with a hammer recoil
                     and hover boots off of the pillar. 
                     '''},   
-    '(GGJ) GV Broken Bridge Cucco Jump': {
+    '(Advanced) GV Broken Bridge Cucco Jump': {
         'name'    : 'logic_cucco_jump',
         'tags'    : ("Glitch","Child",),
         'tooltip' : '''\
@@ -2070,7 +2073,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the bridge with the cucco. Requires shield 
                     and sword for this trick. 
                     '''},
-    '(GGJ) GV Tent as Child': {
+    '(Advanced) GV Tent as Child': {
         'name'    : 'logic_gv_tent_child',
         'tags'    : ("Glitch","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2093,7 +2096,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Requires stick or sword, and shield. Enter
                     GTG entrance by jumpslashing through the gate.
                     '''},
-    '(GGJ) GF Gate Skip': {
+    '(Advanced) GF Gate Skip': {
         'name'    : 'logic_gf_gateskip',
         'tags'    : ("Glitch","Adult","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2101,7 +2104,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                      and use hover boots to land on the wall to walk down 
                      towards the gate and pass. Can be done day or night. 
                     '''}, 
-    '(GGJ) GF Unload with Antigrav': {
+    '(Advanced) GF Unload with Antigrav': {
         'name'    : 'logic_gf_unload',
         'tags'    : ("Glitch","Child","Adult","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2112,7 +2115,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     GF entrances, access to Archery area as adult must
                     also be met. Child can access always. 
                     '''}, 
-    '(GGJ) GF Archery Area without Gerudo Card as Adult': {
+    '(Advanced) GF Archery Area without Gerudo Card as Adult': {
         'name'    : 'logic_gf_archery_no_card',
         'tags'    : ("Glitch","Adult","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2127,7 +2130,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     double bomb hover groundclip as adult without
                     Gerudo Card. Can be done day or night. 
                     '''},  
-    '(GGJ) TH Breakroom to Balcony as Child': {
+    '(Advanced) TH Breakroom to Balcony as Child': {
         'name'    : 'logic_th_breakroom_to_balcony_child',
         'tags'    : ("GGJ","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2143,7 +2146,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     due to the sand adding complexity. Logic requires
                     chus. 
                     '''},
-    '(GGJ) Market Night Baz and Sling': {
+    '(Advanced) Market Night Baz and Sling': {
         'name'    : 'logic_market_night_baz_sling',
         'tags'    : ("Glitch","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2151,7 +2154,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     and Slingshot Gallery at night. Both are similar jumps 
                     from a crate. 
                     '''}, 
-    '(GGJ) Market Night Potion': {
+    '(Advanced) Market Night Potion': {
         'name'    : 'logic_market_night_potion',
         'tags'    : ("Glitch","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2159,7 +2162,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     do not walk into loading zone and instead walk
                     behind the houses into Potion shop load. 
                     '''},
-    '(GGJ) Market Night Mask Shop': {
+    '(Advanced) Market Night Mask Shop': {
         'name'    : 'logic_market_night_mask_shop',
         'tags'    : ("Glitch","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2168,7 +2171,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Gallery and walk through houses OoB to the shop. 
                     This is tedious as it passes in front of the load to HC.
                     '''},
-    '(GGJ) Market Day Treasure Chest Game': {
+    '(Advanced) Market Day Treasure Chest Game': {
         'name'    : 'logic_market_day_tcg',
         'tags'    : ("Glitch","Child","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2286,7 +2289,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Ledgeclip fall into the cow gate from the front
                     of Impas house to reach Cow and freestanding item.
                     '''}, 
-    '(GGJ) Kak Windmill HP Child Jumpslash': {
+    '(Advanced) Kak Windmill HP Child Jumpslash': {
         'name'    : 'logic_kak_windmill_heart_child',
         'tags'    : ("Glitch","Child",),
         'tooltip' : '''\
@@ -2294,7 +2297,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     a precise jumpslash timing and then jump to
                     the freestanding item to collect without boomerang. 
                     '''},                 
-    '(GGJ) Graveyard Box HP Damage Boost': {
+    '(Advanced) Graveyard Box HP Damage Boost': {
         'name'    : 'logic_graveyard_hp_damage_boost',
         'tags'    : ("Glitch","Adult",),
         'tooltip' : '''\
@@ -2357,7 +2360,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Perform a more precise lunge storage to enter
                     DMT Fairy without explosives. 
                     '''},
-    '(GGJ) Goron City LW Boulders with Bow': {
+    '(Advanced) Goron City LW Boulders with Bow': {
         'name'    : 'logic_gc_lw_boulders_bow',
         'tags'    : ("Glitch","Adult","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2439,7 +2442,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Perform a weirdslide as child with first person item
                     to cross under KZ if he is not moved. 
                     '''},
-    '(GGJ) ZF Enter Jabu Jumpslash': {
+    '(Advanced) ZF Enter Jabu Jumpslash': {
         'name'    : 'logic_jabu_no_fish',
         'tags'    : ("GGJ","Child","Jabu Jabu's Belly", "Jabu Jabu's Belly MQ","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2460,7 +2463,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Removes the hover boots requirement, and requires
                     chus to enter Jabu as adult. Minimized item requirement. 
                     '''},
-    '(GGJ) ZF Great Fairy Fountain without Explosives': {
+    '(Advanced) ZF Great Fairy Fountain without Explosives': {
         'name'    : 'logic_zf_fairy_no_explosives',
         'tags'    : ("GGJ","Adult","Entrance Shuffle",),
         'tooltip' : '''\
@@ -2476,7 +2479,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     a double bomb groundclip hover through the web to 
                     access the locations. 
                     '''},
-    '(GGJ) HF Tektite Grotto with Rang': {
+    '(Advanced) HF Tektite Grotto with Rang': {
         'name'    : 'logic_tektite_hp_rang',
         'tags'    : ("GGJ","Child","Adult",),
         'tooltip' : '''\
@@ -2490,7 +2493,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Clip into the Deku Tree as Adult with
                     only explosives and a shield. 
                     '''},
-    '(GGJ) Deku 231 with Hammer': {
+    '(Advanced) Deku 231 with Hammer': {
         'name'    : 'logic_231_hammer',
         'tags'    : ("Glitch","Adult","Deku Tree",),
         'tooltip' : '''\
@@ -2529,7 +2532,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     fairy revival. Alternative for backwards DC without GDV or explosives
                     or strength. 
                     '''},
-    '(GGJ) MQ DC Pass Boulder with Hoverboots Jump': {
+    '(Advanced) MQ DC Pass Boulder with Hoverboots Jump': {
         'name'    : 'logic_dc_mq_hoverboots_boulder_jump',
         'tags'    : ("Glitch","Adult","Dodongo's Cavern MQ","Bouldersanity",),
         'tooltip' : '''\
@@ -2538,7 +2541,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     hoverboots over boulder jumps like DMT Fairy 
                     or GC Boulder Maze. 
                     '''},
-    '(GGJ) MQ DC Upper Lizalfos Boulder Skip': {
+    '(Advanced) MQ DC Upper Lizalfos Boulder Skip': {
         'name'    : 'logic_dc_mq_upper_lizalfos_boulder_skip',
         'tags'    : ("GGJ","Adult","Dodongo's Cavern MQ","Bouldersanity",),
         'tooltip' : '''\
@@ -2568,7 +2571,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Death revival with Fairy to utilize i-frames and
                     pass the tentacle without boomerang or souls.
                     '''},
-    '(GGJ) Jabu Jabu GS Near Boss with Jumpslash': {
+    '(Advanced) Jabu Jabu GS Near Boss with Jumpslash': {
         'name'    : 'logic_jabu_gs_near_boss_js',
         'tags'    : ("Child","Adult","Jabu Jabu's Belly",),
         'tooltip' : '''\
@@ -2617,7 +2620,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     zone. This skips key requirements to traverse the
                     dungeon. 
                     '''},
-       '(Glitch) Fire Temple Child enemy room': {
+    '(Glitch) Fire Temple Child enemy room': {
         'name'    : 'glitch_fire_child_enemy_room',
         'tags'    : ("Glitch","Child","Fire Temple",),
         'tooltip' : '''\
@@ -2648,7 +2651,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     is only to gain faster movement. After review it could be 
                     adjusted with megaflips. The torches have a semi-long burn.
                     '''},
-    '(GGJ) Water Temple More Alcove Access': {
+    '(Advanced) Water Temple More Alcove Access': {
         'name'    : 'logic_water_temple_alcove',
         'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
         'tooltip' : '''\
@@ -2720,7 +2723,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'tooltip' : '''\
                     Best BK skip. Climb the longshot target and jump over the door. That's it.
                     '''},
-      '(GGJ) Shadow Temple Double Damage Boosts': {
+    '(Advanced) Shadow Temple Double Damage Boosts': {
         'name'    : 'logic_shadow_double_boosts',
         'tags'    : ("Glitch","Adult","Shadow Temple",),
         'tooltip' : '''\
@@ -2828,7 +2831,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     to Triple Slash Clip (TSC) and explosives to megaflip. Removes
                     the need for hover boots
                     '''},    
-    '(GGJ) Spirit Compass with just Hoverboots': {
+    '(Advanced) Spirit Compass with just Hoverboots': {
         'name'    : 'glitch_spirit_compass_hoverboots_only',
         'tags'    : ("Glitch","Adult","Spirit Temple",),
         'tooltip' : '''\
@@ -2861,7 +2864,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     boss room directly from the main statue room instead
                     of key requirements. 
                     '''},
-    '(GGJ) MQ Spirit Temple Lobby Eye Switch without Explosives': {
+    '(Advanced) MQ Spirit Temple Lobby Eye Switch without Explosives': {
         'name'    : 'glitch_spirit_mq_lobby_eye',
         'tags'    : ("GGJ","Spirit Temple MQ",),
         'tooltip' : '''\
@@ -2918,14 +2921,14 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
                     In MQ, this goes to the compass room. 
                     '''},
-    '(GGJ) Ice Cavern HP without Bottle': {
+    '(Advanced) Ice Cavern HP without Bottle': {
         'name'    : 'logic_ice_HP_no_bottle',
         'tags'    : ("Glitch","Adult","Ice Cavern",),
         'tooltip' : '''\
                     Bomb push into the ice to obtain the freestanding item.
                     This puts the trick directly into logic. 
                     '''},   
-    '(GGJ) Ice Cavern Push Block Silver Rupee Jumpslash': {
+    '(Advanced) Ice Cavern Push Block Silver Rupee Jumpslash': {
         'name'    : 'logic_ice_push_block_silver',
         'tags'    : ("Glitch","Adult","Ice Cavern",),
         'tooltip' : '''\
@@ -2965,7 +2968,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     Both child and adult can vineclip (adult is sideways
                     vineclips). 
                     '''},   
-    '(GGJ) GTG Pillar Jumps': {
+    '(Advanced) GTG Pillar Jumps': {
         'name'    : 'logic_gtg_pillar_jumps',
         'tags'    : ("Glitch","Adult","Gerudo Training Grounds",),
         'tooltip' : '''\
@@ -2973,7 +2976,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the pillars. With precise jumps it can be reached without
                     them. 
                     '''},
-    '(GGJ) GTG Burning Chest without Hammer': {
+    '(Advanced) GTG Burning Chest without Hammer': {
         'name'    : 'logic_gtg_burning_chest_without_hammer',
         'tags'    : ("Glitch","Child","Adult","Gerudo Training Grounds",),
         'tooltip' : '''\
@@ -2999,7 +3002,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     across the carpet and into the loading zone. Utilize sound cues. 
                     If trials are active, the colored beams help guide the way. 
                     '''},
-    '(GGJ) Shadow Trial First Gap Without Fire': {
+    '(Advanced) Shadow Trial First Gap Without Fire': {
         'name'    : 'logic_shadow_trial_no_fire_gap',
         'tags'    : ("GGJ","Adult","Inside Ganon's Castle",),
         'tooltip' : '''\
@@ -3022,7 +3025,7 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the block. Logic does not require hover boots but there are 
                     variations that can make it easier if they are available. 
                     '''},
-    '(GGJ) Fire Trial Longshot Skip': {
+    '(Advanced) Fire Trial Longshot Skip': {
         'name'    : 'logic_fire_trial_longshot_skip',
         'tags'    : ("Glitch","Adult","Inside Ganon's Castle",),
         'tooltip' : '''\

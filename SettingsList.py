@@ -10,7 +10,7 @@ from Item import ItemInfo
 from Location import LocationIterator
 from LocationList import location_table
 from Models import get_model_choices
-from SettingsListTricks import logic_tricks
+from SettingsListTricks import logic_tricks, advanced_logic_tricks
 from SettingTypes import SettingInfo, SettingInfoStr, SettingInfoList, SettingInfoDict, Textbox, Button, Checkbutton, \
     Combobox, Radiobutton, Fileinput, Directoryinput, Textinput, ComboboxInt, Scale, Numberinput, MultipleSelect, \
     SearchBox
@@ -645,7 +645,7 @@ class SettingInfos:
         default        = 'glitchless',
         choices        = {
             'glitchless': 'Glitchless',
-            'glitched':   'Glitched',
+            'glitched':   'Advanced',
             'none':       'No Logic',
         },
         gui_tooltip    = '''\
@@ -657,16 +657,19 @@ class SettingInfos:
             some minor tricks. Add minor tricks to consider for logic
             in the 'Detailed Logic' tab.
 
-            'Glitched': Glitches with toggable tricks for accessability 
-            to curate the overall difficulty level for every skill level. 
+            'Advanced': More Glitchless tricks and toggleable
+            glitches for accessability to curate the overall difficulty 
+            level for every skill level. 
 
             'No Logic': Maximize randomization, All locations are
             considered available. MAY BE IMPOSSIBLE TO BEAT.
         ''',
         disable        = {
-            'glitchless': {'settings': ['tricks_list_msg']},
-            'glitched':   {'settings': ['tricks_list_msg', 'blue_fire_arrows']},
-            'none':       {'settings': ['allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
+            'glitchless': {'settings': ['tricks_list_msg', 'advanced_allowed_tricks']},
+            'glitched':   {'settings': ['tricks_list_msg', 'blue_fire_arrows',
+                                'shuffle_boulders', 'golden_boulders', 'shuffle_grass',
+                                'shuffle_gossipstones', 'shuffle_fishies']},
+            'none':       {'settings': ['allowed_tricks', 'advanced_allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
         },
         shared         = True,
     )
@@ -2049,6 +2052,7 @@ class SettingInfos:
             randomly shuffled around the world.
         ''',
         shared         = True,
+        disabled_default = False,
         gui_params     = {
             'randomize_key': 'randomize_settings',
         },
@@ -3306,8 +3310,26 @@ class SettingInfos:
             and MAY be required to complete the game.
 
             Tricks in the left column are NEVER required.
+        '''
+    )
 
-            Tricks are only relevant for Glitchless logic.
+    advanced_allowed_tricks = SearchBox(
+        gui_text       = "Enable Advanced Tricks",
+        shared         = True,
+        choices        = {
+            val['name']: gui_text for gui_text, val in advanced_logic_tricks.items()
+        },
+        default        = [],
+        gui_params     = {
+            'choice_tooltip': {choice['name']: choice['tooltip'] for choice in advanced_logic_tricks.values()},
+            'filterdata': {val['name']: val['tags'] for _, val in advanced_logic_tricks.items()},
+            "hide_when_disabled": True,
+        },
+        gui_tooltip='''
+            Tricks moved to the right column are in-logic
+            and MAY be required to complete the game.
+
+            Tricks in the left column are NEVER required.
         '''
     )
 

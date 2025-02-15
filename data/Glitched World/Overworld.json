@@ -2424,7 +2424,7 @@
                 can_plant_bugs and can_child_attack and
                 (has_explosives or Progressive_Strength_Upgrade or (logic_dmt_soil_gs and can_use(Boomerang)))",
             "DMT GS Near Kak": "can_blast_or_smash or can_lunge_storage",
-            "DMT GS Above Dodongos Cavern": "is_adult and at_night and (Megaton_Hammers or logic_trail_gs_lower)",
+            "DMT GS Above Dodongos Cavern": "is_adult and at_night and (Megaton_Hammer or logic_trail_gs_lower)",
             "Bean Plant Fairy": "
                 is_child and can_plant_bean and can_play(Song_of_Storms) and has_bottle and
                 (has_explosives or Progressive_Strength_Upgrade)"
@@ -2433,7 +2433,7 @@
             "Kak Behind Gate": "True",
             "Goron City": "True",
             "Death Mountain Summit": "
-                here(can_blash_or_smash) or
+                here(can_blast_or_smash) or
                 (is_adult and here(can_plant_bean and (plant_beans or Progressive_Strength_Upgrade))) or
                 (logic_dmt_climb_hovers and can_use(Hover_Boots)) or 
                 (is_adult and can_hookshot_jump and glitch_dmt_hookshot_jump)",
@@ -2496,7 +2496,7 @@
             "Goron City Child Fire": "is_child and (can_use(Dins_Fire) or can_gdv)",
             "GC Woods Warp Open": "
                     can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow) or
-                    Progressive_Strength_Upgrade or 'Goron City Child Fire' or can_gdv)",
+                    Progressive_Strength_Upgrade or 'Goron City Child Fire' or can_gdv",
             "Stop GC Rolling Goron as Adult": "
                 is_adult and
                 (Progressive_Strength_Upgrade or has_explosives or Bow or
@@ -2507,11 +2507,11 @@
                 can_use(Megaton_Hammer) or can_use(Silver_Gauntlets) or
                 (logic_goron_city_leftmost and has_explosives and can_use(Hover_Boots))
                 or can_hess or can_superslide or 
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil))",
+                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
             "GC Maze Center Chest": "can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil))",
+                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
             "GC Maze Right Chest": "can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil))",
+                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
             "GC Rolling Goron as Child": "
                 is_child and
                 (has_explosives or (Progressive_Strength_Upgrade and logic_child_rolling_with_strength))",
@@ -2527,11 +2527,13 @@
             "GC Medigoron Pot": "can_blast_or_smash or Progressive_Strength_Upgrade or can_gdv",
             "GC GS Center Platform": "is_adult",
             "GC Medigoron Gossip Stone": "can_blast_or_smash or Progressive_Strength_Upgrade or can_gdv",
+            "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets) or
+                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
             "Gossip Stone Fairy": "
                 can_summon_gossip_fairy_without_suns and has_bottle and
                 (can_blast_or_smash or Progressive_Strength_Upgrade or can_gdv)",
             "Bug Rock": "(can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil))) and has_bottle",
+                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)) and has_bottle",
             "Stick Pot": "is_child"
         },
         "exits": {
@@ -2567,7 +2569,7 @@
         "hint": "GORON_CITY",
         "events": {
             "GC Woods Warp Open": "can_blast_or_smash or
-                can_use(Dins_Fire) or (can_use(Bow) and logic_gc_lw_boulders_bow))"
+                can_use(Dins_Fire) or (can_use(Bow) and logic_gc_lw_boulders_bow)"
         },
         "exits": {
             "Goron City": "can_leave_forest and 'GC Woods Warp Open'",
@@ -2642,7 +2644,7 @@
         "exits": {
             "DMC Upper Local": "can_use(Goron_Tunic)",
             "Death Mountain Summit": "True",
-            "DMC Upper Grotto": "here(can_blast_or_smash))",
+            "DMC Upper Grotto": "here(can_blast_or_smash)",
             "DMC Great Fairy Fountain": "glitch_dmc_fairy_from_trail and can_mega"
         }
     },
@@ -3511,8 +3513,14 @@
     },
     {
         "region_name": "Kak ReDead Grotto",
+        "scene": "Kak ReDead Grotto",
         "locations": {
-            "Kak ReDead Grotto Chest": "True"
+            "Kak ReDead Grotto Chest": "can_kill_redead",
+            "Kak ReDead Grotto ReDead Left": "can_kill_redead",
+            "Kak ReDead Grotto ReDead Right": "can_kill_redead"
+        },
+        "exits": {
+            "Kakariko Village": "True"
         }
     },
     {
