@@ -656,7 +656,7 @@ class World:
         savewarps_to_connect = []
         for hint_area in HintArea:
             if (name := hint_area.dungeon_name) is not None:
-                logic_folder = 'Advanced World' if self.settings.logic_rules == 'advanced' else 'World'
+                logic_folder = 'Glitched World' if self.settings.logic_rules == 'advanced' else 'World'
                 file_name = name + (' MQ.json' if self.dungeon_mq[name] else '.json')
                 savewarps_to_connect += self.load_regions_from_json(os.path.join(data_path(logic_folder), file_name))
                 self.dungeons.append(Dungeon(self, name, hint_area))
