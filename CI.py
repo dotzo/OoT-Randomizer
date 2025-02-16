@@ -200,7 +200,7 @@ def check_code_style(fix_errors: bool = False) -> None:
         for path in (repo_dir / 'ASM' / 'src' / subdir).iterdir():
             if path.suffix == '.asm':
                 check_file_format(path)
-    for subdir in ('Advanced World', 'Hints', 'World'):
+    for subdir in ('Glitched World', 'Hints', 'World'):
         for path in (repo_dir / 'data' / subdir).iterdir():
             if path.suffix == '.json':
                 check_file_format(path)

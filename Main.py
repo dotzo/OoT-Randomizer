@@ -137,7 +137,7 @@ def build_world_graphs(settings: Settings) -> list[World]:
 
         # Load common json rule files (those used regardless of MQ status)
         if settings.logic_rules == 'advanced':
-            path = 'Advanced World'
+            path = 'Glitched World'
         else:
             path = 'World'
         path = data_path(path)
