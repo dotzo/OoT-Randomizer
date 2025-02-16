@@ -82,7 +82,7 @@
         "region_name": "Ganons Castle Water Trial",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle MQ Water Trial Chest": "Blue_Fire or is_glitched",
+            "Ganons Castle MQ Water Trial Chest": "Blue_Fire or is_advanced",
             "Ganons Castle MQ Water Trial Recovery Heart": "
                 Blue_Fire or (logic_boomerang_boulders and can_use(Boomerang))",
             "Ganons Castle MQ Water Trial Freezard 1": "can_kill_freezard",
@@ -117,7 +117,7 @@
         },
         "exits": {
             "Ganons Castle Water Trial Ending": "(Silver_Rupee_Ganons_Castle_Water_Trial, 5)
-                and (Blue_Fire or (is_glitched and glitch_ledge_clip and logic_hovers_recoil and can_use(Hover_Boots))
+                and (Blue_Fire or (is_advanced and glitch_ledge_clip and logic_hovers_recoil and can_use(Hover_Boots))
                 )"
         }
     },

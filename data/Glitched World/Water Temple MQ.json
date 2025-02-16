@@ -7,7 +7,7 @@
             "Child Water Temple": "is_child",
             # Check to ensure the water level can be changed, if routes require highest or lowest water.
             "Reset Water Level": "can_use(Hookshot) or can_use(Hover_Boots) or 
-                (logic_water_temple_alcove and is_glitched and is_adult and can_jumpslash and can_shield)"
+                (logic_water_temple_alcove and is_advanced and is_adult and can_jumpslash and can_shield)"
         },
         "exits": {
             "Lake Hylia": "True",
@@ -38,7 +38,7 @@
         },
         "exits": {
             "Water Temple Before Boss": "can_use(Longshot) or (can_gdv_stick and can_isg and damage_multiplier != 'ohko')
-                or (is_glitched and can_use(Blue_Fire_Arrows))",
+                or (is_advanced and can_use(Blue_Fire_Arrows))",
             "Water Temple Lobby": "True"
         }
     },

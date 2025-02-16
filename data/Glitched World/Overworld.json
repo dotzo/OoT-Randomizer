@@ -932,7 +932,7 @@
                 (is_child and 
                     (glitch_gtg_child_groundclip and can_jumpslash)
                 )",
-            "GF Balcony": "can_use(Hookshot) and is_glitched"
+            "GF Balcony": "can_use(Hookshot) and is_advanced"
         }
     },
     {
@@ -2507,11 +2507,11 @@
                 can_use(Megaton_Hammer) or can_use(Silver_Gauntlets) or
                 (logic_goron_city_leftmost and has_explosives and can_use(Hover_Boots))
                 or can_hess or can_superslide or 
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
+                (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil)",
             "GC Maze Center Chest": "can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
+                (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil)",
             "GC Maze Right Chest": "can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
+                (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil)",
             "GC Rolling Goron as Child": "
                 is_child and
                 (has_explosives or (Progressive_Strength_Upgrade and logic_child_rolling_with_strength))",
@@ -2528,12 +2528,12 @@
             "GC GS Center Platform": "is_adult",
             "GC Medigoron Gossip Stone": "can_blast_or_smash or Progressive_Strength_Upgrade or can_gdv",
             "GC Maze Gossip Stone": "can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)",
+                (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil)",
             "Gossip Stone Fairy": "
                 can_summon_gossip_fairy_without_suns and has_bottle and
                 (can_blast_or_smash or Progressive_Strength_Upgrade or can_gdv)",
             "Bug Rock": "(can_blast_or_smash or can_use(Silver_Gauntlets) or
-                (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil)) and has_bottle",
+                (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil)) and has_bottle",
             "Stick Pot": "is_child"
         },
         "exits": {
@@ -2716,7 +2716,7 @@
             "DMC Lower Local": "can_use(Goron_Tunic)",
             "GC Darunias Chamber": "True",
             "DMC Great Fairy Fountain": "can_use(Megaton_Hammer)
-                or (is_child and is_glitched)",
+                or (is_child and is_advanced)",
             "DMC Hammer Grotto": "can_use(Megaton_Hammer)"
         }
     },
@@ -2991,7 +2991,7 @@
                 is_adult",
             "ZD Behind King Zora": "
                 Deliver_Letter or zora_fountain == 'open' or
-                (is_adult and (is_glitched or zora_fountain == 'adult' or logic_king_zora_skip))
+                (is_adult and (is_advanced or zora_fountain == 'adult' or logic_king_zora_skip))
                 or
                 (is_child and (
                     (glitch_zd_child_oob and damage_multiplier != 'ohko' and has_bombchus and can_shield) or
@@ -2999,7 +2999,7 @@
                     (glitch_zd_zf_ledge_cancel and Sticks)
                 )
                 )",
-            "ZD Shop": "is_child or Blue_Fire or (is_adult and is_glitched)",
+            "ZD Shop": "is_child or Blue_Fire or (is_adult and is_advanced)",
             "ZD Storms Grotto": "can_open_storm_grotto"
         }
     },
@@ -3157,8 +3157,8 @@
         "scene": "Lon Lon Ranch",
         "hint": "LON_LON_RANCH",
         "events": {
-            "Epona": "(can_play(Eponas_Song) or can_hover) and is_adult and (at_day or is_glitched)",
-            "Links Cow": "(can_play(Eponas_Song) or can_hover) and is_adult and (at_day or is_glitched)"
+            "Epona": "(can_play(Eponas_Song) or can_hover) and is_adult and (at_day or is_advanced)",
+            "Links Cow": "(can_play(Eponas_Song) or can_hover) and is_adult and (at_day or is_advanced)"
         },
         "locations": {
             # Malon requires talking to her in Castle Grounds for her item and waking up Talon.
@@ -3233,7 +3233,7 @@
         "region_name": "LLR Tower",
         "scene": "LLR Tower",
         "locations": {
-            "LLR Freestanding PoH": "is_child or (is_glitched and is_adult)",
+            "LLR Freestanding PoH": "is_child or (is_advanced and is_adult)",
             "LLR Tower Left Cow": "can_play(Eponas_Song)",
             "LLR Tower Right Cow": "can_play(Eponas_Song)"
         },

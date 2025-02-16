@@ -51,7 +51,7 @@
                 ((can_mega or can_hess or can_superslide) and can_use(Hover_Boots)) or
                 can_hover",
             "Water Temple Central Bow Target": "is_adult and logic_water_temple_alcove and glitch_ledge_clip
-                and Iron_Boots and Hookshot and is_glitched",
+                and Iron_Boots and Hookshot and is_advanced",
             "Water Temple North Basement": "is_adult and logic_water_temple_alcove and glitch_ledge_clip and
                 (Longshot or (logic_water_north_basement and Hover_Boots) or can_hover) and
                 (Small_Key_Water_Temple, 4)",
@@ -239,7 +239,7 @@
         "dungeon": "Water Temple",
         "locations": {
             "Water Temple Cracked Wall Chest": "has_explosives or 
-                at('Water Temple Dive', can_use(Iron_Boots) and is_glitched and Hookshot)"
+                at('Water Temple Dive', can_use(Iron_Boots) and is_advanced and Hookshot)"
         }
     },
     {

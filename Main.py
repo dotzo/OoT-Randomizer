@@ -136,8 +136,8 @@ def build_world_graphs(settings: Settings) -> list[World]:
         logger.info('Creating Overworld')
 
         # Load common json rule files (those used regardless of MQ status)
-        if settings.logic_rules == 'glitched':
-            path = 'Glitched World'
+        if settings.logic_rules == 'advanced':
+            path = 'Advanced World'
         else:
             path = 'World'
         path = data_path(path)

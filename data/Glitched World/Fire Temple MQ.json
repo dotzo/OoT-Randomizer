@@ -61,7 +61,7 @@
             "Volvagia Boss Room": "Boss_Key_Fire_Temple or 
                 at('Fire Temple Near Boss',is_adult and Goron_Tunic and has_bombchus and can_isg and can_hover
                     and glitch_fire_bk_skip_hover) or
-                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_glitched)"
+                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_advanced)"
         }
     },
     {
@@ -196,7 +196,7 @@
                 (Longshot or (can_play(Song_of_Time) and Hookshot)) and
                 (has_explosives or logic_rusted_switches or (Longshot and logic_fire_scarecrow))",
             "Fire Temple Shoot Torch On Wall Room": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple Lower Lizalfos Maze": "is_glitched"
+            "Fire Temple Lower Lizalfos Maze": "is_advanced"
         }
     },
     {

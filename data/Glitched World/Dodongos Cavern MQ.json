@@ -45,7 +45,7 @@
         },
         "events": {
             "DC Elevator Boulders Passed": "here(can_blast_or_smash or can_use(Dins_Fire) or
-                    (is_glitched and can_use(Bow))
+                    (is_advanced and can_use(Bow))
                 ) or
                 at('Dodongos Cavern Torch Puzzle Upper', Progressive_Strength_Upgrade or can_gdv)"
         }

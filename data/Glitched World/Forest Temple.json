@@ -51,7 +51,7 @@
         "region_name": "Forest Temple NW Outdoors",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Well Chest": "(is_glitched and can_use(Iron_Boots) and can_use(Hookshot))
+            "Forest Temple Well Chest": "(is_advanced and can_use(Iron_Boots) and can_use(Hookshot))
                 or at('Forest Temple Outdoors High Balconies',True)",
             "Forest Temple Level Island Courtyard Lower Deku Baba": "can_kill_deku_baba",
             "Forest Temple Level Island Courtyard Octorok": "can_kill_octorok_with_bombs_or_magic",
@@ -261,7 +261,7 @@
         },
         "exits": {
             "Forest Temple Frozen Eye Switch Room": "(Small_Key_Forest_Temple, 5)",
-            "Forest Temple Falling Room": "is_glitched and glitch_ledge_clip"
+            "Forest Temple Falling Room": "is_advanced and glitch_ledge_clip"
         }
     },
     {
@@ -315,8 +315,8 @@
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
             "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple or 
-                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_glitched) or 
-                at('Forest Temple NW Outdoors',is_glitched and is_child and has_bombchus and glitch_forest_bk_skip and 
+                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_advanced) or 
+                at('Forest Temple NW Outdoors',is_advanced and is_child and has_bombchus and glitch_forest_bk_skip and 
                 damage_multiplier != 'ohko')"
         }
     }

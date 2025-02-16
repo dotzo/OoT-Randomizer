@@ -44,7 +44,7 @@
         },
         "exits": {
             "Shadow Temple Whispering Walls Back": "can_play(Song_of_Time) or 
-                (can_take_damage and Bombs and is_glitched)"
+                (can_take_damage and Bombs and is_advanced)"
         }
     },
     {
@@ -108,10 +108,10 @@
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
                 (((Small_Key_Shadow_Temple, 2) and not (shadow_temple_shortcuts or
-                 (is_glitched and can_jumpslash))) or
+                 (is_advanced and can_jumpslash))) or
                     (Small_Key_Shadow_Temple, 5))",
             "Shadow Temple Boat Dock": "shadow_temple_shortcuts or
-                    (is_glitched and can_jumpslash)",
+                    (is_advanced and can_jumpslash)",
             "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and (
                     (is_adult and can_take_damage and has_bombchus) or
                     (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield)

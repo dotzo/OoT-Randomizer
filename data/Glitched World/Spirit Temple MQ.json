@@ -26,10 +26,10 @@
                 can_use(Longshot) and
                 (spirit_temple_shortcuts or
                     (has_bombchus or 
-                        (is_glitched and glitch_spirit_mq_ceiling_boulder_skip)
+                        (is_advanced and glitch_spirit_mq_ceiling_boulder_skip)
                     ) and 
                     (can_use(Silver_Gauntlets) or
-                        (is_glitched and glitch_spirit_mq_silver_block_skip and
+                        (is_advanced and glitch_spirit_mq_silver_block_skip and
                         can_use(Hover_Boots) and can_hover and
                         damage_multiplier != 'ohko')
                     )

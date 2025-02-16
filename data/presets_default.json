@@ -2539,7 +2539,7 @@
         "create_spoiler":                          true,
         "password_lock":                           false,
         "randomize_settings":                      false,
-        "logic_rules":                             "glitched",
+        "logic_rules":                             "advanced",
         "reachable_locations":                     "all",
         "triforce_hunt":                           false,
         "lacs_condition":                          "vanilla",

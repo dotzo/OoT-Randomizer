@@ -1882,7 +1882,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     in many scenarios to reach regions or cross through
                     obstacles. In the case of a clip it would be 
                     specified differently in logic to allow use for 
-                    GGJ or Glitched play. 
+                    GGJ or advanced play. 
                     '''},      
     '(Glitch) Glitch Damage Value': {
         'name'    : 'glitch_damage_value',

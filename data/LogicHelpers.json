@@ -38,20 +38,20 @@
     "is_child": "age == 'child'",
     "is_adult": "age == 'adult'",
     "is_starting_age": "age == starting_age",
-    "is_glitched": "logic_rules != 'glitchless'",
+    "is_advanced": "logic_rules != 'glitchless'",
     "can_blast_or_smash": "has_explosives or can_use(Megaton_Hammer)",
     "can_child_attack": "is_child and (Slingshot or Boomerang or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or child_hammer)",
     "can_child_damage": "is_child and (Slingshot or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or child_hammer)",
     "can_cut_shrubs": "is_adult or Sticks or Kokiri_Sword or Boomerang or has_explosives",
     "can_dive": "Progressive_Scale",
     "can_leave_forest": "open_forest != 'closed' or is_adult or 'Defeat Queen Gohma'
-        or (is_glitched and (
+        or (is_advanced and (
         glitch_itemless_forest_escape or 
         (glitch_pokey_escape and (Deku_Shield and (Kokiri_Sword or Sticks))) or
         (glitch_wess_escape and (Kokiri_Sword or Sticks)) ))
     ",
     "can_plant_bugs": "is_child and Bugs",
-    "can_ride_epona": "is_adult and Epona and (can_play_ocarina(Eponas_Song) or (is_glitched and can_hover))",
+    "can_ride_epona": "is_adult and Epona and (can_play_ocarina(Eponas_Song) or (is_advanced and can_hover))",
     "can_stun_deku": "is_adult or (Slingshot or Boomerang or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or Nuts or Deku_Shield or child_hammer)",
     "can_summon_gossip_fairy": "can_play(Zeldas_Lullaby) or can_play(Eponas_Song) or can_play(Song_of_Time) or can_play(Suns_Song)",
     "can_summon_gossip_fairy_without_suns": "can_play(Zeldas_Lullaby) or can_play(Eponas_Song) or can_play(Song_of_Time)",
@@ -59,7 +59,7 @@
     "can_plant_bean": "plant_beans or (is_child and (Magic_Bean, 10))",
     "can_play_ocarina(song)": "Ocarina
     and song and (not shuffle_individual_ocarina_notes or has_all_notes_for_song(song))",
-    "can_play(song)": "(Ocarina or (is_glitched and can_oi))
+    "can_play(song)": "(Ocarina or (is_advanced and can_oi))
     and song and (not shuffle_individual_ocarina_notes or has_all_notes_for_song(song))",
     "can_open_bomb_grotto": "can_blast_or_smash and (Stone_of_Agony or logic_grottos_without_agony)",
     "can_open_storm_grotto": "can_play(Song_of_Storms) and (Stone_of_Agony or logic_grottos_without_agony)",
@@ -201,14 +201,14 @@
         (is_child and (Slingshot or (can_equip_swap and (Bow or Fire_Arrows or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows))))",
 
     # Glitch Logic Tricks - ground jumps are on by default
-    "can_groundjump": "is_glitched and can_shield and Bombs",
-    "can_equip_swap": "glitch_equip_swap and is_glitched and (
+    "can_groundjump": "is_advanced and can_shield and Bombs",
+    "can_equip_swap": "glitch_equip_swap and is_advanced and (
         (is_child and (Sticks or Slingshot or Boomerang or has_bottle))
         or (is_adult and (Dins_Fire or Farores_Wind or Nayrus_Love))
         )",
     "child_hammer": "is_child and can_equip_swap and Megaton_Hammer",
     "can_mega": "glitch_megaflip and has_explosives and can_shield",
-    "can_isg": "is_glitched and can_shield and (is_adult or Sticks or Kokiri_Sword or child_hammer)",
+    "can_isg": "is_advanced and can_shield and (is_adult or Sticks or Kokiri_Sword or child_hammer)",
     "can_hover": "glitch_hovering and can_isg and Bombs and has_bombchus and can_shield",
     "can_weirdslide": "glitch_weirdshot and is_adult and Bombs and can_shield and (Bow or Fire_Arrows or Hookshot or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows or
     (can_equip_swap and Slingshot))",
@@ -230,18 +230,18 @@
     "can_gdv": "can_gdv_empty or can_gdv_stick",
     "can_damage_boost": "logic_damage_boost and has_explosives and damage_multiplier != 'ohko'",
     "can_hookshot_jump": "glitch_hookshot_jump and is_adult and Hookshot",
-    "can_dotskip_adult": "is_glitched and (
+    "can_dotskip_adult": "is_advanced and (
         (glitch_dot_skip_adult_hover_recoil and Hover_Boots and can_shield) or 
         (glitch_dot_skip_adult_hovers_bgs and (Biggoron_Sword or Giants_Knife) and Hover_Boots) or
         (glitch_dot_skip_adult_bgs_only and (Biggoron_Sword or Giants_Knife))
         )",
-    "can_dotskip_child": "is_glitched and (
+    "can_dotskip_child": "is_advanced and (
         (glitch_dot_skip_child_lunge and Kokiri_Sword and can_lunge_storage) or 
         (glitch_dot_skip_child_swordless)
         )",
     "can_damage_clip": "has_explosives and damage_multiplier != 'ohko'",
     "tcg_suns": "glitch_tcg_suns and can_oi and Suns_Song",
-    "can_js_clip": "is_glitched and can_jumpslash",
+    "can_js_clip": "is_advanced and can_jumpslash",
     "can_tsc": "can_shield and first_person_item",
     "can_glitchless_mega": "can_isg and can_use(Hover_Boots)",
     "can_botw_blank_a": "can_use(Kokiri_Sword) and can_oi and can_shield and Nuts and glitch_botw_blank_a",
@@ -252,7 +252,7 @@
         or (is_child and has_explosives
                 )
         )",
-    "can_pass_mud_wall": "can_blast_or_smash or can_gdv or (is_glitched and can_use(Blue_Fire_Arrows))",
+    "can_pass_mud_wall": "can_blast_or_smash or can_gdv or (is_advanced and can_use(Blue_Fire_Arrows))",
     "can_pass_mud_wall_str": "can_pass_mud_wall or Progressive_Strength_Upgrade",
     "can_hover_jabu_cow": "can_hover and can_gdv",
     "Child_Shadow": "is_child and glitch_child_shadow"

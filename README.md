@@ -761,7 +761,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Fix a softlock present in the original game when damaging Volvagia's second hitbox during the death cutscene.
 * Don't start the trade sequence timer if getting the `ZD King Zora Thawed` item while the Eyeball Frog is in the inventory.
 * Fix the items on the right side of the mask shop being available without paying for all borrowed masks first.
-* The Stone of Agony can now be foolish in Glitched Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
+* The Stone of Agony can now be foolish in Advanced Logic and No Logic, as it already was with the `Hidden Grottos without Stone of Agony` trick enabled.
 * Fix seeds with Plentiful item pool and no adult trade items selected failing to generate.
 * Fix castle courtyard exiting to incorrect area in Ganon's Castle Dungeon ER.
 * Fix heart piece count getting zeroed out incorrectly in certain circumstances.
@@ -805,7 +805,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 #### Bug Fixes
 * Fix the `Silver Rupee Pouches` setting not being hidden when `Silver Rupee Pouches Mode` is set to `Random Puzzles`.
 * Fix an issue in the Co-op hint distribution which caused seed generation failures for some settings.
-* Fix bug which causes `Maps and Compasses Give Information` to fail when logic is set to `Glitched`.
+* Fix bug which causes `Maps and Compasses Give Information` to fail when logic is set to `Advanced`.
 * Put a band-aid on a softlock which occurs when collecting a shuffled silver rupee on the ladder in the Bottom of the Well by disallowing silver rupees on this location.
 * You can no longer wear bunny hood while turning adult, then save and reset before leaving the temple of time to keep bunny hood as adult.
 * If the GUI fails to load Python, it will now display an error message instead of appearing to load forever.
@@ -974,7 +974,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * New setting `Key Rings` which can be enabled per-dungeon to replace all of its individual Small Keys into a singular Small Key Ring containing all the small keys for that dungeon. Key Rings also have their own model.
   * Setting `Randomize Ocarina Song Notes` can now be set to either "row" of songs individually, i.e. "Frog Songs" or "Warp Songs", in additional to the "Off" and "All Songs" options.
   * MQ Dungeon settings have been replaced with `MQ Dungeons Mode` which allows finer selection of which dungeons are MQ, or how many are at random.
-  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is not available in glitched logic.
+  * New setting `Shuffle Boss Entrances` allows boss rooms to be shuffled between dungeons. This is not available in advanced logic.
   * `Misc. Hints` has been expanded to a multiple select setting allowing you to fine-tune which set of misc hints to enable or disable.
   * New setting `Shuffle Frog Song Rupees` allows you to shuffle the rupees you receive from the Zora's River frogs.
     * These locations are considered "sometimes" hints.
@@ -1182,7 +1182,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * Gerudo Training **Grounds** -> Gerudo Training **Ground**
   * Gerudo Fortress -> Thieves' Hideout (when referring to the interior areas or the carpenter rescue quest)
   * Graveyard Composers' Grave -> Royal Family's Tomb
-* Giant's Knife and Biggoron's Sword are considered useless in glitchless logic but not in glitched.
+* Giant's Knife and Biggoron's Sword are considered useless in glitchless logic but not in advanced.
 * Entrance Randomizer: Prelude of Light and Serenade of Water are considered useless in ER if the only ER option enabled is Random Spawns (which already cannot be placed in certain areas where any items are necessary to escape).
 * Entrance Randomizer: Allow Kakariko Potion Shop and Impa's House to have their entrances appear in different areas if all hints are off.
 * Entrance Randomizer: When warp songs are shuffled, the confirmation text now shows the actual destination.
@@ -1307,7 +1307,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
   * `<Area> without Lens of Truth`: assumes you can complete the given area without the Lens of Truth. Note that MQ and Vanilla dungeons have separate tricks.
   * Shadow Temples are split into two separate areas for these tricks.
   * Glitchless logic now requires Lens (or an appropriate trick) for some checks, particularly in Shadow Temple.
-  * Glitched logic may sometimes assume you can do something without lens regardless of trick settings.
+  * Advanced logic may sometimes assume you can do something without lens regardless of trick settings.
 * New tricks
   * `Dodongo's Cavern Vines GS from Below with Longshot` - use the Longshot to avoid the staircase.
   * `Forest Temple First Room GS with Difficult-to-Use Weapons` - use a sword or Deku Sticks to jumpslash, or Bombs as child.
@@ -1359,7 +1359,7 @@ issue. You should always Hard Reset to avoid this issue entirely.
 * Bunny Hood speed bonus now applies correctly in cases other than child running at full speed.
 * Avoid crashing on some systems when using child items as adult.
 * Ensure Ice Traps have valid models if they can be seen.
-* Limit Kokiri Tunic RGB values in Glitched Logic to prevent Weirdshot crashes.
+* Limit Kokiri Tunic RGB values in Advanced Logic to prevent Weirdshot crashes.
 * Prevent Gerudo guards from throwing child Link in jail.
 * Fix hints not being readable on Mask of Truth setting.
 * Prevent Collection Delay from the Carpenter Boss when mashing through the text with an item in hand.

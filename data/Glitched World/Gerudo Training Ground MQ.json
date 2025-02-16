@@ -199,7 +199,7 @@
             "Gerudo Training Ground Stalfos Room": "True",
             "Gerudo Training Ground Back Areas": "Blue_Fire",
             "Gerudo Training Ground Heavy Block Room": "(can_use(Hover_boots) and 
-                (can_mega or (Megaton_Hammer and logic_hovers_recoil and is_glitched)))"
+                (can_mega or (Megaton_Hammer and logic_hovers_recoil and is_advanced)))"
         }
     },
     {

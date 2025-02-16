@@ -816,7 +816,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     if world.settings.adult_trade_shuffle or world.settings.item_pool_value in ('plentiful', 'ludicrous'):
         rom.write_byte(rom.sym('CFG_ADULT_TRADE_SHUFFLE'), 0x01)
         move_fado_in_lost_woods(rom)
-    if world.settings.shuffle_child_trade or world.settings.logic_rules == 'glitched':
+    if world.settings.shuffle_child_trade or world.settings.logic_rules == 'advanced':
         rom.write_byte(rom.sym('CFG_CHILD_TRADE_SHUFFLE'), 0x01)
 
     if world.settings.shuffle_overworld_entrances:
@@ -2109,7 +2109,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
                     area = GossipText(area.text(world.settings.clearer_hints, preposition=True, use_2nd_person=True), [area.color], prefix='', capitalize=False)
                     compass_message = f"\x13\x75\x08You found the \x05\x41Compass\x05\x40\x01for {dungeon_name}\x05\x40!\x01The {vanilla_reward} can be found\x01{area}!\x09"
                 else:
-                    # if world.settings.logic_rules == 'glitched':
+                    # if world.settings.logic_rules == 'advanced':
                     #     boss_location = world.get_location(dungeon.vanilla_boss_name)
                     # else:
                     boss_location = next(filter(lambda loc: loc.type == 'Boss', world.get_entrance(f'{dungeon} Before Boss -> {dungeon.vanilla_boss_name} Boss Room').connected_region.locations))

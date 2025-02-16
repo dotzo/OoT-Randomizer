@@ -299,7 +299,7 @@
             "Volvagia Boss Room": "Boss_Key_Fire_Temple or
                 at('Fire Temple Near Boss',is_adult and Goron_Tunic and has_bombchus and can_isg and can_hover
                 and glitch_fire_bk_skip_hover) or 
-                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_glitched)
+                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_advanced)
                 "
         }
     }

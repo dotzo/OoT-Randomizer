@@ -92,7 +92,7 @@
                 or can_use(Hover_Boots) or can_mega or can_use(Longshot) or can_use(Bow)
                 ",
             "Child Spirit Temple Beyond Right Bridge": "(Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
-                or (is_glitched and can_use(Hover_Boots))",
+                or (is_advanced and can_use(Hover_Boots))",
             "Child Spirit Before Locked Door": "glitch_spirit_child_side_crawlspace_skip
                 and can_use(Hover_Boots) and can_shield and can_use(Hookshot) and 
                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quad') or Fairy)"
@@ -154,7 +154,7 @@
         },
         "exits": {
             "Child Spirit Temple Climb": "(Small_Key_Spirit_Temple, 1)
-                or (is_glitched and (Small_Key_Spirit_Temple, 3))"
+                or (is_advanced and (Small_Key_Spirit_Temple, 3))"
         }
     },
     {
@@ -168,9 +168,9 @@
                 can_use(Bow) or can_use(Hookshot) or can_use(Slingshot) or can_use(Boomerang)
                 or has_bombchus or (is_adult and Bombs and logic_spirit_lower_adult_switch)",
             "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 1)
-                or (is_glitched and (Small_Key_Spirit_Temple, 3))",
+                or (is_advanced and (Small_Key_Spirit_Temple, 3))",
             "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)
-                or (is_glitched and (Small_Key_Spirit_Temple, 5))"
+                or (is_advanced and (Small_Key_Spirit_Temple, 5))"
         }
     },
     {
@@ -191,8 +191,8 @@
             "Spirit Temple Adult Boulder Silver Rupee Back Left": "True",
             "Spirit Temple Early Adult Wolfos": "can_kill_wolfos",
             "Spirit Temple GS Boulder Room": "can_play(Song_of_Time) or
-                    (can_use(Boomerang) and (is_glitched or logic_boomerang_boulders)) or
-                    (can_use(Hover_Boots) and is_glitched)
+                    (can_use(Boomerang) and (is_advanced or logic_boomerang_boulders)) or
+                    (can_use(Hover_Boots) and is_advanced)
                 "
         },
         "exits": {
@@ -312,7 +312,7 @@
             "Spirit Temple Silver Gauntlets Chest": "(
                 has_soul(Iron_Knuckle) and
                     ((Small_Key_Spirit_Temple, 5) or
-                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_glitched and Hover_Boots and (can_hess or can_superslide))) and
+                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_advanced and Hover_Boots and (can_hess or can_superslide))) and
                         (Small_Key_Spirit_Temple, 3)))
                 )
                 or at('Desert Colossus',logic_wallwalking and can_hover and can_use(Hover_Boots) and Hookshot)",
@@ -369,7 +369,7 @@
             "Spirit Temple Child Side Iron Knuckle":  "(
                 has_soul(Iron_Knuckle) and
                     ((Small_Key_Spirit_Temple, 5) or
-                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_glitched and Hover_Boots and (can_hess or can_superslide))) and
+                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_advanced and Hover_Boots and (can_hess or can_superslide))) and
                         (Small_Key_Spirit_Temple, 3)))
                 )
                 or at('Desert Colossus',logic_wallwalking and can_hover and can_use(Hover_Boots) and Hookshot)",
@@ -395,7 +395,7 @@
         "exits": {
             "Child Spirit Temple Climb": "True",
             "Adult Spirit Temple Climb": "
-                    (is_child and can_hover) or (is_glitched and is_adult) or 
+                    (is_child and can_hover) or (is_advanced and is_adult) or 
                 (
                 spirit_temple_shortcuts and
                 (can_use(Hookshot) or (logic_spirit_adult_side_hovers and can_use(Hover_Boots)))
@@ -527,7 +527,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Boss Key Chest": "Bow and Hookshot or
-                (is_glitched and (damage_multiplier != 'ohko' or can_use(Nayrus_Love)))",
+                (is_advanced and (damage_multiplier != 'ohko' or can_use(Nayrus_Love)))",
             "Spirit Temple Boss Key Room Torch Slug 1": "can_kill_torch_slug",
             "Spirit Temple Boss Key Room Torch Slug 2": "can_kill_torch_slug",
             "Spirit Temple Boss Key Room Torch Slug 3": "can_kill_torch_slug",

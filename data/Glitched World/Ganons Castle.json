@@ -304,7 +304,7 @@
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Front": "(Silver_Rupee_Ganons_Castle_Spirit_Trial, 5)",
-            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult and is_glitched"
+            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult and is_advanced"
         }
     },
     {
@@ -317,7 +317,7 @@
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Back": "has_bombchus or 
-                (is_glitched and can_use(Bow))"
+                (is_advanced and can_use(Bow))"
         }
     },
     {

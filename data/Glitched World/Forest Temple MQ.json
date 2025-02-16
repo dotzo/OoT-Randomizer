@@ -99,7 +99,7 @@
                 is_adult and (Progressive_Strength_Upgrade or
                     (logic_forest_mq_block_puzzle and has_bombchus and Hookshot))",
             # Child cannot climb these large blocks.
-            "Forest Temple Outside Upper Ledge": "(is_glitched and can_use(Hookshot)) or
+            "Forest Temple Outside Upper Ledge": "(is_advanced and can_use(Hookshot)) or
                 (
                 Forest_Temple_Twisted_Hallway_Switch and
                 (can_use(Hover_Boots) or can_use(Hookshot) or
@@ -372,8 +372,8 @@
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
             "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple or
-                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_glitched) or 
-                at('Forest Temple NW Outdoors',is_glitched and is_child and has_bombchus and glitch_forest_bk_skip and 
+                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_advanced) or 
+                at('Forest Temple NW Outdoors',is_advanced and is_child and has_bombchus and glitch_forest_bk_skip and 
                 damage_multiplier != 'ohko')"
         }
     }

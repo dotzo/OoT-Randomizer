@@ -18,7 +18,7 @@
                 has_soul(Freezard) and here(is_adult or has_explosives or can_use(Dins_Fire)
                     or can_use(Megaton_Hammer))",
             "Farores Wind Warp": "can_use(Farores_Wind)",
-            "Ice Cavern End Room": "can_use(Iron_Boots) and glitch_reverse_ice and is_glitched"
+            "Ice Cavern End Room": "can_use(Iron_Boots) and glitch_reverse_ice and is_advanced"
         }
     },
     {
@@ -47,7 +47,7 @@
                 can_lunge_storage",
             "Ice Cavern Push Block Room": "Blue_Fire or 
                 can_lunge_storage or
-                (is_adult and is_glitched and 
+                (is_adult and is_advanced and 
                     (first_person_item or Bombs or (can_shield and can_use(Hover_Boots)))
                 )"
         }
@@ -57,7 +57,7 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Map Chest": "Blue_Fire or 
-                (is_glitched and
+                (is_advanced and
                     has_explosives and damage_multiplier != 'ohko')",
             "Ice Cavern Map Room Recovery Heart 1": "True",
             "Ice Cavern Map Room Recovery Heart 2": "True",
@@ -78,7 +78,7 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Compass Chest": "Blue_Fire or 
-                (is_glitched and
+                (is_advanced and
                     has_explosives and damage_multiplier != 'ohko')",
             "Ice Cavern Freestanding PoH": "Blue_Fire or (logic_ice_HP_no_bottle and
                     Bombs and can_isg and damage_multiplier != 'ohko' and is_adult)

@@ -1460,7 +1460,7 @@ def update_warp_song_text(messages: list[Message], world: World) -> None:
         0x4004: 'LH Owl Flight -> Hyrule Field',
     }
 
-    #if world.settings.logic_rules != "glitched": # Entrances not set on glitched logic so following code will error
+    #if world.settings.logic_rules != "advanced": # Entrances not set on advanced logic so following code will error
     for id, entr in msg_list.items():
         if 'warp_songs_and_owls' in world.settings.misc_hints or not world.settings.warp_songs:
             destination = world.get_entrance(entr).connected_region

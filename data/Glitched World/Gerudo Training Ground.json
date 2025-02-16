@@ -176,7 +176,7 @@
         },
         "exits": {
             "Gerudo Training Ground Like Like Room": "can_use(Silver_Gauntlets) or (can_use(Hover_boots) and 
-                (can_mega or (Megaton_Hammer and logic_hovers_recoil and is_glitched)))",
+                (can_mega or (Megaton_Hammer and logic_hovers_recoil and is_advanced)))",
             "Gerudo Training Ground Eye Statue Lower": "True",
             "Gerudo Training Ground Heavy Block Room": "True"
         }
@@ -212,7 +212,7 @@
             "Gerudo Training Ground Hammer Room Clear Chest": "has_soul(Keese) and has_soul(Torch_Slug)
                 and can_kill_keese and can_kill_torch_slug",
             "Gerudo Training Ground Hammer Room Switch Chest": "can_use(Megaton_Hammer)
-                or logic_gtg_burning_chest_without_hammer or is_glitched",
+                or logic_gtg_burning_chest_without_hammer or is_advanced",
             "Gerudo Training Ground Hammer Room Wonderitem": "Bow",
             "Gerudo Training Ground Hammer Room Keese 1": "has_soul(Keese) and can_kill_keese",
             "Gerudo Training Ground Hammer Room Keese 2": "has_soul(Keese) and can_kill_keese",

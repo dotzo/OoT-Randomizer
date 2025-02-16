@@ -28,10 +28,10 @@
         },
         "exits": {
             "Dodongos Cavern Lower Right Side": "can_blast_or_smash or can_gdv or Progressive_Strength_Upgrade",
-            "Dodongos Cavern Torch Room": "is_adult or can_groundjump or (is_glitched and Progressive_Strength_Upgrade and can_shield)",
+            "Dodongos Cavern Torch Room": "is_adult or can_groundjump or (is_advanced and Progressive_Strength_Upgrade and can_shield)",
             "Dodongos Cavern Staircase Room": " 
                 (can_groundjump or 
-                    (is_glitched and Progressive_Strength_Upgrade and can_shield)
+                    (is_advanced and Progressive_Strength_Upgrade and can_shield)
                 ) or at('Dodongos Cavern Torch Room',can_use(Sticks) or can_use(Dins_Fire) or can_gdv_stick
                 )",
             "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True) or

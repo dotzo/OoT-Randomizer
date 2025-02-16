@@ -22,9 +22,9 @@
         "exits": {
             "ZF Ice Ledge": "True",
             "Ice Cavern Map Room": "(can_kill_wolfos and can_kill_freezard)
-                or (glitch_ledge_clip and is_glitched and is_adult)",
+                or (glitch_ledge_clip and is_advanced and is_adult)",
             "Ice Cavern Compass Room": "(is_adult or (glitch_ice_ledges_child and can_groundjump)) and
-                (Blue_Fire or can_mega or can_hess or can_superslide or (can_use(Hover_Boots) and is_glitched and logic_hovers_recoil))",
+                (Blue_Fire or can_mega or can_hess or can_superslide or (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil))",
             # Superslide hoverboots from the upper ledge
             "Ice Cavern Large Room": "Blue_Fire or
                 (can_use(Hover_Boots) and (can_superslide or can_hess))

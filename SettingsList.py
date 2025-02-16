@@ -645,7 +645,7 @@ class SettingInfos:
         default        = 'glitchless',
         choices        = {
             'glitchless': 'Glitchless',
-            'glitched':   'Advanced',
+            'advanced':   'Advanced',
             'none':       'No Logic',
         },
         gui_tooltip    = '''\
@@ -666,7 +666,7 @@ class SettingInfos:
         ''',
         disable        = {
             'glitchless': {'settings': ['tricks_list_msg', 'advanced_allowed_tricks']},
-            'glitched':   {'settings': ['tricks_list_msg', 'blue_fire_arrows',
+            'advanced':   {'settings': ['tricks_list_msg', 'blue_fire_arrows',
                                 'shuffle_boulders', 'golden_boulders', 'shuffle_grass',
                                 'shuffle_gossipstones', 'shuffle_fishies']},
             'none':       {'settings': ['allowed_tricks', 'advanced_allowed_tricks', 'logic_no_night_tokens_without_suns_song', 'reachable_locations']},
@@ -1373,7 +1373,6 @@ class SettingInfos:
         gui_tooltip    = '''\
             Shortcuts to dungeon bosses are available
             without any requirements.
-            Incompatible with glitched logic.
 
             Changes include (vanilla shown, MQ similar):
             <b>Deku Tree</b>: webs burned, block in the
@@ -3481,7 +3480,7 @@ class SettingInfos:
         gui_tooltip    = '''\
             The cutscenes of the Poes in Forest Temple and Darunia in
             Fire Temple will not be skipped. These cutscenes are useful
-            in glitched gameplay only and do not provide any timesave
+            in advanced gameplay only and do not provide any timesave
             for glitchless playthroughs.
         ''',
         shared         = True,
