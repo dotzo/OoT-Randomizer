@@ -29,6 +29,8 @@ Ocarina_C_right_Button: int = ItemInfo.solver_ids['Ocarina_C_right_Button']
 Megaton_Hammer: int = ItemInfo.solver_ids['Megaton_Hammer']
 Progressive_Strength_Upgrade: int = ItemInfo.solver_ids['Progressive_Strength_Upgrade']
 Bomb_Bag: int = ItemInfo.solver_ids['Bomb_Bag']
+Nayrus_Love: int = ItemInfo.solver_ids['Nayrus_Love']
+Magic_Meter: int = ItemInfo.solver_ids['Magic_Meter']
 
 class State:
     def __init__(self, parent: World) -> None:
@@ -38,6 +40,7 @@ class State:
 
         self.can_blast_or_smash: AccessRule = self.world.parser.parse_rule("can_blast_or_smash")
         self.Blue_Fire: AccessRule = self.world.parser.parse_rule("Blue_Fire")
+        self.Fairy: AccessRule = self.world.parser.parse_rule("Fairy")
 
     def copy(self, new_world: Optional[World] = None) -> State:
         new_world = new_world if new_world else self.world
@@ -140,14 +143,23 @@ class State:
             return False
 
     # Used for fall damage and other situations where damage is unavoidable
-    def can_live_dmg(self, hearts: int, **kwargs) -> bool:
+    def can_live_dmg(self, hearts: float, allow_revive: bool = True, **kwargs) -> bool:
         mult = self.world.settings.damage_multiplier
-        if hearts*4 >= 3:
-            return mult != 'ohko' and mult != 'quadruple'
-        elif hearts*4 < 3:
-            return mult != 'ohko'
+        nl = self.has(Nayrus_Love) and self.has(Magic_Meter)
+        fairy = self.Fairy(self) and allow_revive
+        if mult == 'ohko': 
+            return fairy or nl
+        elif mult == 'quad':
+            return (hearts < 0.75) or fairy or nl
+        elif mult == 'double':
+            return (hearts < 1.5) or fairy or nl
+        elif mult == 'normal':
+            return (hearts < 3) or fairy or nl
+        elif mult == 'half':
+            return (hearts < 6) or fairy or nl
         else:
-            return True
+            False
+
 
     # Use the guarantee_hint rule defined in json.
     def guarantee_hint(self) -> bool:

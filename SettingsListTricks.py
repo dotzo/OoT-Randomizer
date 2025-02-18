@@ -1775,7 +1775,47 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
 advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
+    '(Glitch) Infinite Sword Glitch (ISG)': {
+        'name'    : 'glitch_isg',
+        'tags'    : ("Glitch","Child", "Adult",),
+        'tooltip' : '''\
+                    Crouch stabbing and interrupting it puts Link in a state 
+                    where he is constantly swinging his sword. This can be used 
+                    for damage output or for the secondary property of being
+                    unable to fall off ledges while in this state. 
 
+                    This is required for hovering.
+                    '''},
+    '(Glitch) Groundjumps': {
+        'name'    : 'glitch_groundjump',
+        'tags'    : ("Glitch","Child", "Adult",),
+        'tooltip' : '''\
+                    Shielding while attempting to pick up a Bomb stores that 
+                    state. If you then backflip, the backflip will be cancelled
+                    allowing Link to grab ledges higher than usual.  Useful
+                    in some places and easier than the glitchless alternative
+                    of Recoil Jumps.
+                    '''},
+    '(Glitch) Clipping': {
+        'name'    : 'glitch_clipping',
+        'tags'    : ("Glitch","Child", "Adult",),
+        'tooltip' : '''\
+                    As we all know the collision in this game is a mere suggestion
+                    at times. Enabling this will allow for the logical use of many
+                    damage clips, clipping through acute angles, and generally used
+                    clips through the game. Some more niche ones will have their own
+                    trick unrelated to this one.
+                    '''},
+    '(Glitch) Triple Slash Clip': {
+        'name'    : 'glitch_tsc',
+        'tags'    : ("Glitch","Child", "Adult",),
+        'tooltip' : '''\
+                    Using the Triple Slash animation and a first person item on 
+                    a particular frame window can displace Link through some 
+                    corners. 
+
+                    This is not dependent on the Clipping trick.
+                    '''},
     '(Glitch) Lunge Storage': {
         'name'    : 'glitch_lunge_storage',
         'tags'    : ("Glitch","Child", "Adult",),
@@ -1874,8 +1914,8 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     more locations. 
                     '''}, 
     '(Advanced) Hoverboots Recoil': {
-        'name'    : 'logic_hovers_recoil',
-        'tags'    : ("Glitch","Adult",),
+        'name'    : 'adv_hovers_recoil',
+        'tags'    : ("Glitchless","Adult",),
         'tooltip' : '''\
                     Allows for the use of Hover Boots momentum 
                     after a recoil or damage
@@ -1883,7 +1923,17 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     obstacles. In the case of a clip it would be 
                     specified differently in logic to allow use for 
                     GGJ or advanced play. 
-                    '''},      
+                    '''},    
+    '(Advanced) Recoil Jumps': {
+        'name'    : 'adv_recoil_jump',
+        'tags'    : ("Glitchless","Adult",),
+        'tooltip' : '''\
+                    By shielding an explosion or damage midair, usually
+                    out of a twisted backflip, Link is able to gain the 
+                    height from the backflip but also be able to grab
+                    ledges. This is the glitchless variant of a 
+                    groundjump as they achieve similar goals. 
+                    '''},   
     '(Glitch) Glitch Damage Value': {
         'name'    : 'glitch_damage_value',
         'tags'    : ("Glitch","QPA","Glitch Damage Value",),
@@ -1915,8 +1965,8 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     switches under unmovable boulders. 
                     '''},
     '(Advanced) Damage Boost': {
-        'name'    : 'logic_damage_boost',
-        'tags'    : ("GGJ","Child","Adult",),
+        'name'    : 'adv_damage_boost',
+        'tags'    : ("Glitchless","Child","Adult",),
         'tooltip' : '''\
                     Damage boosting has multiple uses for 
                     crossing gaps without hover boots or 
@@ -1925,7 +1975,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) Wallwalking': {
         'name'    : 'logic_wallwalking',
-        'tags'    : ("GGJ","Child","Adult",),
+        'tags'    : ("Glitchless","Child","Adult",),
         'tooltip' : '''\
                     Wall walking up slopes that have floor. This can be 
                     useful for instances where a hookshot or longshot 
@@ -1934,7 +1984,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
 
     '(Advanced) Glitchless Megaflip': {
         'name'    : 'logic_glitchless_megaflip',
-        'tags'    : ("GGJ",),
+        'tags'    : ("Glitchless",),
         'tooltip' : '''\
                     Perform a megaflip using enemy damage boosting
                     for a glitchless variation. This is niche and is not
@@ -1980,7 +2030,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) LH Tree GS with only Hookshot': {
         'name'    : 'logic_lh_tree_gs_hookshot',
-        'tags'    : ("GGJ","Adult",),
+        'tags'    : ("Glitchless","Adult",),
         'tooltip' : '''\
                     Wall walk up the tree stump and reach
                     this skull without longshot to collect. 
@@ -2132,7 +2182,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},  
     '(Advanced) TH Breakroom to Balcony as Child': {
         'name'    : 'logic_th_breakroom_to_balcony_child',
-        'tags'    : ("GGJ","Child","Entrance Shuffle",),
+        'tags'    : ("Glitchless","Child","Entrance Shuffle",),
         'tooltip' : '''\
                     Jump from the breakroom to the balcony entrance
                     hallway with a damage boost and jumpslash to pass
@@ -2444,7 +2494,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) ZF Enter Jabu Jumpslash': {
         'name'    : 'logic_jabu_no_fish',
-        'tags'    : ("GGJ","Child","Jabu Jabu's Belly", "Jabu Jabu's Belly MQ","Entrance Shuffle",),
+        'tags'    : ("Glitchless","Child","Jabu Jabu's Belly", "Jabu Jabu's Belly MQ","Entrance Shuffle",),
         'tooltip' : '''\
                     Jump and then Jumpslash into the head for a glitchless access to Jabu. 
                     This is not the jumpslash from the edge which is a recoil. It is logically equivalent.
@@ -2465,7 +2515,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) ZF Great Fairy Fountain without Explosives': {
         'name'    : 'logic_zf_fairy_no_explosives',
-        'tags'    : ("GGJ","Adult","Entrance Shuffle",),
+        'tags'    : ("Glitchless","Adult","Entrance Shuffle",),
         'tooltip' : '''\
                     Climb onto the wall, and walk along the floor
                     to the entrance for the Fairy Fountain. Jumpslash
@@ -2481,7 +2531,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) HF Tektite Grotto with Rang': {
         'name'    : 'logic_tektite_hp_rang',
-        'tags'    : ("GGJ","Child","Adult",),
+        'tags'    : ("Glitchless","Child","Adult",),
         'tooltip' : '''\
                     If standalone glitchless logic and no equipswap, this is enabled for child. 
                     If equipswap is enabled, this works for child and adult. 
@@ -2543,7 +2593,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) MQ DC Upper Lizalfos Boulder Skip': {
         'name'    : 'logic_dc_mq_upper_lizalfos_boulder_skip',
-        'tags'    : ("GGJ","Adult","Dodongo's Cavern MQ","Bouldersanity",),
+        'tags'    : ("Glitchless","Adult","Dodongo's Cavern MQ","Bouldersanity",),
         'tooltip' : '''\
                     Megajump with hover boots from in front of the boulders and 
                     jumpslash onto the platform on the other side to skip
@@ -2866,7 +2916,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) MQ Spirit Temple Lobby Eye Switch without Explosives': {
         'name'    : 'glitch_spirit_mq_lobby_eye',
-        'tags'    : ("GGJ","Spirit Temple MQ",),
+        'tags'    : ("Glitchless","Spirit Temple MQ",),
         'tooltip' : '''\
                     Standing far enough away from a boulder removes its
                     collision, allowing you to hit things inside or 
@@ -3004,7 +3054,7 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     '''},
     '(Advanced) Shadow Trial First Gap Without Fire': {
         'name'    : 'logic_shadow_trial_no_fire_gap',
-        'tags'    : ("GGJ","Adult","Inside Ganon's Castle",),
+        'tags'    : ("Glitchless","Adult","Inside Ganon's Castle",),
         'tooltip' : '''\
                     Hammer recoil hoverboost from the door to the torch, and then recoil
                     boost ending with bombchu damage boost to the likelike. Removes
