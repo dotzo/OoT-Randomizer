@@ -4,15 +4,29 @@
         "dungeon": "Deku Tree",
         "locations": {
             "Deku Tree MQ Map Chest": "True",
+
             "Deku Tree MQ Slingshot Chest": "
                 has_soul(Gohma_Larvae) and has_soul(Deku_Baba) and (is_adult or can_child_attack)",
             "Deku Tree MQ Slingshot Room Back Chest": "has_fire_source_with_torch or can_use(Bow) or can_gdv",
-            "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow) or can_gdv",
-            "Deku Tree MQ Lower Lobby Recovery Heart": "True",
             "Deku Tree MQ Slingshot Room Recovery Heart": "True",
-            "Deku Tree MQ Lobby Crate": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 1": "can_break_crate",
             "Deku Tree MQ Slingshot Room Crate 2": "can_break_crate",
+            "Deku Tree MQ Slingshot Room Deku Baba": "can_kill_deku_baba",
+            "Deku Tree MQ Slingshot Room Gohma Larva 1": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Gohma Larva 2": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Gohma Larva 3": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Gohma Larva 4": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Gohma Larva 5": "can_kill_gohma_larva",
+            "Deku Tree MQ Slingshot Room Gohma Larva 6": "can_kill_gohma_larva",
+
+            "Deku Tree MQ Basement Chest": "has_fire_source_with_torch or can_use(Bow) or can_gdv",
+            "Deku Tree MQ Basement Withered Deku Baba": "can_kill_withered_deku_baba",
+            "Deku Tree MQ Basement Lower Deku Baba 1": "can_kill_deku_baba",
+            "Deku Tree MQ Basement Lower Deku Baba 2": "can_kill_deku_baba",
+            "Deku Tree MQ Basement Ledge Deku Baba": "can_kill_deku_baba",
+
+            "Deku Tree MQ Lower Lobby Recovery Heart": "True",
+            "Deku Tree MQ Lobby Crate": "can_break_crate",
             "Deku Tree MQ Lobby Lower Withered Deku Baba": "can_kill_withered_deku_baba",
             "Deku Tree MQ Lobby Upper Withered Deku Baba": "can_kill_withered_deku_baba",
             "Deku Tree MQ Lobby Lower Keese": "can_kill_keese_stationary",
@@ -21,25 +35,14 @@
                 has_soul(Skullwalltula) and (is_adult or can_child_attack)",
             "Deku Tree MQ Lobby Gohma Larva 1": "can_kill_gohma_larva",
             "Deku Tree MQ Lobby Gohma Larva 2": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Deku Baba": "can_kill_deku_baba",
-            "Deku Tree MQ Slingshot Room Gohma Larva 1": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Gohma Larva 2": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Gohma Larva 3": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Gohma Larva 4": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Gohma Larva 5": "can_kill_gohma_larva",
-            "Deku Tree MQ Slingshot Room Gohma Larva 6": "can_kill_gohma_larva",
-            "Deku Tree MQ Basement Withered Deku Baba": "can_kill_withered_deku_baba",
-            "Deku Tree MQ Basement Lower Deku Baba 1": "can_kill_deku_baba",
-            "Deku Tree MQ Basement Lower Deku Baba 2": "can_kill_deku_baba",
-            "Deku Tree MQ Basement Ledge Deku Baba": "can_kill_deku_baba",
             "Deku Tree MQ GS Lobby": "
-                is_adult or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or
-                ((Slingshot or Boomerang) and can_break_crate)",
+                is_adult or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or can_use(Megaton_Hammer) or
+                    Slingshot or (logic_deku_mq_lobby_gs and Boomerang)",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
                 has_soul(Deku_Baba) and
                     (is_adult or Slingshot or Sticks or
-                    has_explosives or Kokiri_Sword or can_use(Dins_Fire))"
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire or can_use(Megaton_Hammer))"
         },
         "exits": {
             "KF Outside Deku Tree": "True",
@@ -117,7 +120,8 @@
         "region_name": "Deku Tree Basement Water Room Back",
         "dungeon": "Deku Tree",
         "locations": {
-            "Deku Tree MQ After Spinning Log Chest": "can_play(Song_of_Time) or (glitch_deku_mq_sot_skull_hook and can_use(Hookshot))"
+            "Deku Tree MQ After Spinning Log Chest": "can_play(Song_of_Time) or 
+                (glitch_deku_mq_sot_skull_hook and can_use(Hookshot))"
         },
         "exits": {
             "Deku Tree Basement Water Room Front": "True",
@@ -143,12 +147,8 @@
             "Deku Tree MQ Basement Larva Room Gohma Larva 8": "can_kill_gohma_larva"
         },
         "exits": {
-            "Deku Tree Basement Back Room": "
-                has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub) and
-                here(is_adult or Kokiri_Sword or can_use_projectile or (Nuts and Sticks))",
-            "Deku Tree Basement Water Room Back": "
-                has_soul(Gohma_Larvae) and has_soul(Keese) and has_soul(Deku_Scrub) and
-                (Kokiri_Sword or can_use_projectile or (Nuts and Sticks))"
+            "Deku Tree Basement Back Room": "here(can_kill_keese_stationary and can_kill_scrub and can_kill_gohma_larva)",
+            "Deku Tree Basement Water Room Back": "here(can_kill_keese_stationary and can_kill_scrub and can_kill_gohma_larva)"
         }
     },
     {
@@ -158,10 +158,10 @@
             "Deku Tree MQ GS Basement Graves Room": "
                 can_use(Longshot) or
                 (can_play(Song_of_Time) and (can_use(Boomerang) or can_use(Hookshot)))",
-            "Deku Tree MQ Basement Graves Wonderitem 1": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 2": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 3": "can_jumpslash",
-            "Deku Tree MQ Basement Graves Wonderitem 4": "can_jumpslash",
+            "Deku Tree MQ Basement Graves Wonderitem 1": "is_adult or Kokiri_Sword or Sticks",
+            "Deku Tree MQ Basement Graves Wonderitem 2": "is_adult or Kokiri_Sword or Sticks",
+            "Deku Tree MQ Basement Graves Wonderitem 3": "is_adult or Kokiri_Sword or Sticks",
+            "Deku Tree MQ Basement Graves Wonderitem 4": "is_adult or Kokiri_Sword or Sticks",
             "Deku Tree MQ Basement Graves Room Keese 1": "can_kill_keese_stationary",
             "Deku Tree MQ Basement Graves Room Keese 2": "can_kill_keese_stationary",
             "Deku Tree MQ Basement Graves Room Keese 3": "can_kill_keese_stationary",
@@ -169,7 +169,7 @@
         },
         "exits": {
             "Deku Tree Basement Ledge": "is_child",
-            "Deku Tree Basement Back Side Room": "here(has_fire_source_with_torch or can_gdv)",
+            "Deku Tree Basement Back Side Room": "here(has_fire_source_with_torch or can_use(Bow) or can_gdv)",
             "Deku Tree Basement Larva Room": "True"
         }
     },
@@ -192,7 +192,8 @@
         },
         "exits": {
             "Deku Tree Basement Back Room": "is_child",
-            "Deku Tree Before Boss": "deku_tree_shortcuts or here((has_fire_source_with_torch) or can_gdv)"
+            "Deku Tree Before Boss": "deku_tree_shortcuts or here(has_fire_source_with_torch or can_gdv)
+                or can_weirdshot"
         }
     },
     {
@@ -205,7 +206,7 @@
             "Deku Tree MQ Basement Recovery Heart 3": "True"
         },
         "exits": {
-            "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
+            "Deku Tree Basement Ledge": "deku_tree_shortcuts",
             "Queen Gohma Boss Room": "deku_tree_shortcuts or (here(has_shield) and has_soul(Deku_Scrub))
                 or at('Deku Tree Lobby', is_adult and glitch_deku_boss_door_skip)"
         }

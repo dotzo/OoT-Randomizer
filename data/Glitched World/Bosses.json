@@ -34,7 +34,7 @@
                     has_explosives or king_dodongo_shortcuts
                     or can_gdv) 
                     and
-                (((Bombs or Progressive_Strength_Upgrade or (is_advanced and is_adult and has_bombchus)) and can_jumpslash) or deadly_bonks == 'ohko')"
+                (((Bombs or Progressive_Strength_Upgrade or (adv_kd_chus and is_adult and has_bombchus)) and can_jumpslash) or deadly_bonks == 'ohko')"
         },
         "locations": {
             "Dodongos Cavern Boss Room Chest": "True",
@@ -51,7 +51,7 @@
         "scene": "Jabu Jabus Belly Boss",
         "is_boss_room": true,
         "events": {
-            "Defeat Barinade": "has_soul(Barinade) and can_use(Boomerang) and (Sticks or Kokiri_Sword or (is_advanced and is_adult))"
+            "Defeat Barinade": "has_soul(Barinade) and can_use(Boomerang) and (Sticks or Kokiri_Sword or is_adult)"
         },
         "locations": {
             "Jabu Jabus Belly Barinade Heart": "'Defeat Barinade'",

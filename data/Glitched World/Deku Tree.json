@@ -14,19 +14,13 @@
             "Deku Tree Lobby Vines Lowest Skullwalltula": "
                 has_soul(Skullwalltula) and
                 (is_adult or Sticks or has_explosives or Slingshot or Boomerang or can_use(Dins_Fire) or
-                    can_use(Megaton_Hammer) or
-                    (Kokiri_Sword and (can_take_damage or
-                        correct_chest_appearances == 'Off' or correct_chest_appearances == 'Texture')))",
+                    can_use(Megaton_Hammer) or Kokiri_Sword)",
             "Deku Tree Lobby Vines Left Lower Skullwalltula": "
                 has_soul(Skullwalltula) and
-                (can_use_projectile or can_use(Hammer) or can_use(Dins_Fire) or
-                    (can_jumpslash and can_take_damage) or
-                    ((is_adult or Sticks) and
-                        (correct_chest_appearances == 'Off' or correct_chest_appearances == 'Texture')))",
+                (can_use_projectile or can_use(Megaton_Hammer) or can_use(Dins_Fire) or can_jumpslash)",
             "Deku Tree Lobby Vines Upper Skullwalltula": "
                 has_soul(Skullwalltula) and
-                (can_use_projectile or can_use(Hammer) or can_use(Dins_Fire) or
-                    (can_jumpslash and can_take_damage))",
+                (can_use_projectile or can_use(Megaton_Hammer) or can_use(Dins_Fire) or can_jumpslash)",
             "Deku Tree Lobby Skulltula 1": "can_kill_skulltula",
             "Deku Tree Lobby Skulltula 2": "can_kill_skulltula",
             "Deku Tree Lobby Skulltula 3": "can_kill_skulltula",
@@ -36,7 +30,7 @@
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
                 has_soul(Deku_Baba) and
-                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire))"
+                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire) or can_use(Megaton_Hammer))"
         },
         "exits": {
             "KF Outside Deku Tree": "True",
@@ -61,7 +55,8 @@
             "Deku Tree Basement Lower Deku Baba": "can_kill_deku_baba",
             "Deku Tree GS Basement Gate": "is_adult or can_child_attack",
             "Deku Tree GS Basement Vines": "
-                can_use_projectile or can_use(Dins_Fire) or (logic_deku_basement_gs and can_jumpslash and (Kokiri_Sword or Sticks or is_adult))"
+                can_use_projectile or can_use(Dins_Fire) or 
+                (logic_deku_basement_gs and (Kokiri_Sword or Sticks or is_adult))"
         },
         "exits": {
             "Deku Tree Basement Eye Switch Room": "here(has_fire_source_with_torch or can_use(Bow) or (can_gdv and can_isg))",
@@ -75,7 +70,7 @@
         },
         "exits": {
             "Deku Tree Basement Spinning Log Room": "here(can_use(Bow) or can_use(Slingshot) or 
-                (is_adult and can_gdv and can_isg) )"
+                ((is_adult or Sticks) and can_gdv and can_isg) )"
         }
     },
     {
@@ -117,7 +112,7 @@
         "exits": {
             "Deku Tree Basement Back Side Room": "
                 here(has_fire_source_with_torch or can_use(Bow) or can_gdv) and
-                here(can_blast_or_smash and can_gdv)",
+                here(can_break_mud_wall or can_gdv)",
             "Deku Tree Basement Ledge": "is_child",
             "Deku Tree Basement Torch Room": "True"
         }
@@ -156,11 +151,11 @@
             "Deku Tree Basement Recovery Heart 3": "True"
         },
         "exits": {
-            "Deku Tree Basement Ledge": "deku_tree_shortcuts or logic_visible_collisions",
+            "Deku Tree Basement Ledge": "deku_tree_shortcuts",
             "Queen Gohma Boss Room": "at('Deku Tree Lobby',is_adult and glitch_deku_boss_door_skip) or
                 (
                 deku_tree_shortcuts or (here(has_shield or 
-                (logic_231_hammer and can_use(Megaton_Hammer)) ) and has_soul(Deku_Scrub))
+                (adv_231_hammer and can_use(Megaton_Hammer)) ) and has_soul(Deku_Scrub))
                 )"
         }
     }

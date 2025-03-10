@@ -143,9 +143,9 @@ class State:
             return False
 
     # Used for fall damage and other situations where damage is unavoidable
-    def can_live_dmg(self, hearts: float, allow_revive: bool = True, **kwargs) -> bool:
+    def can_live_dmg(self, hearts: float, allow_revive: bool = True, allow_nayrus: bool = True, **kwargs) -> bool:
         mult = self.world.settings.damage_multiplier
-        nl = self.has(Nayrus_Love) and self.has(Magic_Meter)
+        nl = self.has(Nayrus_Love) and self.has(Magic_Meter) and allow_nayrus
         fairy = self.Fairy(self) and allow_revive
         if mult == 'ohko': 
             return fairy or nl
