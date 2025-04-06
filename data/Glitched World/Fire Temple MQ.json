@@ -11,11 +11,14 @@
         "exits": {
             "DMC Fire Temple Entrance": "True",
             "Fire Temple Near Boss": "
-                (is_adult or logic_fire_mq_child_flame) and (has_fire_source or can_gdv) and
-                (logic_fewer_tunic_requirements or Goron_Tunic)",
+                (logic_fewer_tunic_requirements or Goron_Tunic) and 
+                (is_adult or logic_fire_mq_child_flame) and 
+                (has_fire_source or 
+                    (can_gdv and (can_isg or is_adult)))",
             "Fire Temple Lower Locked Door": "(Small_Key_Fire_Temple, 5)",
             "Fire Temple Big Lava Room": "
-                is_adult and Megaton_Hammer and (logic_fewer_tunic_requirements or Goron_Tunic)",
+                (is_adult or logic_fire_mq_child_flame) and
+                can_use(Megaton_Hammer) and (logic_fewer_tunic_requirements or Goron_Tunic)",
             "Fire Temple Lower Flare Dancer Room": "can_weirdshot and can_shield and Biggoron_Sword and 
                 Megaton_Hammer",
             "Farores Wind Warp": "can_use(Farores_Wind)"
@@ -25,7 +28,8 @@
         "region_name": "Fire Temple Near Boss",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Near Boss Chest": "can_weirdshot or (can_gdv and can_use(Hover_Boots) and glitch_fire_mq_torch_puzzle) or
+            "Fire Temple MQ Near Boss Chest": "can_weirdshot or 
+                (can_gdv and can_use(Hover_Boots) and glitch_fire_mq_torch_puzzle and Goron_Tunic) or
                 (is_adult and
                 ((logic_fire_mq_near_boss and has_fire_source and Bow) or
                     ((Hover_Boots or Hookshot) and
@@ -34,22 +38,25 @@
                                 ((damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
                                     Goron_Tunic or Hover_Boots or Bow or Longshot)))))
                 )",
-            "Fire Temple MQ Near Boss Pot 1": "can_use(Hookshot) or can_use(Hover_Boots)",
-            "Fire Temple MQ Near Boss Pot 2": "can_use(Hookshot) or can_use(Hover_Boots)",
+            "Fire Temple MQ Near Boss Pot 1": "can_use(Hookshot) or can_use(Hover_Boots)
+                or (can_use(Goron_Tunic) and can_mega)",
+            "Fire Temple MQ Near Boss Pot 2": "can_use(Hookshot) or can_use(Hover_Boots)
+                or (can_use(Goron_Tunic) and can_mega)",
             "Fire Temple MQ Near Boss Left Crate 1": "can_break_heated_crate",
             "Fire Temple MQ Near Boss Left Crate 2": "can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Lower Crate 1": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots) or (can_use(Goron_Tunic) and can_mega)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Lower Crate 2": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots) or (can_use(Goron_Tunic) and can_mega)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Mid Crate": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate",
+                (can_use(Hookshot) or can_use(Hover_Boots) or (can_use(Goron_Tunic) and can_mega)) and can_break_heated_crate",
             "Fire Temple MQ Near Boss Right Upper Crate": "
-                (can_use(Hookshot) or can_use(Hover_Boots)) and can_break_heated_crate"
+                (can_use(Hookshot) or can_use(Hover_Boots) or (can_use(Goron_Tunic) and can_mega)) and can_break_heated_crate"
         },
         "exits": {
-            "Fire Temple Before Boss": "
-                is_adult and (fire_temple_shortcuts or logic_fire_boss_door_jump or Hover_Boots)"
+            "Fire Temple Before Boss": "can_mega or 
+                (fire_temple_shortcuts and (is_adult or (is_child and can_damage_boost)))) or
+                (is_adult and (logic_fire_boss_door_jump or Hover_Boots))"
         }
     },
     {
@@ -57,11 +64,9 @@
         "dungeon": "Fire Temple",
         "savewarp": "DMC Fire Temple Entrance -> Fire Temple Lower",
         "exits": {
-            "Fire Temple Near Boss": "is_adult and (logic_fewer_tunic_requirements or Goron_Tunic)",
-            "Volvagia Boss Room": "Boss_Key_Fire_Temple or 
-                at('Fire Temple Near Boss',is_adult and Goron_Tunic and has_bombchus and can_isg and can_hover
-                    and glitch_fire_bk_skip_hover) or
-                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge and is_advanced)"
+            "Volvagia Boss Room": "Boss_Key_Fire_Temple or
+                at('Fire Temple Near Boss',can_use(Goron_Tunic) and glitch_fire_bk_skip_hover and can_hover_no_trick and has_bombchus) or 
+                at('Fire Temple Flame Maze',glitch_ledge_clip and glitch_fire_bk_skip_ledge)"
         }
     },
     {
@@ -73,7 +78,7 @@
             "Fire Temple MQ Before Lower Flare Dancer Stalfos 2": "can_kill_stalfos"
         },
         "exits": {
-            "Fire Temple Lower Locked Door After Stalfos": "has_soul(Keese) and can_kill_stalfos",
+            "Fire Temple Lower Locked Door After Stalfos": "can_kill_keese and can_kill_stalfos",
             "Fire Temple Lower": "(Small_Key_Fire_Temple, 5)"
         }
     },
@@ -89,11 +94,11 @@
             "Fire Temple MQ Iron Knuckle Room Pot 6": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 7": "True",
             "Fire Temple MQ Iron Knuckle Room Pot 8": "True",
-            "Fire Temple MQ Iron Knuckle": "has_soul(Iron_Knuckle)",
+            "Fire Temple MQ Iron Knuckle": "can_kill_iron_knuckle",
             "Fairy Pot": "has_bottle"
         },
         "exits": {
-            "Fire Temple Lower Flare Dancer Room": "has_soul(Iron_Knuckle)",
+            "Fire Temple Lower Flare Dancer Room": "can_kill_iron_knuckle",
             "Fire Temple Lower Locked Door": "True"
         }
     },
@@ -103,7 +108,7 @@
         "locations": {
             "Fire Temple MQ Map Chest": "(has_soul(Flare_Dancer) and can_use(Megaton_Hammer)) or 
                 at('Fire Temple Lower',can_weirdshot)",
-            "Fire Temple MQ Megaton Hammer Chest": "is_adult and can_kill_flare_dancer",
+            "Fire Temple MQ Megaton Hammer Chest": "can_kill_flare_dancer and (is_adult or can_groundjump)",
             "Fire Temple MQ Lower Flare Dancer": "can_kill_flare_dancer"
         },
         "exits": {
@@ -114,27 +119,41 @@
         "region_name": "Fire Temple Big Lava Room",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Boss Key Chest": "
-                has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
             "Fire Temple MQ Big Lava Room Blocked Door Chest": "
-                (Hookshot or logic_fire_mq_blocked_chest) and has_explosives and has_fire_source",
+                (can_use(Hookshot) or logic_fire_mq_blocked_chest) and has_explosives and is_adult and
+                (has_fire_source or can_gdv or can_weirdshot)",
             "Fire Temple MQ Big Lava Room Left Pot": "True",
-            "Fire Temple MQ Big Lava Room Right Pot": "Hookshot or logic_fire_mq_blocked_chest",
+            "Fire Temple MQ Big Lava Room Right Pot": "is_adult and (can_use(Hookshot) or logic_fire_mq_blocked_chest)",
             "Fire Temple MQ Big Lava Room Alcove Pot": "True",
-            "Fire Temple MQ Boss Key Chest Room Pot 1": "
-                has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
-            "Fire Temple MQ Boss Key Chest Room Pot 2": "
-                has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
-            "Fire Temple MQ Boss Key Hookshot Wonderitem": "
-                has_fire_source and (Bow or logic_fire_mq_bk_chest) and Hookshot",
-            "Fire Temple MQ Boss Key Arrow Wonderitem": "has_fire_source and Hookshot and Bow",
-            "Fire Temple MQ GS Big Lava Room Open Door": "True",
-            "Fairy Pot": "
-                has_bottle and has_fire_source and (Bow or logic_fire_mq_bk_chest) and
-                (Hookshot or (logic_fire_song_of_time and shuffle_pots != 'All' and shuffle_pots != 'Dungeons Only'))"
+            "Fire Temple MQ GS Big Lava Room Open Door": "True"
         },
         "exits": {
-            "Fire Temple Elevator Room": "Goron_Tunic and (Small_Key_Fire_Temple, 2)"
+            "Fire Temple Elevator Room": "can_use(Goron_Tunic) and (Small_Key_Fire_Temple, 2)",
+            "Fire Temple BK Room": "is_adult and
+                (has_fire_source or can_gdv) and (Bow or logic_fire_mq_bk_chest) and (can_use(Hookshot) or logic_fire_song_of_time)"
+        }
+    },
+    {
+        "region_name": "Fire Temple BK Room",
+        "dungeon": "Fire Temple",
+        "locations": {
+            "Fire Temple MQ Boss Key Chest": "can_use(Hookshot) or can_mega or
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False)))",
+            "Fire Temple MQ Boss Key Chest Room Pot 1": "can_use(Hookshot) or can_mega or can_use(Boomerang) or
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False)))",
+            "Fire Temple MQ Boss Key Chest Room Pot 2": "can_use(Hookshot) or can_mega or can_use(Boomerang) or
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False)))",
+            "Fire Temple MQ Boss Key Hookshot Wonderitem": "(can_use(Hookshot) or can_mega or
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False))))
+                or (can_use(Hookshot) and can_use(Boomerang))",
+            "Fire Temple MQ Boss Key Arrow Wonderitem": "(can_use(Hookshot) or can_mega or
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False))))
+                or (can_use(Bow) and can_use(Boomerang))",
+            "Fairy Pot": "has_bottle and (has_projectile or 
+                (adv_fire_mq_bk_chest_flame_skip and (can_live_dmg(0.25,True,True) or can_live_dmg(0.25,False,False))))"
+        },
+        "exits": {
+            "Fire Temple Big Lava Room": "True"
         }
     },
     {
@@ -192,11 +211,13 @@
         },
         "exits": {
             "Fire Temple Shortcut": "has_explosives",
-            "Fire Temple Block On Fire Room": "
+            "Fire Temple Block On Fire Room": "(glitch_fire_scarecrow_hover and can_use(Hover_Boots) and can_hover_no_trick and has_bombchus) or 
+                (
                 (Longshot or (can_play(Song_of_Time) and Hookshot)) and
-                (has_explosives or logic_rusted_switches or (Longshot and logic_fire_scarecrow))",
+                (has_explosives or logic_rusted_switches or (Longshot and logic_fire_scarecrow))
+                )",
             "Fire Temple Shoot Torch On Wall Room": "(Small_Key_Fire_Temple, 3)",
-            "Fire Temple Lower Lizalfos Maze": "is_advanced"
+            "Fire Temple Lower Lizalfos Maze": "True"
         }
     },
     {
@@ -219,19 +240,17 @@
         "region_name": "Fire Temple Block On Fire Room",
         "dungeon": "Fire Temple",
         "locations": {
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 1": "True",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2": "True",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3": "True",
-            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4": "True",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 1": "Hookshot",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 2": "Hookshot",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 3": "Hookshot",
+            "Fire Temple MQ Elevator Above Maze Hookshot Wonderitem 4": "Hookshot",
             "Fire Temple MQ Elevator Above Maze Torch Slug 1": "has_soul(Torch_Slug)",
             "Fire Temple MQ Elevator Above Maze Torch Slug 2": "has_soul(Torch_Slug)",
             "Fire Temple MQ GS Skull On Fire": "True",
-            "Wall Fairy": "has_bottle"
+            "Wall Fairy": "has_bottle and Hookshot"
         },
         "exits": {
-            "Fire Temple Narrow Path Room": "
-                (damage_multiplier != 'ohko' and damage_multiplier != 'quadruple') or
-                Fairy or can_use(Nayrus_Love)"
+            "Fire Temple Narrow Path Room": "can_live_dmg(1.0)"
         }
     },
     {
@@ -282,8 +301,7 @@
             "Fire Temple Flame Maze Side Room": "
                 can_play(Song_of_Time) or Hover_Boots or logic_fire_mq_flame_maze",
             "Fire Temple Before Upper Flare Dancer": "Hookshot or logic_fire_mq_flame_maze",
-            "Fire Temple Near Boss": "True",
-            "Fire Temple Before Boss": "True"
+            "Fire Temple Near Boss": "True"
         }
     },
     {
@@ -292,7 +310,7 @@
         "locations": {
             "Fire Temple MQ Flame Maze Right Pot 1": "True",
             "Fire Temple MQ Flame Maze Right Pot 2": "True",
-            "Fire Temple MQ Flame Maze Side Room Lizalfos": "has_soul(Lizalfos_and_Dinalfos)",
+            "Fire Temple MQ Flame Maze Side Room Lizalfos": "can_kill_lizalfos",
             "Fire Temple MQ GS Flame Maze Side Room": "True"
         }
     },
@@ -305,7 +323,7 @@
             "Fire Temple MQ Flame Maze Hookshot Wonderitem": "Hookshot"
         },
         "exits": {
-            "Fire Temple Upper": "has_soul(Flare_Dancer)"
+            "Fire Temple Upper": "can_kill_flare_dancer"
         }
     },
     {
@@ -326,8 +344,8 @@
         "dungeon": "Fire Temple",
         "locations": {
             "Fire Temple MQ Hammer Steps Hookshot Wonderitem": "Hookshot",
-            "Fire Temple MQ Hammer Steps Stalfos 1": "has_soul(Stalfos)",
-            "Fire Temple MQ Hammer Steps Stalfos 2": "has_soul(Stalfos)"
+            "Fire Temple MQ Hammer Steps Stalfos 1": "can_kill_stalfos",
+            "Fire Temple MQ Hammer Steps Stalfos 2": "can_kill_stalfos"
         }
     }
 ]
