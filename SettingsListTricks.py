@@ -2887,9 +2887,19 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     is only to gain faster movement. After review it could be 
                     adjusted with megaflips. The torches have a semi-long burn.
                     '''},
+    '(Advanced) MQ Fire Boss Key Chest Flame Skip': {
+        'name'    : 'adv_fire_mq_bk_chest_flame_skip',
+        'tags'    : ("Advanced",),
+        'tooltip' : '''\
+                    Backflipping from a specific spot lets you avoid the fire
+                    wall's hitbox, going over it while taking minimal damage.
+
+                    You can also do the same by abusing invincibility frames
+                    if not on ohko.
+                    '''},
     '(Advanced) Water Temple More Alcove Access': {
         'name'    : 'logic_water_temple_alcove',
-        'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
+        'tags'    : ("Advanced","Adult","Water Temple","Water Temple MQ",),
         'tooltip' : '''\
                     Logic requires multiple item requirements, mostly
                     hover boots for glitchless. Adding in a jump without
@@ -3205,20 +3215,35 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     vineclips). 
                     '''},   
     '(Advanced) GTG Pillar Jumps': {
-        'name'    : 'logic_gtg_pillar_jumps',
-        'tags'    : ("Glitch","Adult","Gerudo Training Grounds",),
+        'name'    : 'adv_gtg_pillar_jumps',
+        'tags'    : ("Advanced","Adult","Gerudo Training Grounds",),
         'tooltip' : '''\
                     Remove the logic requirement to have hover boots to cross
                     the pillars. With precise jumps it can be reached without
                     them. 
                     '''},
     '(Advanced) GTG Burning Chest without Hammer': {
-        'name'    : 'logic_gtg_burning_chest_without_hammer',
-        'tags'    : ("Glitch","Child","Adult","Gerudo Training Grounds",),
+        'name'    : 'adv_gtg_burning_chest_without_hammer',
+        'tags'    : ("Advanced","Child","Adult","Gerudo Training Grounds",),
         'tooltip' : '''\
                     Putting this chest into logic without excessive item
                     requirements. Not OHKO friendly as it requires taking
                     damage. 
+                    '''}, 
+    '(Advanced) MQ GTG Enemy Rooms as child': {
+        'name'    : 'adv_gtg_mq_enemy_rooms_as_child',
+        'tags'    : ("Advanced","Child","Adult","Gerudo Training Grounds",),
+        'tooltip' : '''\
+                    Allows child to logically defeat the enemy rooms in 
+                    MQ GTG. This has no extra item requirements. 
+                    '''}, 
+    '(Glitch) MQ GTG Blue Fire Wall Skip': {
+        'name'    : 'glitch_gtg_mq_blue_fire_skip',
+        'tags'    : ("Glitch","Child","Adult","Gerudo Training Grounds",),
+        'tooltip' : '''\
+                    Child can clip through with lunge storage and a jumpslash.
+                    Adult needs to hess into the corner and have Hover Boots
+                    to go back in bounds.
                     '''}, 
     '(Glitch) Ganon\'s Tower Rainbow Bridge Skip': {
         'name'    : 'glitch_igc_rainbow_bridge',
