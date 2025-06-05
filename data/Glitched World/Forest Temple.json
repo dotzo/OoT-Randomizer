@@ -5,7 +5,7 @@
         "locations": {
             "Forest Temple First Room Chest": "True",
             "Forest Temple GS First Room": "
-                (is_adult and (Hookshot or Bow or Bombs)) or (is_child and (Boomerang or Slingshot)) or
+                (is_adult and (Hookshot or Bow or Bombs or can_use(Boomerang))) or (is_child and (Boomerang or Slingshot)) or
                 has_bombchus or can_use(Dins_Fire) or (logic_forest_first_gs and (Bombs or can_jumpslash))",
             "Forest Temple First Room Wolfos 1": "can_kill_wolfos",
             "Forest Temple First Room Wolfos 2": "can_kill_wolfos",
@@ -37,27 +37,28 @@
             "Fairy Pot": "has_bottle"
         },
         "exits": {
+            # Design choice for no jungle jump at this time
             "Forest Temple NW Outdoors": "can_play(Song_of_Time) or glitch_ledge_clip or is_child",
             "Forest Temple NE Outdoors": "can_use(Bow) or can_use(Slingshot)",
             "Forest Temple Before Block Puzzle": "(Small_Key_Forest_Temple, 1)",
             "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts
-                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_mega)",
+                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_mega and can_live_dmg(1.0,True,False))",
             "Forest Temple Falling Room": "can_hover or (can_use(Hover_Boots) and has_explosives and 
-                damage_multiplier != 'ohko')"
+                can_live_dmg(0.5,False,True))"
         }
     },
     {
         "region_name": "Forest Temple NW Outdoors",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Well Chest": "(is_advanced and can_use(Iron_Boots) and can_use(Hookshot))
+            "Forest Temple Well Chest": "(glitch_underwater_chests and can_use(Iron_Boots) and can_use(Hookshot))
                 or at('Forest Temple Outdoors High Balconies',True)",
             "Forest Temple Level Island Courtyard Lower Deku Baba": "can_kill_deku_baba",
             "Forest Temple Level Island Courtyard Octorok": "can_kill_octorok_with_bombs_or_magic",
             "Forest Temple Level Island Courtyard Skullwalltula Lower": "
                 has_soul(Skullwalltula) and
-                (is_adult or Boomerang or Slingshot or can_use(Dins_Fire) or has_explosives)",
+                (is_adult or Boomerang or Slingshot or can_use(Dins_Fire) or has_explosives or can_use(Megaton_Hammer))",
             "Forest Temple Level Island Courtyard Skullwalltula Middle": "
                 has_soul(Skullwalltula) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Megaton_Hammer) or
@@ -72,7 +73,7 @@
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
                 has_soul(Deku_Baba) and
-                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire))"
+                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire) or can_use(Megaton_Hammer))"
         },
         "exits": {
             "Forest Temple NE Outdoors": "
@@ -80,6 +81,7 @@
                 (logic_forest_well_swim and can_use(Hookshot))",
             "Forest Temple Outdoors High Balconies": "can_kill_blue_bubble",
             "Forest Temple NW Outdoors Freestandings": "logic_forest_courtyard_hearts and can_use(Boomerang)",
+            # Low grav ?
             "Forest Temple Outside Upper Ledge": "can_hover or can_megajump"
         }
     },
@@ -87,8 +89,8 @@
         "region_name": "Forest Temple Outdoors High Balconies",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple Map Chest": "has_soul(Bubble)",
-            "Forest Temple Map Chest Blue Bubble": "has_soul(Bubble)",
+            "Forest Temple Map Chest": "can_kill_blue_bubble",
+            "Forest Temple Map Chest Blue Bubble": "can_kill_blue_bubble",
             "Forest Temple Raised Island Courtyard Upper Deku Baba": "can_kill_deku_baba"
         },
         "exits": {
@@ -116,15 +118,16 @@
                 (can_use(Bow) or can_use(Slingshot) or
                     at('Forest Temple Outdoors High Balconies', can_use(Hookshot) or can_use(Megaton_Hammer) or
                         can_use(Boomerang) or can_use(Dins_Fire) or Bombs or
-                        ((is_adult or Kokiri_Sword) and Magic_Meter) or (can_jumpslash and can_take_damage)))",
+                        ((is_adult or Kokiri_Sword) and Magic_Meter) or (can_jumpslash and can_live_dmg(0.5))))",
             "Forest Temple Raised Island Courtyard Octorok": "can_kill_octorok_with_bombs_or_magic",
             "Forest Temple GS Raised Island Courtyard": "
                 can_use(Hookshot) or (logic_forest_outdoor_east_gs and can_use(Boomerang)) or
-                at('Forest Temple Falling Room', can_use(Bow) or can_use(Dins_Fire) or has_explosives)",
+                at('Forest Temple Falling Room', can_use(Bow) or can_use(Dins_Fire) or has_explosives
+                    or can_use(Slingshot))",
             "Deku Baba Sticks": "has_soul(Deku_Baba) and (is_adult or Kokiri_Sword or Boomerang)",
             "Deku Baba Nuts": "
                 has_soul(Deku_Baba) and
-                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire))"
+                (is_adult or Slingshot or Sticks or has_explosives or Kokiri_Sword or can_use(Dins_Fire) or can_use(Megaton_Hammer))"
         },
         "exits": {
             "Forest Temple Outdoors High Balconies": "
@@ -147,8 +150,9 @@
                 can_use(Hover_Boots) or
                 (logic_forest_outside_backdoor and (can_js_clip or
                 Progressive_Strength_Upgrade) and can_jumpslash)",
+            # Design choice to not allow child beyond this point at this time
             "Forest Temple After Block Puzzle": "is_adult and 
-                (Progressive_Strength_Upgrade or (can_groundjump and can_use(Hover_Boots)))"
+                (Progressive_Strength_Upgrade or (glitch_clipping and can_groundjump and can_use(Hover_Boots)))"
             # Child cannot climb these large blocks
         }
     },
@@ -261,7 +265,7 @@
         },
         "exits": {
             "Forest Temple Frozen Eye Switch Room": "(Small_Key_Forest_Temple, 5)",
-            "Forest Temple Falling Room": "is_advanced and glitch_ledge_clip"
+            "Forest Temple Falling Room": "glitch_ledge_clip"
         }
     },
     {
@@ -288,7 +292,12 @@
             "Forest Temple Falling Ceiling Room Skulltula 1": "has_soul(Skulltula)",
             "Forest Temple Falling Ceiling Room Skulltula 2": "has_soul(Skulltula)",
             "Forest Temple Falling Ceiling Room Skulltula 3": "has_soul(Skulltula)",
-            "Forest Temple After Green Poe Hallway Skulltula": "Bow and has_soul(Skulltula)"
+            "Forest Temple After Green Poe Hallway Skulltula": "has_soul(Skulltula) and 
+                (Bow 
+                or
+                at('Forest Temple Central Area', can_hover or (can_use(Hover_Boots) and has_explosives and 
+                    can_live_dmg(0.5,False,True)))
+                )"
         },
         "exits": {
             "Forest Temple NE Outdoors": "True"
@@ -315,9 +324,9 @@
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
             "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple or 
-                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_advanced) or 
-                at('Forest Temple NW Outdoors',is_advanced and is_child and has_bombchus and glitch_forest_bk_skip and 
-                damage_multiplier != 'ohko')"
+                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip) or 
+                at('Forest Temple NW Outdoors',is_child and has_bombchus and glitch_forest_bk_skip and 
+                can_live_dmg(0.5,False,False))"
         }
     }
 ]

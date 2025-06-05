@@ -39,8 +39,7 @@
     "is_child": "age == 'child'",
     "is_adult": "age == 'adult'",
     "is_starting_age": "age == starting_age",
-    # delete thisF
-    "is_advanced": "logic_rules != 'glitchless'",
+
     "can_blast_or_smash": "has_explosives or can_use(Megaton_Hammer)",
     "can_break_mud_wall": "can_blast_or_smash or (blue_fire_arrows and can_use(Blue_Fire_Arrows))",
     "can_child_attack": "is_child and (Slingshot or Boomerang or Sticks or Kokiri_Sword or has_explosives or can_use(Dins_Fire) or can_use(Megaton_Hammer))",
@@ -93,13 +92,15 @@
             or (_is_adult_item(item) and is_adult and item)
             or (_is_magic_arrow(item) and is_adult and item and Bow and Magic_Meter)
             or (_is_child_item(item) and is_child and item)
-            or (_is_swappable(item) and can_equip_swap and item)
-            or (_adult_slingshot(item) and is_adult and Bow and can_equip_swap)",
+            or (_is_swappable_adult(item) and can_equip_swap_adult and item)
+            or (_is_swappable_child(item) and can_equip_swap_child and item)
+            or (_adult_slingshot(item) and is_adult and Bow and can_equip_swap_adult)",
     "_is_magic_item(item)": "item == Dins_Fire or item == Farores_Wind or item == Nayrus_Love or item == Lens_of_Truth",
     "_is_adult_item(item)": "item == Bow or item == Megaton_Hammer or item == Iron_Boots or item == Hover_Boots or item == Hookshot or item == Longshot or item == Silver_Gauntlets or item == Golden_Gauntlets or item == Goron_Tunic or item == Zora_Tunic or item == Scarecrow or item == Distant_Scarecrow or item == Mirror_Shield",
     "_is_child_item(item)": "item == Slingshot or item == Boomerang or item == Kokiri_Sword or item == Sticks or item == Deku_Shield",
     "_is_magic_arrow(item)": "item == Fire_Arrows or item == Light_Arrows or item == Blue_Fire_Arrows",
-    "_is_swappable(item)": "item == Megaton_Hammer or item == Boomerang or item == Sticks",
+    "_is_swappable_adult(item)": "item == Boomerang or item == Sticks",
+    "_is_swappable_child(item)": "item == Megaton_Hammer",
     "_adult_slingshot(item)": "item == Slingshot",
 
     # Biggoron's trade path
@@ -206,8 +207,8 @@
 
     # New Item Groups
     "first_person_item": "(is_adult and (Bow or Fire_Arrows or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows or Hookshot or (
-        can_equip_swap and Slingshot))) or 
-        (is_child and (Slingshot or (can_equip_swap and (Bow or Fire_Arrows or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows))))",
+        can_equip_swap_adult and Slingshot))) or 
+        (is_child and (Slingshot or (can_equip_swap_child and (Bow or Fire_Arrows or Ice_Arrows or Blue_Fire_Arrows or Light_Arrows))))",
     "child_trade_item": "'Weird Egg' or 'Chicken' or 'Zeldas Letter' or 'Keaton Mask' or 'Skull Mask' or 'Spooky Mask'
         or 'Mask of Truth' or 'Goron Mask' or 'Zora Mask' or  'Gerudo Mask' or 'Bunny Hood'",
     "magic_spell": "Dins_Fire or Farores_Wind or Nayrus_Love",
@@ -229,8 +230,6 @@
         or magic_spell)",
     "can_equip_swap_adult": "glitch_equip_swap and is_adult and (magic_spell)",
 
-    # to be deleted
-    "child_hammer": "is_child and can_equip_swap and Megaton_Hammer",
     
     "can_mega": "glitch_megaflip and has_explosives and can_shield",
     "can_isg": "glitch_isg and can_shield and (is_adult or Sticks or Kokiri_Sword or can_use(Megaton_Hammer))",
@@ -242,14 +241,14 @@
     "can_oi": "glitch_oi and (Bugs or Fish)",
     "can_oi_with_item": "can_oi and (is_adult or Sticks or can_use(Megaton_Hammer)
         or has_explosives or Slingshot or Boomerang or Kokiri_Sword or 
-        (can_equip_swap and (Bow or Fire_Arrows or Ice_Arrows or Light_Arrows or Blue_Fire_Arrows)))",
+        (can_equip_swap_child and (Bow or Fire_Arrows or Ice_Arrows or Light_Arrows or Blue_Fire_Arrows)))",
     "can_superslide": "glitch_superslide and can_shield and Bombs",
     "can_hess": "glitch_hess and has_explosives and can_shield",
     
     "can_gdv_empty": "glitch_damage_value and can_jumpslash and can_shield",
     "can_gdv_stick": "glitch_damage_value and (
         (is_child and Sticks and (Nuts or Weird_Egg or Chicken or Zeldas_Letter)) or 
-        (is_adult and can_equip_swap and Sticks and (Nuts or 
+        (is_adult and can_equip_swap_adult and Sticks and (Nuts or 
             Pocket_Egg or Pocket_Cucco or Cojiro or Odd_Mushroom or Odd_Potion or Poachers_Saw or 
             Broken_Sword or Eyeball_Frog or Eyedrops or Claim_Check
             )
@@ -259,19 +258,17 @@
     
     "can_hookshot_jump": "glitch_hookshot_jump and is_adult and Hookshot
         and deadly_bonks == 'none'",
-    "can_dotskip_adult": "
-        (glitch_dot_skip_adult_hover_recoil and Hover_Boots and can_shield) or 
+    "can_dotskip_adult": "(glitch_dot_skip_adult_hover_recoil and Hover_Boots and can_shield) or 
         (glitch_dot_skip_adult_hovers_bgs and (Biggoron_Sword or Giants_Knife) and Hover_Boots) or
         (glitch_dot_skip_adult_bgs_only and (Biggoron_Sword or Giants_Knife))",
-    "can_dotskip_child": "
-        (glitch_dot_skip_child_lunge and Kokiri_Sword and glitch_lunge_storage) or 
+    "can_dotskip_child": "(glitch_dot_skip_child_lunge and Kokiri_Sword and glitch_lunge_storage) or 
         (glitch_dot_skip_child_swordless)",
 
     "can_damage_clip": "glitch_clipping and has_explosives and can_live_dmg(0.5,False)",
     "can_js_clip": "glitch_clipping and (is_adult or Sticks or Kokiri_Sword)",
     "can_tsc": "glitch_tsc and can_shield and first_person_item",
 
-    "can_botw_blank_a": " glitch_botw_blank_a and can_use(Kokiri_Sword) and has_bottle and (Fish or Bugs) and can_shield and Nuts",
+    "can_botw_blank_a": "glitch_botw_blank_a and can_use(Kokiri_Sword) and has_bottle and (Fish or Bugs) and can_shield and Nuts",
     "can_gtg_vine_clip": "glitch_gtg_vine_clip and can_live_dmg(1.5,False) and
         ( (is_adult and Bombs
             )

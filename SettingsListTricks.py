@@ -1288,6 +1288,11 @@ logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     on top of the crushing spikes without
                     needing to pull the block. Applies to
                     both Vanilla and Master Quest.
+
+                    In Advanced Logic, this also allows for backflipping
+                    through the umbrella with the clipping glitch, or
+                    damage boosting off the spike with the damage boost
+                    trick.
                     '''},
     'Shadow Temple Falling Spikes GS with Hover Boots': {
         'name'    : 'logic_shadow_umbrella_gs',
@@ -2029,6 +2034,14 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     animation. There are various checks that
                     can be reached with a jump. Doom jump
                     is a separate trick.
+                    '''}, 
+    '(Glitch) Open Underwater Chests': {
+        'name'    : 'glitch_underwater_chests',
+        'tags'    : ("Glitch","Adult",),
+        'tooltip' : '''\
+                    While wearing Iron Boots, you can hookshot something
+                    to set Link's state and be able to open chests
+                    underwater.
                     '''}, 
     '(Glitch) LW Target with GDV': {
         'name'    : 'glitch_lw_target_hover',
@@ -2897,15 +2910,23 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     You can also do the same by abusing invincibility frames
                     if not on ohko.
                     '''},
-    '(Advanced) Water Temple More Alcove Access': {
-        'name'    : 'logic_water_temple_alcove',
-        'tags'    : ("Advanced","Adult","Water Temple","Water Temple MQ",),
+    '(Glitch) Water Temple Antigrav to Boss Key Area': {
+        'name'    : 'glitch_water_bk_area_antigrav',
+        'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
         'tooltip' : '''\
-                    Logic requires multiple item requirements, mostly
-                    hover boots for glitchless. Adding in a jump without
-                    hover boots to reach the alcove to allow for more 
-                    flexibility with key placements. 
+                    After ledge clipping from the alcove, you can skip crossing
+                    the gap before the locked north basement door by timing
+                    a jumpslash to hit the ceiling as you fall through it
+                    to gain extra distance and land on the spikes. 
                     '''},
+    '(Glitch) Water Temple Cutscene Dive to Eastern Column': {
+        'name'    : 'glitch_water_bottle_dive',
+        'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
+        'tooltip' : '''\
+                    Using Hoverboots, and Fish or Bugs, it's possible to cutscene
+                    dive to the eastern column without iron boots or ledge clipping
+                    from the alcove.
+                    '''},  
     '(Glitch) Water Temple Ledge clip to South Basement': {
         'name'    : 'glitch_water_south_basement_clip',
         'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
@@ -2915,16 +2936,23 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     the loading zone. This does not require scale or
                     iron boots. 
                     '''}, 
+    '(Glitch) Water Temple Central Pillar with Torch Clip and Irons': {
+        'name'    : 'glitch_water_central_pillar_with_torch_clip',
+        'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
+        'tooltip' : '''\
+                    Gives access to the Central Pillar with the water
+                    raised by clipping out with a torch and swimming up
+                    into the doorway. 
+                    '''}, 
     '(Glitch) Water Temple Torch Clips': {
         'name'    : 'glitch_water_torch_clip',
         'tags'    : ("Glitch","Adult","Water Temple","Water Temple MQ",),
         'tooltip' : '''\
                     Alternative clip OoB to reach areas by using hookshot
                     to clip thru the wall from the torch in the basement. 
-                    Access to OoB rooms such as dragon head and south
-                    basement. 
+                    Access to OoB rooms such as dragon head.
                     '''},
-    '(Glitch) Water Dragon Head Cutscene Dive': {
+    '(Glitch) Water Temple Dragon Head Cutscene Dive': {
         'name'    : 'glitch_water_dragon_cs_dive',
         'tags'    : ("Glitch","Adult","Water Temple",),
         'tooltip' : '''\
@@ -2969,6 +2997,15 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'tooltip' : '''\
                     Best BK skip. Climb the longshot target and jump over the door. That's it.
                     '''},
+    '(Glitch) MQ Water Temple Boss Key Room Spout Pit': {
+        'name'    : 'glitch_water_mq_bk_pit',
+        'tags'    : ("Glitch","Adult","Water Temple MQ",),
+        'tooltip' : '''\
+                    After doing the ledge clip from the alcove, you can swim out of bounds
+                    and load the boss key room. You can skirt around
+                    the gate in front of the boss key chest by swimming in some out of
+                    bounds water.
+                    '''},
     '(Advanced) Shadow Temple Double Damage Boosts': {
         'name'    : 'logic_shadow_double_boosts',
         'tags'    : ("Glitch","Adult","Shadow Temple",),
@@ -3011,6 +3048,8 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     only sword and shield, this is a separate trick from the 
                     other with alternatives but more item requirements. 
                     Enable both for more options. 
+
+                    Requires clipping as this also grants access to the boat.
                     '''},
     '(Glitch) Shadow Temple no Boat': {
         'name'    : 'glitch_shadow_no_Boat',
@@ -3058,9 +3097,9 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'name'    : 'glitch_spirit_child_side_as_adult',
         'tags'    : ("Glitch","Adult","Spirit Temple",),
         'tooltip' : '''\
-                    This version requires bombs and hover boots for a 
-                    superslide thru the crawlspace into the child area of
-                    Spirit Temple. 
+                    Allows Adult to reach the child side of spirit through either
+                    a Hoverboots superslide or a TSC and megaflip. Both methods 
+                    also require their underlying glitches to be enabled.
                     '''},
     '(Glitch) Spirit Temple Adult side Block Skip': {
         'name'    : 'glitch_spirit_adult_block_skip',
@@ -3073,9 +3112,9 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
         'name'    : 'glitch_spirit_child_side_crawlspace_skip',
         'tags'    : ("Glitch","Adult","Spirit Temple",),
         'tooltip' : '''\
-                    Alternative to the other trick, this requires only a first person item
-                    to Triple Slash Clip (TSC) and explosives to megaflip. Removes
-                    the need for hover boots
+                    Allows Adult to skip the second crawlspace on the child side
+                    to reach the child climb. Requires being able to do an Entrance
+                    Point Glich and survive a void.
                     '''},    
     '(Advanced) Spirit Compass with just Hoverboots': {
         'name'    : 'glitch_spirit_compass_hoverboots_only',
@@ -3111,7 +3150,15 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     of key requirements. 
                     '''},
     '(Advanced) MQ Spirit Temple Lobby Eye Switch without Explosives': {
-        'name'    : 'glitch_spirit_mq_lobby_eye',
+        'name'    : 'adv_spirit_mq_lobby_eye',
+        'tags'    : ("Glitchless","Spirit Temple MQ",),
+        'tooltip' : '''\
+                    Standing far enough away from a boulder removes its
+                    collision, allowing you to hit things inside or 
+                    through them without exploding them.
+                    '''},
+     '(Advanced) MQ Spirit Temple Child Gibdo Eye Switch without Explosives': {
+        'name'    : 'adv_spirit_mq_child_gibdo_eye',
         'tags'    : ("Glitchless","Spirit Temple MQ",),
         'tooltip' : '''\
                     Standing far enough away from a boulder removes its
@@ -3133,6 +3180,13 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     By targetting after shooting the Longshot, you can 
                     disable the boulder's collision, allowing Link to
                     hit the hookshot target without exploding the boulder.
+                    '''},
+    '(Advanced) MQ Spirit Temple Lower Adult from Lobby': {
+        'name'    : 'adv_spirit_mq_lower_adult_from_lobby',
+        'tags'    : ("Advanced","Spirit Temple MQ","Adult"),
+        'tooltip' : '''\
+                    Using Hover Boots it's possible to conserve enough 
+                    momentum to pass through the water jet.
                     '''},
     '(Glitch) MQ Spirit Temple Lower Adult without Fire': {
         'name'    : 'glitch_spirit_mq_lower_adult_no_fire',
@@ -3168,8 +3222,8 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     In MQ, this goes to the compass room. 
                     '''},
     '(Advanced) Ice Cavern HP without Bottle': {
-        'name'    : 'logic_ice_HP_no_bottle',
-        'tags'    : ("Glitch","Adult","Ice Cavern",),
+        'name'    : 'adv_ice_HP_no_bottle',
+        'tags'    : ("Advanced","Adult","Ice Cavern",),
         'tooltip' : '''\
                     Bomb push into the ice to obtain the freestanding item.
                     This puts the trick directly into logic. 
@@ -3273,8 +3327,8 @@ advanced_logic_tricks: dict[str, dict[str, str | tuple[str, ...]]] = {
                     If trials are active, the colored beams help guide the way. 
                     '''},
     '(Advanced) Shadow Trial First Gap Without Fire': {
-        'name'    : 'logic_shadow_trial_no_fire_gap',
-        'tags'    : ("Glitchless","Adult","Inside Ganon's Castle",),
+        'name'    : 'adv_shadow_trial_no_fire_gap',
+        'tags'    : ("Advanced","Adult","Inside Ganon's Castle",),
         'tooltip' : '''\
                     Hammer recoil hoverboost from the door to the torch, and then recoil
                     boost ending with bombchu damage boost to the likelike. Removes

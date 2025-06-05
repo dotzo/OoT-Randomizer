@@ -5,22 +5,22 @@
         "locations": {
             "Forest Temple MQ First Room Chest": "
                 is_adult or Bombs or Sticks or Nuts or Boomerang or
-                can_use(Dins_Fire) or Kokiri_Sword or Slingshot",
+                can_use(Dins_Fire) or Kokiri_Sword or Slingshot or can_use(Megaton_Hammer)",
             "Forest Temple MQ First Room Skullwalltula Lowest": "
                 has_soul(Skullwalltula) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Megaton_Hammer) or can_isg or 
                     can_use(Boomerang) or can_use(Slingshot) or
-                    can_use(Dins_Fire) or has_explosives or (can_jumpslash and can_take_damage))",
+                    can_use(Dins_Fire) or has_explosives or can_jumpslash)",
             "Forest Temple MQ First Room Skullwalltula Lower Left": "
                 has_soul(Skullwalltula) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Megaton_Hammer) or can_isg or 
                     can_use(Boomerang) or can_use(Slingshot) or
-                    can_use(Dins_Fire) or has_explosives or (can_jumpslash and can_take_damage))",
+                    can_use(Dins_Fire) or has_explosives or can_jumpslash)",
             "Forest Temple MQ First Room Skullwalltula Middle": "
                 has_soul(Skullwalltula) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Megaton_Hammer) or can_isg or 
                     can_use(Boomerang) or can_use(Slingshot) or
-                    can_use(Dins_Fire) or has_explosives or (can_jumpslash and can_take_damage))",
+                    can_use(Dins_Fire) or has_explosives or (can_jumpslash and can_live_dmg(0.5)))",
             "Forest Temple MQ First Room Skullwalltula Upper Left": "
                 has_soul(Skullwalltula) and (is_adult or can_child_attack)",
             "Forest Temple MQ First Room Skullwalltula Highest": "
@@ -29,7 +29,8 @@
                     can_use(Boomerang) or can_use(Slingshot) or has_bombchus)",
             "Forest Temple MQ First Room Skulltula": "
                 has_soul(Skulltula) and
-                (is_adult or Bombs or Sticks or can_use(Dins_Fire) or Kokiri_Sword or Slingshot)",
+                (is_adult or Bombs or Sticks or Nuts or Boomerang or
+                can_use(Dins_Fire) or Kokiri_Sword or Slingshot or can_use(Megaton_Hammer))",
             "Forest Temple MQ First Hallway Skulltula 1": "can_kill_skulltula",
             "Forest Temple MQ First Hallway Skulltula 2": "can_kill_skulltula",
             "Forest Temple MQ First Hallway Skulltula 3": "can_kill_skulltula",
@@ -72,9 +73,9 @@
             "Forest Temple Before Block Puzzle": "here(can_kill_stalfos)",
             "Forest Temple Basement": "
                 (Forest_Temple_Jo_and_Beth and Forest_Temple_Amy_and_Meg) or forest_temple_shortcuts
-                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_mega)",
+                or (glitch_forest_temple_basement and can_use(Hover_Boots) and Bombs and can_mega and can_live_dmg(1.0,True,False))",
             "Forest Temple Green Poe Room": "can_hover or (can_use(Hover_Boots) and has_explosives and 
-                damage_multiplier != 'ohko')"
+                can_live_dmg(0.5))"
         }
     },
     {
@@ -82,7 +83,8 @@
         "dungeon": "Forest Temple",
         "events": {
             "Forest Temple Twisted Hallway Switch": "
-                (logic_forest_mq_hallway_switch_boomerang and can_use(Boomerang)) or
+            (logic_forest_mq_hallway_switch_boomerang and can_use(Boomerang)) 
+                or
                 (logic_forest_mq_hallway_switch_jumpslash and
                     (can_use(Hover_Boots) or can_js_clip or
                         (((logic_forest_mq_block_puzzle and has_bombchus) or
@@ -97,9 +99,11 @@
         "exits": {
             "Forest Temple After Block Puzzle": "
                 is_adult and (Progressive_Strength_Upgrade or
+                    (glitch_clipping and can_groundjump and Hover_Boots) or
                     (logic_forest_mq_block_puzzle and has_bombchus and Hookshot))",
             # Child cannot climb these large blocks.
-            "Forest Temple Outside Upper Ledge": "(is_advanced and can_use(Hookshot)) or
+            "Forest Temple Outside Upper Ledge": "(glitch_clipping and can_use(Hookshot)) or
+                (glitch_ledge_clip and can_use(Hover_Boots) and (can_groundjump or can_js_clip)) or
                 (
                 Forest_Temple_Twisted_Hallway_Switch and
                 (can_use(Hover_Boots) or can_use(Hookshot) or
@@ -117,8 +121,7 @@
         },
         "exits": {
             "Forest Temple Twisted Hall": "(Small_Key_Forest_Temple, 3)",
-            "Forest Temple NW Outdoors": "(Small_Key_Forest_Temple, 2) and has_soul(Floormaster)"
-            # You cannot waste the 3rd key without having guaranteed access to the lower west courtyard.
+            "Forest Temple NW Outdoors": "(Small_Key_Forest_Temple, 3) and has_soul(Floormaster)"
         }
     },
     {
@@ -143,14 +146,14 @@
             "Forest Temple MQ Level Island Courtyard Octorok 3": "can_kill_octorok_with_bombs_or_magic",
             "Forest Temple MQ Level Island Courtyard Skullwalltula Lower": "
                 has_soul(Skullwalltula) and
-                (is_adult or Boomerang or Slingshot or can_use(Dins_Fire) or has_explosives)",
+                (is_adult or Boomerang or Slingshot or can_use(Dins_Fire) or has_explosives or can_use(Megaton_Hammer))",
             "Forest Temple MQ Level Island Courtyard Skullwalltula Middle": "
                 has_soul(Skullwalltula) and
                 (can_use(Hookshot) or can_use(Bow) or
-                    can_use(Boomerang) or can_use(Slingshot) or has_bombchus)",
+                    can_use(Boomerang) or can_use(Slingshot) or has_bombchus or can_use(Megaton_Hammer))",
             "Forest Temple MQ Level Island Courtyard Skullwalltula Upper": "
                 has_soul(Skullwalltula) and
-                (can_use(Longshot) or can_use(Bow) or can_use(Slingshot) or has_bombchus or
+                (can_use(Longshot) or can_use(Bow) or can_use(Slingshot) or has_bombchus or can_use(Megaton_Hammer) or
                     at('Forest Temple Outdoors High Balconies', can_use(Dins_Fire)))",
             "Forest Temple MQ Level Island Courtyard Skulltula": "can_kill_skulltula",
             "Forest Temple MQ GS Level Island Courtyard": "True"
@@ -203,7 +206,8 @@
         "region_name": "Forest Temple NE Outdoors",
         "dungeon": "Forest Temple",
         "locations": {
-            "Forest Temple MQ Well Chest": "can_use(Bow) or can_use(Slingshot)",
+            "Forest Temple MQ Well Chest": "can_use(Bow) or can_use(Slingshot)
+                or (glitch_underwater_chests and can_use(Iron_Boots) and can_use(Hookshot))",
             "Forest Temple MQ Well Recovery Heart 1": "
                 can_use(Iron_Boots) or can_use(Bow) or can_use(Slingshot)",
             "Forest Temple MQ Well Recovery Heart 2": "
@@ -216,7 +220,7 @@
             "Forest Temple MQ Raised Island Courtyard Lower Deku Baba 1": "can_kill_deku_baba",
             "Forest Temple MQ Raised Island Courtyard Lower Deku Baba 2": "can_kill_deku_baba",
             "Forest Temple MQ GS Raised Island Courtyard": "
-                can_use(Hookshot) or can_use(Boomerang) or (can_hover and can_jumpslash) or 
+                can_use(Hookshot) or can_use(Boomerang) or can_hover or 
                 (can_use(Fire_Arrows) and
                     (can_play(Song_of_Time) or (can_use(Hover_Boots) and logic_forest_door_frame)))",
             "Forest Temple MQ GS Well": "
@@ -303,8 +307,7 @@
         },
         "exits": {
             "Forest Temple Frozen Eye Switch Room": "(Small_Key_Forest_Temple, 6)",
-            "Forest Temple Falling Room": "Bow or can_use(Dins_Fire) or (glitch_ledge_clip and can_take_damage)"
-            # Only 5 keys because you must have had access to falling ceiling room to have wasted a key there
+            "Forest Temple Falling Room": "Bow or can_use(Dins_Fire) or (glitch_ledge_clip and can_live_dmg(0.5))"
         }
     },
     {
@@ -372,9 +375,9 @@
         "exits": {
             "Forest Temple Basement": "forest_temple_shortcuts",
             "Phantom Ganon Boss Room": "Boss_Key_Forest_Temple or
-                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip and is_advanced) or 
-                at('Forest Temple NW Outdoors',is_advanced and is_child and has_bombchus and glitch_forest_bk_skip and 
-                damage_multiplier != 'ohko')"
+                at('Forest Temple Central Area',is_adult and glitch_forest_bk_skip) or 
+                at('Forest Temple NW Outdoors',is_child and has_bombchus and glitch_forest_bk_skip and 
+                can_live_dmg(0.5,False,False))"
         }
     }
 ]

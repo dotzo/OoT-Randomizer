@@ -7,7 +7,7 @@
                 has_soul(Armos) and has_soul(Bubble) and has_soul(Iron_Knuckle) and
                 here(is_adult or
                     (Kokiri_Sword and (Sticks or has_explosives or Nuts or Boomerang)) or
-                    (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot)))
+                    (has_explosives and (Sticks or ((Nuts or Boomerang) and Slingshot))) or
                     (Sticks and Slingshot and (Nuts or Boomerang)))",
             "Ganons Castle Tower": "can_use(Hookshot) and glitch_igc_trials_skip",
             "Farores Wind Warp": "can_use(Farores_Wind)"
@@ -23,7 +23,7 @@
             "Ganons Castle Shadow Trial": "True",
             "Ganons Castle Fire Trial": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Ganons Castle Light Trial": "can_use(Golden_Gauntlets) or
-                (has_explosives and can_take_damage and is_adult)",
+                (has_explosives and can_live_dmg(0.5,False) and is_adult)",
             "Ganons Castle Spirit Trial": "True",
             "Ganons Castle Deku Scrubs": "logic_lens_castle_mq or can_use(Lens_of_Truth)",
             "Ganons Castle Tower": "(glitch_igc_trials_skip and can_hover) or (
@@ -82,7 +82,7 @@
         "region_name": "Ganons Castle Water Trial",
         "dungeon": "Ganons Castle",
         "locations": {
-            "Ganons Castle MQ Water Trial Chest": "Blue_Fire or is_advanced",
+            "Ganons Castle MQ Water Trial Chest": "Blue_Fire",
             "Ganons Castle MQ Water Trial Recovery Heart": "
                 Blue_Fire or (logic_boomerang_boulders and can_use(Boomerang))",
             "Ganons Castle MQ Water Trial Freezard 1": "can_kill_freezard",
@@ -95,7 +95,7 @@
             # Glitch - megaflipping off the water bypasses the boulders
             "Ganons Castle Water Trial Push Block Room": "(Blue_Fire or
                     (can_mega or (can_superslide and can_use(Hover_Boots))
-                    or (can_use(Hover_Boots) and damage_multiplier != 'ohko' and has_explosives and logic_hovers_recoil))
+                    or (can_use(Hover_Boots) and can_live_dmg(0.5,False) and has_explosives and adv_hovers_recoil))
                 ) 
                 and (Small_Key_Ganons_Castle, 3)"
         }
@@ -117,7 +117,7 @@
         },
         "exits": {
             "Ganons Castle Water Trial Ending": "(Silver_Rupee_Ganons_Castle_Water_Trial, 5)
-                and (Blue_Fire or (is_advanced and glitch_ledge_clip and logic_hovers_recoil and can_use(Hover_Boots))
+                and (Blue_Fire or (glitch_ledge_clip and adv_hovers_recoil and can_use(Hover_Boots))
                 )"
         }
     },

@@ -35,7 +35,7 @@
         },
         "exits": {
             "Fire Temple Before Boss": "can_mega or 
-                (fire_temple_shortcuts and (is_adult or (is_child and can_damage_boost)))) or
+                (fire_temple_shortcuts and (is_adult or (is_child and can_damage_boost))) or
                 (is_adult and (logic_fire_boss_door_jump or Hover_Boots))"
         }
     },

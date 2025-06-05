@@ -17,7 +17,7 @@
         "locations": {
             "Shadow Temple Map Chest": "can_kill_redead and can_kill_keese_stationary",
             "Shadow Temple Hover Boots Chest": "has_soul(Dead_hand)
-                and (is_adult or Kokiri_Sword or (Sticks and logic_child_deadhand))",
+                and (is_adult or Kokiri_Sword or (Sticks and logic_child_deadhand) or can_use(Megaton_Hammer))",
             "Shadow Temple Whispering Walls Front Pot 1": "True",
             "Shadow Temple Whispering Walls Front Pot 2": "True",
             "Shadow Temple Whispering Walls Left Pot 1": "True",
@@ -31,13 +31,12 @@
             "Shadow Temple Map Chest Room Keese 2": "can_kill_keese_stationary",
             "Shadow Temple Map Chest Room ReDead": "can_kill_redead",
             "Shadow Temple Dead Hand": "has_soul(Dead_hand)
-                and (is_adult or Kokiri_Sword or (Sticks and logic_child_deadhand))",
+                and (is_adult or Kokiri_Sword or (Sticks and logic_child_deadhand) or can_use(Megaton_Hammer))",
             "Nut Pot": "True"
         },
         "exits": {
             "Shadow Temple First Beamos": "can_use(Hover_Boots) or can_mega or 
-                (logic_shadow_double_boosts and can_shield and Bombs and has_bombchus and 
-                    (damage_multiplier == 'normal' or damage_multiplier != 'half' or can_use(Nayrus_Love)) )"
+                (logic_shadow_double_boosts and can_damage_boost and can_live_dmg(1.0,False))"
         }
     },
     {
@@ -65,21 +64,21 @@
             "Shadow Temple Huge Pit": "
                 has_explosives and
                 (((Small_Key_Shadow_Temple, 1) and not (shadow_temple_shortcuts or
-        (is_advanced and can_jumpslash))) or
+        (glitch_clipping and (is_adult or Kokiri_Sword or Sticks)))) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Guillotine Hallway": "
                 has_explosives and 
                 (((Small_Key_Shadow_Temple, 1) and not (shadow_temple_shortcuts or
-        (is_advanced and can_jumpslash))) or
+        (glitch_clipping and (is_adult or Kokiri_Sword or Sticks)))) or
                     (Small_Key_Shadow_Temple, 5) or
                     ((Small_Key_Shadow_Temple, 4) and Longshot and (logic_lens_shadow_platform or can_use(Lens_of_Truth))))",
             "Shadow Temple Boat Dock": "shadow_temple_shortcuts or
-        (is_advanced and can_jumpslash)",
-            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and (
-                    (Child_Shadow and can_take_damage and has_bombchus) or
-                    (is_adult and can_take_damage and has_bombchus) or
-                    (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield)
+        (glitch_clipping and (is_adult or Kokiri_Sword or Sticks))",
+            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and glitch_clipping and (
+                    (Child_Shadow and can_live_dmg(0.5,False,False) and has_bombchus) or
+                    (is_adult and can_live_dmg(0.5,False,False) and has_bombchus) or
+                    (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield and glitch_clipping)
                 )"
         }
     },
@@ -101,9 +100,9 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Invisible Blades Visible Chest": "(can_kill_like_like and can_kill_keese_stationary)
-                or can_weirdshot",
+                or can_weirdshot or (has_soul(Like_Like) and glitch_clipping and can_use(Hookshot))",
             "Shadow Temple Invisible Blades Invisible Chest": "(can_kill_like_like and can_kill_keese_stationary)
-                or can_weirdshot",
+                or can_weirdshot or (has_soul(Like_Like) and glitch_clipping and can_use(Hookshot))",
             "Shadow Temple Invisible Blades Recovery Heart 1": "(can_play(Song_of_Time) and is_adult)
                 or can_use(Boomerang)",
             "Shadow Temple Invisible Blades Recovery Heart 2": "(can_play(Song_of_Time) and is_adult)
@@ -122,11 +121,12 @@
             "Shadow Temple GS Invisible Blades Room": "can_weirdshot or (
                 can_kill_like_like and can_kill_keese_stationary
                 and (is_adult or can_hover or can_use(Boomerang))
-                )"
+                )
+                or (has_soul(Like_Like) and glitch_clipping and can_use(Hookshot))"
         },
         "exits": {
             "Shadow Temple Falling Spikes": "(Silver_Rupee_Shadow_Temple_Huge_Pit, 5)
-                or (glitch_shadow_gate_falling_spikes and can_jumpslash)",
+                or (glitch_shadow_gate_falling_spikes and (is_adult or Kokiri_Sword or Sticks))",
             "Shadow Temple Invisible Spikes": "
                 (Small_Key_Shadow_Temple, 2) and (logic_lens_shadow_platform or can_use(Lens_of_Truth))",
             "Shadow Temple Guillotine Hallway": "can_use(Longshot)"
@@ -137,12 +137,37 @@
         "dungeon": "Shadow Temple",
         "locations": {
             "Shadow Temple Falling Spikes Lower Chest": "True",
-            "Shadow Temple Falling Spikes Upper Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
-            "Shadow Temple Falling Spikes Switch Chest": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Upper Chest": "
+                (logic_shadow_umbrella and 
+                    (can_use(Hover_Boots) 
+                        or (can_live_dmg(0.5,False,False) and adv_damage_boost)
+                        or glitch_clipping
+                    )
+                ) 
+                or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Switch Chest": "
+                (logic_shadow_umbrella and 
+                    (can_use(Hover_Boots) 
+                        or (can_live_dmg(0.5,False,False) and adv_damage_boost)
+                        or glitch_clipping
+                    )
+                ) or Progressive_Strength_Upgrade",
             "Shadow Temple Falling Spikes Lower Pot 1": "True",
             "Shadow Temple Falling Spikes Lower Pot 2": "True",
-            "Shadow Temple Falling Spikes Upper Pot 1": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
-            "Shadow Temple Falling Spikes Upper Pot 2": "logic_shadow_umbrella or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Upper Pot 1": "
+                (logic_shadow_umbrella and 
+                    (can_use(Hover_Boots) 
+                        or (can_live_dmg(0.5,False,False) and adv_damage_boost)
+                        or glitch_clipping
+                    )
+                ) or Progressive_Strength_Upgrade",
+            "Shadow Temple Falling Spikes Upper Pot 2": "
+                (logic_shadow_umbrella and 
+                    (can_use(Hover_Boots) 
+                        or (can_live_dmg(0.5,False,False) and adv_damage_boost)
+                        or glitch_clipping
+                    )
+                ) or Progressive_Strength_Upgrade",
             "Shadow Temple GS Falling Spikes Room": "logic_shadow_umbrella_gs or can_use(Hookshot) or 
                 can_use(Boomerang) or (is_adult and can_groundjump) or (is_child and can_hover)"
         },
@@ -168,7 +193,8 @@
             "Shadow Temple Single Giant Pot Room": "(Silver_Rupee_Shadow_Temple_Invisible_Spikes, 5)",
             "Shadow Temple Wind Tunnel": "((is_adult and (Hover_Boots or can_isg) and can_groundjump)
                 or 
-                ((can_kill_redead and can_use(Hookshot)) or can_use(Longshot)) 
+                ((can_kill_redead and can_use(Hookshot)) or can_use(Longshot))
+                or (can_use(Hover_Boots) and can_use(Hookshot) and (can_use(Lens_of_Truth) or logic_lens_shadow))
                 )
                 and (Small_Key_Shadow_Temple, 3)",
             "Shadow Temple Huge Pit": "logic_lens_shadow_platform or can_use(Lens_of_Truth)"
@@ -291,7 +317,7 @@
             "Shadow Temple Beyond Boat Scarecrow": "can_use(Distant_Scarecrow)",
             "Shadow Temple Before Boss": "
                 Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts
-                or (can_use(Hover_Boots) and (can_mega or can_superslide or (logic_hovers_recoil and damage_multiplier != 'ohko')))"
+                or (can_use(Hover_Boots) and (can_mega or can_superslide or (adv_hovers_recoil and can_live_dmg(0.5,False))))"
         }
     },
     {
@@ -347,12 +373,12 @@
             "Shadow Temple Beyond Boat SoT Block": "(can_play(Song_of_Time) and is_adult)
                 or (glitch_shadow_heart_chasm_hovers and can_hover)",
             "Bongo Bongo Boss Room": "(Small_Key_Shadow_Temple, 5) and (Boss_Key_Shadow_Temple
-                or (glitch_shadow_bk_skip_boss and has_explosives and can_take_damage and is_adult)
+                or (glitch_shadow_bk_skip_boss and has_explosives and can_live_dmg(0.5,False) and is_adult)
                 or at('Shadow Temple Beginning',(
                     glitch_shadow_bk_skip_boat_key and can_use(Hover_Boots) and
                     Bombs and (can_hess or can_superslide)
                         ) or (
-                    glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
+                    glitch_shadow_bk_skip_deadhand and is_adult and can_live_dmg(1.0) and
                     (((can_superslide or can_hess) and Bombs) or first_person_item) 
                     and has_explosives and (can_mega or Hover_Boots)
                     )

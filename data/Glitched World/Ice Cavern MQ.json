@@ -22,9 +22,9 @@
         "exits": {
             "ZF Ice Ledge": "True",
             "Ice Cavern Map Room": "(can_kill_wolfos and can_kill_freezard)
-                or (glitch_ledge_clip and is_advanced and is_adult)",
+                or (glitch_ledge_clip and is_adult)",
             "Ice Cavern Compass Room": "(is_adult or (glitch_ice_ledges_child and can_groundjump)) and
-                (Blue_Fire or can_mega or can_hess or can_superslide or (can_use(Hover_Boots) and is_advanced and logic_hovers_recoil))",
+                (Blue_Fire or can_mega or can_hess or can_superslide or (can_use(Hover_Boots) and glitch_clipping and adv_hovers_recoil))",
             # Superslide hoverboots from the upper ledge
             "Ice Cavern Large Room": "Blue_Fire or
                 (can_use(Hover_Boots) and (can_superslide or can_hess))
@@ -40,10 +40,11 @@
             "Ice Cavern MQ Map Chest": "
                 Blue_Fire and
                 (is_adult or can_use(Sticks) or Kokiri_Sword or can_use_projectile
-                    or child_hammer or has_explosives)",
-            "Ice Cavern MQ Map Room Wolfos 1": "True",
-            "Ice Cavern MQ Map Room Wolfos 2": "True",
-            "Ice Cavern MQ Map Room Skullwalltula": "has_soul(Skullwalltula)",
+                    or can_use(Megaton_Hammer) or has_explosives)",
+            "Ice Cavern MQ Map Room Wolfos 1": "can_kill_wolfos",
+            "Ice Cavern MQ Map Room Wolfos 2": "can_kill_wolfos",
+            "Ice Cavern MQ Map Room Skullwalltula": "has_soul(Skullwalltula) and 
+                (is_adult or has_projectile(child) or can_use(Sticks) or can_use(Megaton_Hammer))",
             "Blue Fire": "has_bottle"
         }
     },
@@ -62,9 +63,8 @@
             "Ice Cavern MQ Compass Room Freezard 3": "can_kill_freezard",
             # Killing the skull is a given based on access conditions
             "Ice Cavern MQ GS Red Ice": "(logic_boomerang_boulders and can_use(Boomerang)) or
-                (can_use(Blue_Fire_Arrows) 
-                    or (has_bottle and (can_play(Song_of_Time) or logic_ice_mq_red_ice_gs))
-                )",
+                can_use(Blue_Fire_Arrows) or
+                (has_bottle and (can_play(Song_of_Time) or logic_ice_mq_red_ice_gs))",
             "Blue Fire": "has_bottle"
         }
     },
@@ -77,7 +77,8 @@
             "Ice Cavern MQ Large Room Ice Keese 1": "can_kill_keese",
             "Ice Cavern MQ Large Room Ice Keese 2": "can_kill_keese",
             # Can hit this with a pot from the previous room if blue fire,
-            # otherwise you have explosives
+            # otherwise you have explosives, you can't kill it with a pot, though
+            # the block comes back if you reload the room
             "Ice Cavern MQ GS Ice Block": "is_adult or can_child_attack",
             "Ice Cavern MQ GS Scarecrow": "
                 can_use(Scarecrow) or (Hover_Boots and can_use(Longshot)) or

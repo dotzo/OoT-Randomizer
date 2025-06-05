@@ -42,7 +42,7 @@
             "Deku Baba Nuts": "
                 has_soul(Deku_Baba) and
                     (is_adult or Slingshot or Sticks or
-                    has_explosives or Kokiri_Sword or can_use(Dins_Fire or can_use(Megaton_Hammer))"
+                    has_explosives or Kokiri_Sword or can_use(Dins_Fire) or can_use(Megaton_Hammer))"
         },
         "exits": {
             "KF Outside Deku Tree": "True",

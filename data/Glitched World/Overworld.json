@@ -868,12 +868,13 @@
         "exits": {
             "Gerudo Fortress": "True",
             "GV Upper Stream": "True",
-            "GV Crate Ledge": "(can_live_dmg(0.5) and 
+            "GV Crate Ledge": "
+                (can_live_dmg(0.5) and 
                 (
                 ((logic_valley_crate_hovers or can_superslide or can_hess) and can_use(Hover_Boots))
-                or can_mega or
+                or can_mega
                 )) or 
-                (can_live_dmg(0.5,False) and has_explosives and
+                (can_live_dmg(0.5,False,True) and has_explosives and
                     ((adv_hovers_recoil and can_use(Hover_Boots) and can_live_dmg(1.0))
                     or
                     (adv_damage_boost and can_live_dmg(1.5))
@@ -887,7 +888,7 @@
                     ) 
                 )",
             "GV Carpenter Tent": "is_adult or logic_gv_tent_child", 
-            "GV Storms Grotto": "is_adult and can_open_storm_grotto" # Not there as child
+            "GV Storms Grotto": "is_adult and can_open_storm_grotto" 
         }
     },
     {
@@ -1385,7 +1386,7 @@
             "Colossus GS Tree": "is_adult and can_use(Hookshot) and at_night",
             "Colossus GS Hill": "
                 is_adult and at_night and
-                (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot) or logic_wallwalking)",
+                (here(can_plant_bean) or Longshot or (logic_colossus_gs and Hookshot) or adv_wallwalking)",
             "Colossus Gossip Stone": "True",
             "Gossip Stone Fairy": "can_summon_gossip_fairy and has_bottle",
             "Fairy Pond": "can_play(Song_of_Storms) and has_bottle",
@@ -1701,11 +1702,11 @@
         },
         "exits": {
             "Market": "True",
-            "OGC Great Fairy Fountain": "can_use(Golden_Gauntlets) or (glitch_clipping and 
+            "OGC Great Fairy Fountain": "at_dampe_time and (can_use(Golden_Gauntlets) or (glitch_clipping and 
                 ( (has_explosives and can_live_dmg(0.5,False)) 
                 or (can_use(Hover_Boots) and can_shield and adv_hovers_recoil)
                 )
-                )",
+                ))",
             "Ganons Castle Ledge": "can_build_rainbow_bridge or 
                 (glitch_igc_rainbow_bridge and can_hover_no_trick)"
         }
@@ -1720,7 +1721,7 @@
             # Bridge trigger expanded to include this ledge, allowing a reverse hover
             "Ganons Castle Grounds": "can_build_rainbow_bridge or 
                 (glitch_igc_rainbow_bridge and can_hover_no_trick)",
-            "Ganons Castle Lobby": "True"
+            "Ganons Castle Lobby": "at_dampe_time"
         }
     },
     {
@@ -2076,7 +2077,7 @@
                     or (adv_kak_tower_gs_rang and Boomerang)
                     or (glitch_kakariko_tower_gs_isg and can_isg)
                 ))",
-            "Kak Backyard": "is_adult or at_day or can_mega or can_hover or (adv_kak_backyard_night and can_jumpslash)"
+            "Kak Backyard": "is_adult or at_day or can_mega or can_hover or (adv_kak_backyard_night and can_jumpslash)",
             # The seemingly redundant "open_kakariko == 'open'" check is to allow supplementary searches,
             # which can't collect events, to use this path.
             "Kak Behind Gate": "is_adult or 'Kakariko Village Gate Open' or open_kakariko == 'open'
@@ -3383,8 +3384,8 @@
         "region_name": "Deku Theater",
         "scene": "Deku Theater",
         "locations": {
-            "Deku Theater Skull Mask": "(is_child or can_equip_swap) and Skull_Mask",
-            "Deku Theater Mask of Truth": "(is_child or can_equip_swap) and Mask_of_Truth"
+            "Deku Theater Skull Mask": "(is_child or can_equip_swap_adult) and Skull_Mask",
+            "Deku Theater Mask of Truth": "(is_child or can_equip_swap_adult) and Mask_of_Truth"
         },
         "exits": {
             "LW Beyond Mido": "True"
@@ -3510,10 +3511,10 @@
             "HF GS Cow Grotto": "((can_gdv_stick or has_fire_source or 
                 (glitch_hf_web_groundclip and is_adult and can_shield and can_live_dmg(0.5,False,False) and Bombs)) and (can_use(Hookshot) or can_use(Boomerang)))
                 or (can_weirdshot and Longshot)",
-            "HF Cow Grotto Gossip Stone": "has_fire_source or can_gdv_sticks",
-            "Gossip Stone Fairy": "(has_fire_source or can_gdv_sticks) and can_summon_gossip_fairy and has_bottle",
-            "Bug Shrub": "(has_fire_source or can_gdv_sticks) and can_cut_shrubs and has_bottle",
-            "Nut Pot": "(has_fire_source or can_gdv_sticks)"
+            "HF Cow Grotto Gossip Stone": "has_fire_source or can_gdv_stick",
+            "Gossip Stone Fairy": "(has_fire_source or can_gdv_stick) and can_summon_gossip_fairy and has_bottle",
+            "Bug Shrub": "(has_fire_source or can_gdv_stick) and can_cut_shrubs and has_bottle",
+            "Nut Pot": "(has_fire_source or can_gdv_stick)"
         },
         "exits": {
             "Hyrule Field": "True"

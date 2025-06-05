@@ -4,7 +4,7 @@
         "dungeon": "Ice Cavern",
         "locations":{
             "Ice Cavern Frozen Blue Rupee": "
-                (Blue_Fire or logic_ice_frozen_rupee) or
+                (Blue_Fire or (logic_ice_frozen_rupee and can_jumpslash)) or
                 (logic_boomerang_boulders and can_use(Boomerang))",
             "Ice Cavern Entryway Freezard 1": "can_kill_freezard",
             "Ice Cavern Entryway Freezard 2": "can_kill_freezard",
@@ -18,7 +18,7 @@
                 has_soul(Freezard) and here(is_adult or has_explosives or can_use(Dins_Fire)
                     or can_use(Megaton_Hammer))",
             "Farores Wind Warp": "can_use(Farores_Wind)",
-            "Ice Cavern End Room": "can_use(Iron_Boots) and glitch_reverse_ice and is_advanced"
+            "Ice Cavern End Room": "can_use(Iron_Boots) and glitch_reverse_ice"
         }
     },
     {
@@ -37,7 +37,8 @@
             "Ice Cavern Spinning Scythe Silver Rupee Center Right": "True",
             "Ice Cavern Spinning Scythe Silver Rupee Ledge": "is_adult or 
                 (glitch_ice_ledges_child and can_groundjump)",
-            "Ice Cavern GS Spinning Scythe Room": "can_use(Hookshot) or can_use(Boomerang) or can_hover"
+            "Ice Cavern GS Spinning Scythe Room": "can_use(Hookshot) or can_use(Boomerang) or can_hover
+                or ((can_superslide or can_hess) and can_use(Hover_Boots))"
         },
         "exits": {
             "Ice Cavern Map Room": "((is_adult or (glitch_ice_ledges_child and can_groundjump)) and (Silver_Rupee_Ice_Cavern_Spinning_Scythe, 5))
@@ -47,8 +48,12 @@
                 can_lunge_storage",
             "Ice Cavern Push Block Room": "Blue_Fire or 
                 can_lunge_storage or
-                (is_adult and is_advanced and 
-                    (first_person_item or Bombs or (can_shield and can_use(Hover_Boots)))
+                (is_adult and 
+                    (can_tsc or 
+                    (glitch_clipping and
+                        (Bombs or (adv_hovers_recoil and can_shield and can_use(Hover_Boots)))
+                    )
+                    )
                 )"
         }
     },
@@ -57,8 +62,7 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Map Chest": "Blue_Fire or 
-                (is_advanced and
-                    has_explosives and damage_multiplier != 'ohko')",
+                (has_explosives and can_live_dmg(0.5,False))",
             "Ice Cavern Map Room Recovery Heart 1": "True",
             "Ice Cavern Map Room Recovery Heart 2": "True",
             "Ice Cavern Map Room Recovery Heart 3": "True",
@@ -78,10 +82,9 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Compass Chest": "Blue_Fire or 
-                (is_advanced and
-                    has_explosives and damage_multiplier != 'ohko')",
-            "Ice Cavern Freestanding PoH": "Blue_Fire or (logic_ice_HP_no_bottle and
-                    Bombs and can_isg and damage_multiplier != 'ohko' and is_adult)
+                (has_explosives and can_live_dmg(0.5,False))",
+            "Ice Cavern Freestanding PoH": "Blue_Fire or (adv_ice_HP_no_bottle and
+                    Bombs and can_shield and can_live_dmg(0.5,False) and is_adult)
                     or (logic_boomerang_boulders and can_use(Boomerang))",
             "Ice Cavern Compass Room Keese 1": "can_kill_keese_stationary",
             "Ice Cavern Compass Room Keese 2": "can_kill_keese_stationary",
@@ -121,11 +124,13 @@
         "dungeon": "Ice Cavern",
         "locations": {
             "Ice Cavern Near End Freezard 1": "True",
-            "Ice Cavern Near End Freezard 2": "True"
+            "Ice Cavern Near End Freezard 2": "True",
+            "Ice Cavern Near End Pot 1": "can_jumpslash or at('Ice Cavern End Room',True)",
+            "Ice Cavern Near End Pot 2": "can_jumpslash or at('Ice Cavern End Room',True)"
         },
         "exits": {
             "Ice Cavern End Room": "Blue_Fire or
-                    (logic_hovers_recoil and can_use(Hover_Boots)) or 
+                    (glitch_clipping and adv_hovers_recoil and can_use(Hover_Boots)) or 
                     can_mega or can_hess or can_superslide
                 ",
             "Ice Cavern Push Block Room": "True"
@@ -137,13 +142,11 @@
         "locations": {
             "Ice Cavern Iron Boots Chest": "can_kill_wolfos",
             "Sheik in Ice Cavern": "can_kill_wolfos",
-            "Ice Cavern Near End Pot 1": "True",
-            "Ice Cavern Near End Pot 2": "True",
             "Ice Cavern Wolfos": "can_kill_wolfos"
         },
         "exits": {
             "Ice Cavern End Hallway": "can_kill_wolfos and (
-                can_mega or can_hess or (logic_hovers_recoil and can_use(Hover_Boots))
+                can_mega or can_hess or (glitch_clipping and adv_hovers_recoil and can_use(Hover_Boots))
                 or (has_soul(Freezard) and can_use(Hookshot))
                 )"
         }

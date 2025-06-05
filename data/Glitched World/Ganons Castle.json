@@ -22,7 +22,7 @@
             "Ganons Castle Shadow Trial": "True",
             "Ganons Castle Fire Trial": "logic_fewer_tunic_requirements or can_use(Goron_Tunic)",
             "Ganons Castle Light Trial": "can_use(Golden_Gauntlets) or
-                (has_explosives and can_take_damage and is_adult)",
+                (has_explosives and can_live_dmg(0.5,False) and is_adult)",
             "Ganons Castle Spirit Trial": "True",
             "Ganons Castle Deku Scrubs": "logic_lens_castle or can_use(Lens_of_Truth)",
             "Ganons Castle Tower": "(glitch_igc_trials_skip and can_hover) or (
@@ -43,10 +43,8 @@
             "Ganons Castle Forest Trial Wolfos": "can_kill_wolfos"
         },
         "exits": {
-            "Ganons Castle Forest Trial Wind Room": "(can_gdv and (can_use(Bow) or can_use(Hookshot))) or 
-                (
-                can_use(Fire_Arrows) or (can_use(Dins_Fire) and (can_use(Bow) or can_use(Hookshot)))
-                )"
+            "Ganons Castle Forest Trial Wind Room": "can_use(Fire_Arrows) or 
+                ((can_use(Dins_Fire) or can_gdv) and (can_use(Bow) or can_use(Hookshot)))"
         }
     },
     {
@@ -86,7 +84,7 @@
             "Blue Fire": "has_bottle and (is_adult or Sticks or Kokiri_Sword or has_explosives)"
         },
         "exits": {
-            "Ganons Castle Water Trial Block Push": "can_pass_boulder('IGC_WATER_TRIAL_BOULDER_1') and can_kill_freezard"
+            "Ganons Castle Water Trial Block Push": "can_kill_freezard and Blue_Fire"
         }
     },
     {
@@ -97,7 +95,7 @@
             "Fairy Pot": "True"
         },
         "exits": {
-            "Ganons Castle Water Trial Ending": "can_pass_boulder('IGC_WATER_TRIAL_BOULDER_2') and can_use(Megaton_Hammer)"
+            "Ganons Castle Water Trial Ending": "can_use(Megaton_Hammer)"
         }
     },
     {
@@ -127,7 +125,7 @@
             "Ganons Castle Shadow Trial First Gap": "(
                 (can_use(Longshot) and has_soul(Like_Like)) or can_use(Fire_Arrows)
                 ) or (
-                    logic_shadow_trial_no_fire_gap and can_use(Hover_Boots) and Megaton_Hammer and
+                    adv_shadow_trial_no_fire_gap and can_use(Hover_Boots) and Megaton_Hammer and
                         can_shield and has_bombchus
                 ) or (
                     glitch_shadow_trial_hess and can_use(Hover_Boots) and has_explosives)
@@ -143,7 +141,7 @@
             "Ganons Castle Shadow Trial Like Like Pot 2": "True"
         },
         "exits": {
-            "Ganons Castle Shadow Trial Second Gap": "Hover_Boots or has_fire_source or can_mega"
+            "Ganons Castle Shadow Trial Second Gap": "can_use(Hover_Boots) or has_fire_source or can_mega"
         }
     },
     {
@@ -183,7 +181,7 @@
             "Ganons Castle Fire Trial Silver Rupee Right Back": "is_adult or logic_fire_trial_slug_rupee",
             "Ganons Castle Fire Trial Silver Rupee Flamethrower": "True",
             "Ganons Castle Fire Trial Silver Rupee Right Center": "
-                (can_use(Golden_Gauntlets) or (can_use(Hover_Boots) and (can_mega or (logic_hovers_recoil and damage_multiplier != 'ohko')
+                (can_use(Golden_Gauntlets) or (can_use(Hover_Boots) and (can_mega or (adv_hovers_recoil and can_live_dmg(0.5,False))
                         or can_superslide or can_hess)
                     )
                 )
@@ -193,7 +191,7 @@
                 or (can_use(Goron_Tunic) and glitch_fire_trial_pillar_silver)",
             "Ganons Castle Fire Trial Torch Slug": "
                 has_soul(Torch_Slug) and
-                (is_adult or (logic_fire_trial_slug_rupee and (Sticks or Kokiri_Sword)))",
+                (is_adult or (logic_fire_trial_slug_rupee and (Sticks or Kokiri_Sword or can_use(Megaton_Hammer))))",
             "Ganons Castle Fire Trial Red Bubble 1": "
                 has_soul(Bubble) and can_use(Goron_Tunic) and Hover_Boots and (Magic_Meter or Bow)",
             "Ganons Castle Fire Trial Red Bubble 2": "
@@ -208,7 +206,7 @@
             "Ganons Castle Fire Trial Ending": "
                 is_adult and 
                 (Longshot or (Hover_Boots and Goron_Tunic and (can_mega or can_superslide or can_hess) )
-                    or (Hover_Boots and Goron_Tunic and has_bombchus and Bombs and damage_multiplier != 'ohko' and can_shield and logic_fire_trial_longshot_skip)
+                    or (Hover_Boots and Goron_Tunic and has_bombchus and Bombs and can_live_dmg(0.5,False,False) and can_shield and logic_fire_trial_longshot_skip)
                 ) and 
                 (Silver_Rupee_Ganons_Castle_Fire_Trial, 5) and
                 (shuffle_silver_rupees or Goron_Tunic)"
@@ -304,7 +302,7 @@
         },
         "exits": {
             "Ganons Castle Spirit Trial Second Room Front": "(Silver_Rupee_Ganons_Castle_Spirit_Trial, 5)",
-            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult and is_advanced"
+            "Ganons Castle Tower": "glitch_igc_trials_skip_spirit_trial and is_adult"
         }
     },
     {
@@ -316,8 +314,7 @@
             "Ganons Castle Spirit Trial Torch Slug 2": "can_kill_torch_slug"
         },
         "exits": {
-            "Ganons Castle Spirit Trial Second Room Back": "has_bombchus or 
-                (is_advanced and can_use(Bow))"
+            "Ganons Castle Spirit Trial Second Room Back": "has_bombchus or can_use(Bow)"
         }
     },
     {

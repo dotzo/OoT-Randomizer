@@ -31,7 +31,7 @@
                 (glitch_groundjump and Progressive_Strength_Upgrade and can_shield)",
             "Dodongos Cavern Staircase Room": " 
                 (can_groundjump or is_adult or
-                    (glitch_ground_jump and Progressive_Strength_Upgrade and can_shield)
+                    (glitch_groundjump and Progressive_Strength_Upgrade and can_shield)
                 ) or at('Dodongos Cavern Torch Room',Sticks or can_use(Dins_Fire))",
             "Dodongos Cavern Far Bridge": "at('Dodongos Cavern Far Bridge', True) or
                 (glitch_death_hookshot_jump and can_use(Hookshot) and Fairy and not_ohko)",
@@ -117,7 +117,7 @@
         "locations": {
             "Dodongos Cavern GS Vines Above Stairs": "at('Dodongos Cavern Climb', True) or can_use(Longshot)",
             "Dodongos Cavern Staircase Skullwalltula": "has_soul(Skullwalltula) and
-                (at('Dodongos Cavern Climb', True) or (can_use(Longshot) or can_use(Slingshot) or can_use(Bow)))",
+                (at('Dodongos Cavern Climb', True) or (can_use(Longshot) or can_use(Slingshot) or can_use(Bow)))"
         },
         "exits": {
             "Dodongos Cavern Compass Room": "can_break_mud_wall or can_gdv or Progressive_Strength_Upgrade",

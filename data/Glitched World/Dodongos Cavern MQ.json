@@ -46,8 +46,7 @@
         },
         "events": {
             "DC Elevator Boulders Passed": "here(can_blast_or_smash or can_use(Dins_Fire) or can_use(Bow))
-                ) or
-                at('Dodongos Cavern Torch Puzzle Upper',Progressive_Strength_Upgrade or can_gdv)"
+                or at('Dodongos Cavern Torch Puzzle Upper', Progressive_Strength_Upgrade or can_gdv)"
         }
     },
     {
@@ -328,7 +327,7 @@
             "Dodongos Cavern Lower Lizalfos": "True",
             "Dodongos Cavern Lower Lizalfos Enemies": "True",
             "Dodongos Cavern Lower Scrubs Room": "can_use(Bow) or has_explosives or Progressive_Strength_Upgrade or can_use(Dins_Fire) 
-                or can_gdv_sticks or (can_gdv_ledge and can_isg)"
+                or can_gdv_stick or (can_gdv_ledge and can_isg)"
         }
     },
     {

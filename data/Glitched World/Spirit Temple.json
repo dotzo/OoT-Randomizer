@@ -15,14 +15,14 @@
             "Early Child Spirit Temple": "is_child or
                 ( glitch_spirit_child_side_as_adult and (
                     (can_use(Hover_Boots) and Bombs and can_superslide) or
-                    (is_adult and first_person_item and can_mega)
+                    (is_adult and can_tsc and can_mega)
                     )
                 )
             ",
             "Early Adult Spirit Temple": "can_use(Silver_Gauntlets) or 
                 ( glitch_spirit_adult_block_skip and is_adult and (
                     (Hover_Boots and Bombs and (can_superslide or can_groundjump)) or
-                    (first_person_item and can_shield)
+                    (can_tsc and can_shield)
                     )
                 )
             ",
@@ -55,47 +55,53 @@
                 has_soul(Keese) and ( 
                     can_use_projectile 
                     or ( (Nuts or can_use(Dins_fire)) and can_jumpslash )
-                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or child_hammer))
+                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or can_use(Megaton_Hammer)))
                     or (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
                     )",
             "Spirit Temple Child Early Torches Keese 2": "
                 has_soul(Keese) and ( 
                     can_use_projectile 
                     or ( (Nuts or can_use(Dins_fire)) and can_jumpslash )
-                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or child_hammer))
+                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or can_use(Megaton_Hammer)))
                     or (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
                     )",
             "Spirit Temple Child Early Torches Keese 3": "
                 has_soul(Keese) and ( 
                     can_use_projectile 
                     or ( (Nuts or can_use(Dins_fire)) and can_jumpslash )
-                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or child_hammer))
+                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or can_use(Megaton_Hammer)))
                     or (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
                     )",
             "Spirit Temple Child Early Torches Keese 4": "
                 has_soul(Keese) and ( 
                     can_use_projectile 
                     or ( (Nuts or can_use(Dins_fire)) and can_jumpslash )
-                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or child_hammer))
+                    or at('Child Spirit Temple Beyond Right Bridge', Nuts and (Kokiri_Sword or is_adult or can_use(Megaton_Hammer)))
                     or (Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
                     )",
             "Spirit Temple GS Metal Fence": "
-                can_use(Boomerang) or can_use(Hookshot) or 
+                can_use(Boomerang) or can_use(Hookshot) or (can_use_projectile and can_use(Hover_Boots)) or
+                ((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) and (can_use_projectile or can_use(Sticks) or
+                    is_adult or can_use(Dins_Fire)))
+                or 
                 at('Child Spirit Temple Beyond Right Bridge',
-                    (logic_spirit_fence_gs and (Kokiri_Sword or is_adult))) or
-                    (((Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5) or logic_spirit_fence_gs) and
-                        (Sticks or has_explosives or Slingshot or can_use(Dins_Fire) or can_use(Bow)))"
+                    logic_spirit_fence_gs and (Kokiri_Sword or is_adult or can_use(Dins_Fire) or can_use(Sticks) or has_explosives)
+                )"
         },
         "exits": {
             "Child Spirit Temple Beyond Left Bridge": "
                 can_use(Boomerang) or can_use(Slingshot) or (has_bombchus and logic_spirit_child_bombchu)
-                or can_use(Hover_Boots) or can_mega or can_use(Longshot) or can_use(Bow)
-                ",
+                or can_use(Hover_Boots) or can_mega or can_use(Longshot) or can_use(Bow)",
             "Child Spirit Temple Beyond Right Bridge": "(Silver_Rupee_Spirit_Temple_Child_Early_Torches, 5)
-                or (is_advanced and can_use(Hover_Boots))",
+                or (glitch_clipping and can_use(Hover_Boots))",
             "Child Spirit Before Locked Door": "glitch_spirit_child_side_crawlspace_skip
-                and can_use(Hover_Boots) and can_shield and can_use(Hookshot) and 
-                ((damage_multiplier != 'ohko' and damage_multiplier != 'quad') or Fairy)"
+                and can_use(Hookshot)   
+                and (
+                    (can_shield and can_use(Hover_Boots) and can_live_dmg(1.0,True,False))
+                    or
+                    (has_explosives and can_live_dmg(0.5,False,True) and can_live_dmg(1.5,True,False))
+                )
+            "
         }
     },
     {
@@ -153,8 +159,7 @@
 
         },
         "exits": {
-            "Child Spirit Temple Climb": "(Small_Key_Spirit_Temple, 1)
-                or (is_advanced and (Small_Key_Spirit_Temple, 3))"
+            "Child Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)"
         }
     },
     {
@@ -167,10 +172,8 @@
             "Lower Adult Spirit Temple Side Rooms": "
                 can_use(Bow) or can_use(Hookshot) or can_use(Slingshot) or can_use(Boomerang)
                 or has_bombchus or (is_adult and Bombs and logic_spirit_lower_adult_switch)",
-            "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 1)
-                or (is_advanced and (Small_Key_Spirit_Temple, 3))",
-            "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 3)
-                or (is_advanced and (Small_Key_Spirit_Temple, 5))"
+            "Spirit Temple Central Chamber": "(Small_Key_Spirit_Temple, 3)",
+            "Adult Spirit Temple Climb": "(Small_Key_Spirit_Temple, 5)"
         }
     },
     {
@@ -180,9 +183,9 @@
             "Spirit Temple Compass Chest": "can_play(Zeldas_Lullaby) and (
                 can_use(Hookshot) or
                 (glitch_spirit_compass_hoverboots_only and can_use(Hover_Boots)) or
-                (logic_hovers_recoil and can_use(Hover_Boots) and (Megaton_Hammer or (has_explosives and damage_multiplier != 'ohko')))
+                (adv_hovers_recoil and can_use(Hover_Boots) and (Megaton_Hammer or (has_explosives and can_live_dmg(0.5,False,True))))
                 or can_hover 
-                or (can_use(Hover_Boots) and (can_mega or can_superslide))
+                or (can_use(Hover_Boots) and (can_mega or can_superslide or can_hess))
                 )",
             "Spirit Temple Adult Boulder Silver Rupee Ledge": "can_jumpslash", # Can be collected with a jumpslash.
             "Spirit Temple Adult Boulder Silver Rupee Front Left": "True",
@@ -191,9 +194,8 @@
             "Spirit Temple Adult Boulder Silver Rupee Back Left": "True",
             "Spirit Temple Early Adult Wolfos": "can_kill_wolfos",
             "Spirit Temple GS Boulder Room": "can_play(Song_of_Time) or
-                    (can_use(Boomerang) and (is_advanced or logic_boomerang_boulders)) or
-                    (can_use(Hover_Boots) and is_advanced)
-                "
+                    (can_use(Boomerang) and logic_boomerang_boulders) or
+                    (can_use(Hover_Boots) and glitch_clipping)"
         },
         "exits": {
             "Spirit Temple After Boulder Room": "(Silver_Rupee_Spirit_Temple_Adult_Boulders, 5)"
@@ -240,18 +242,18 @@
             "Spirit Temple Child Climb Skullwalltula Climb Wall Lower": "has_soul(Skullwalltula)",
             "Spirit Temple Child Climb Skullwalltula Climb Wall Upper": "
                 has_soul(Skullwalltula) and
-                    ((is_child and (has_projectile(child) or child_hammer) and
+                    ((is_child and (has_projectile(child) or can_use(Megaton_Hammer)) and
                         (Small_Key_Spirit_Temple, 5)) or
                     (is_adult and has_projectile(adult) and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                         ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
-                    has_projectile(both) or can_use(Dins_Fire))",
+                    has_projectile(both) or can_use(Dins_Fire) or can_use(Megaton_Hammer))",
             "Spirit Temple Child Climb Skullwalltula Bomb Wall Right": "
                 has_soul(Skullwalltula) and
                     ((is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                         ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
-                    Sticks or Kokiri_Sword or child_hammer or has_projectile(child) or can_use(Dins_Fire))",
+                    Sticks or Kokiri_Sword or can_use(Megaton_Hammer) or has_projectile(child) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Skullwalltula Bomb Wall Left": "
                 has_soul(Skullwalltula) and
                     ((is_child and has_projectile(child) and
@@ -259,25 +261,25 @@
                     (is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                         ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
-                    has_projectile(child) or child_hammer or can_use(Dins_Fire))",
+                    has_projectile(child) or can_use(Megaton_Hammer) or can_use(Dins_Fire))",
             "Spirit Temple Child Climb Lizalfos 1": "
                 has_soul(Lizalfos_and_Dinalfos) and
                     ((is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                    Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts) or child_hammer)",
+                    Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts) or can_use(Megaton_Hammer))",
             "Spirit Temple Child Climb Lizalfos 2": "
                 has_soul(Lizalfos_and_Dinalfos) and
                     ((is_adult and
                         ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                    Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts) or child_hammer)",
+                    Kokiri_Sword or Sticks or Slingshot or (Bombs and Nuts) or can_use(Megaton_Hammer))",
             "Spirit Temple GS Sun on Floor Room": "
                 (is_child and has_projectile(child) and
                     (Small_Key_Spirit_Temple, 5)) or
-                (is_adult and (has_projectile(adult) or can_take_damage) and
+                (is_adult and (has_projectile(adult) or can_live_dmg(0.5)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                     ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops))) or
                 has_projectile(both) or can_use(Dins_Fire) or
-                (can_take_damage and (Sticks or Kokiri_Sword or has_projectile(child)))"
+                (can_live_dmg(0.5) and (Sticks or Kokiri_Sword or has_projectile(child)))"
         },
         "exits": {
             "Spirit Temple Central Chamber": "has_explosives",
@@ -291,16 +293,16 @@
             "Spirit Temple Map Chest": "
                 (is_child and Sticks and
                     (Small_Key_Spirit_Temple, 5)) or
-                (is_adult and (has_fire_source or (logic_spirit_map_chest and Bow) or can_gdv) and
+                (is_adult and (has_fire_source or (logic_spirit_map_chest and Bow) or can_use(Sticks)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or logic_spirit_map_chest) and Bow and Sticks)) and
+                ((can_use(Dins_Fire) or can_gdv or (((Magic_Meter and Fire_Arrows) or logic_spirit_map_chest) and Bow and Sticks)) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             "Spirit Temple Sun Block Room Chest": "
                 (is_child and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)) and
                     (Small_Key_Spirit_Temple, 5)) or
-                (is_adult and (has_fire_source or can_gdv or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5) and Bow)) and
+                (is_adult and (has_fire_source or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5) and Bow)) and
                     ((Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts)) or
-                ((can_use(Dins_Fire) or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
+                ((can_use(Dins_Fire) or can_gdv or (((Magic_Meter and Fire_Arrows) or (logic_spirit_sun_chest_bow and (Silver_Rupee_Spirit_Temple_Sun_Block, 5))) and
                         Bow and Sticks and (logic_spirit_sun_chest_no_rupees or (Silver_Rupee_Spirit_Temple_Sun_Block, 5)))) and
                     (has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)))",
             # With longshot, explosives, and the necessary souls, right hand is reachable as adult
@@ -312,10 +314,10 @@
             "Spirit Temple Silver Gauntlets Chest": "(
                 has_soul(Iron_Knuckle) and
                     ((Small_Key_Spirit_Temple, 5) or
-                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_advanced and Hover_Boots and (can_hess or can_superslide))) and
+                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (can_use(Longshot) or (can_use(Hover_Boots) and (can_hess or can_superslide))) and
                         (Small_Key_Spirit_Temple, 3)))
                 )
-                or at('Desert Colossus',logic_wallwalking and can_hover and can_use(Hover_Boots) and Hookshot)",
+                or at('Desert Colossus Hands',True)",
             "Spirit Temple Central Chamber Pot 1": "
                 (Small_Key_Spirit_Temple, 3) or spirit_temple_shortcuts or
                 has_explosives or ((Small_Key_Spirit_Temple, 2) and free_bombchu_drops)",
@@ -369,10 +371,10 @@
             "Spirit Temple Child Side Iron Knuckle":  "(
                 has_soul(Iron_Knuckle) and
                     ((Small_Key_Spirit_Temple, 5) or
-                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (Longshot or (is_advanced and Hover_Boots and (can_hess or can_superslide))) and
+                    (can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and (can_use(Longshot) or (can_use(Hover_Boots) and (can_hess or can_superslide))) and
                         (Small_Key_Spirit_Temple, 3)))
                 )
-                or at('Desert Colossus',logic_wallwalking and can_hover and can_use(Hover_Boots) and Hookshot)",
+                or at('Desert Colossus Hands', True)",
             "Spirit Temple Statue Room Adult Side Armos": "
                 has_soul(Armos) and
                     (at('Adult Spirit Temple Climb', True) or (spirit_temple_shortcuts and Bow) or
@@ -395,7 +397,7 @@
         "exits": {
             "Child Spirit Temple Climb": "True",
             "Adult Spirit Temple Climb": "
-                    (is_child and can_hover) or (is_advanced and is_adult) or 
+                    (is_child and can_hover) or can_use(Hookshot) or 
                 (
                 spirit_temple_shortcuts and
                 (can_use(Hookshot) or (logic_spirit_adult_side_hovers and can_use(Hover_Boots)))
@@ -406,7 +408,7 @@
             # Age-unknown logic is incompatible with the rest of the world.
             # Because adult might unlock all doors, child must require all 5 keys to pass.
             "Desert Colossus Hands": "
-                has_soul(Iron_Knuckle) and
+                (has_soul(Iron_Knuckle) or (is_adult and glitch_clipping)) and
                     ((Small_Key_Spirit_Temple, 5) or
                     (is_adult and can_kill_beamos and has_soul(Anubis) and has_soul(Armos) and
                         (Small_Key_Spirit_Temple, 3)))"
@@ -468,13 +470,14 @@
                 (logic_lens_spirit or can_use(Lens_of_Truth))",
             "Spirit Temple Hallway Right Invisible Chest": "
                 (logic_lens_spirit or can_use(Lens_of_Truth))",
-            "Spirit Temple Mirror Shield Chest": "can_kill_iron_knuckle or 
-                at('Desert Colossus',logic_wallwalking and can_hover and can_use(Hover_Boots) and Hookshot and (can_hess or can_superslide))",
+            "Spirit Temple Mirror Shield Chest": "can_kill_iron_knuckle or (is_adult and glitch_clipping) or 
+                at('Desert Colossus Hands',True)",
             "Spirit Temple Four Armos Room Armos 1": "True",
             "Spirit Temple Four Armos Room Armos 2": "True",
             "Spirit Temple Four Armos Room Armos 3": "True",
             "Spirit Temple Four Armos Room Armos 4": "True",
-            "Spirit Temple Adult Side Iron Knuckle": "can_kill_iron_knuckle"
+            "Spirit Temple Adult Side Iron Knuckle": "can_kill_iron_knuckle
+                or at('Desert Colossus Hands', can_kill_iron_knuckle)"
         }
     },
     {
@@ -485,14 +488,14 @@
             "Spirit Temple Shifting Wall Lower Beamos Right": "can_kill_beamos",
             "Spirit Temple Shifting Wall Skullwalltula": "
                 has_soul(Skullwalltula) and
-                (has_bombchus or Bow or Megaton_Hammer or (logic_spirit_wall and Bombs) or
-                    (Hookshot and (Nuts or Bombs or can_use(Dins_Fire) or logic_spirit_wall)))"
+                (has_bombchus or can_use(Bow) or can_use(Megaton_Hammer) or (logic_spirit_wall and Bombs) or
+                    (can_use(Hookshot) and (Nuts or Bombs or can_use(Dins_Fire) or logic_spirit_wall)))"
         },
         "exits": {
             "Spirit Temple Big Mirror Room": "
-                (logic_spirit_wall or Longshot or has_bombchus or
+                (logic_spirit_wall or can_use(Longshot) or has_bombchus or
                     ((Bombs or Nuts or can_use(Dins_Fire)) and
-                        (Bow or Hookshot or Megaton_Hammer)))"
+                        (Bow or Hookshot or can_use(Megaton_Hammer))))"
         }
     },
     {
@@ -527,7 +530,7 @@
         "dungeon": "Spirit Temple",
         "locations": {
             "Spirit Temple Boss Key Chest": "Bow and Hookshot or
-                (is_advanced and (damage_multiplier != 'ohko' or can_use(Nayrus_Love)))",
+                (damage_multiplier != 'ohko' or can_use(Nayrus_Love))",
             "Spirit Temple Boss Key Room Torch Slug 1": "can_kill_torch_slug",
             "Spirit Temple Boss Key Room Torch Slug 2": "can_kill_torch_slug",
             "Spirit Temple Boss Key Room Torch Slug 3": "can_kill_torch_slug",
@@ -540,8 +543,9 @@
         "savewarp": "Desert Colossus -> Spirit Temple Lobby",
         "exits": {
             "Twinrova Boss Room": "Boss_Key_Spirit_Temple
-                or (glitch_spirit_bk_skip_groundclip and can_hover and can_take_damage)
-                or at('Adult Spirit Temple Climb',can_use(Hover_Boots) and can_shield and glitch_spirit_bk_skip_headclip)"
+                or (glitch_spirit_bk_skip_groundclip and can_hover and can_live_dmg(0.5,False,False))
+                or at('Adult Spirit Temple Climb',can_use(Hover_Boots) and can_shield and glitch_spirit_bk_skip_headclip
+                    and has_explosives and can_live_dmg(0.5,False,False))"
         }
     }
 ]

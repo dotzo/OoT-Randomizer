@@ -35,7 +35,7 @@
         "region_name": "Gerudo Training Ground Right Side",
         "dungeon": "Gerudo Training Ground",
         "locations": {
-            "Gerudo Training Ground MQ Dinolfos Chest": "can_kill_lizalfos and can_kill_dinalfos
+            "Gerudo Training Ground MQ Dinolfos Chest": "can_kill_lizalfos and can_kill_dinolfos
                 and can_kill_dodongo and can_kill_armos and (is_adult or adv_gtg_mq_enemy_rooms_as_child)",
             # Shoot the Gerudo symbol above the door to the lava room.
             "Gerudo Training Ground MQ Dinolfos Arrow Wonderitem": "can_use(Bow)",
@@ -48,7 +48,7 @@
             "Wall Fairy": "has_bottle and can_use(Bow)"
         },
         "exits": {
-            "Gerudo Training Ground Lava Room Door": "can_kill_lizalfos and can_kill_dinalfos
+            "Gerudo Training Ground Lava Room Door": "can_kill_lizalfos and can_kill_dinolfos
                 and can_kill_dodongo and can_kill_armos"
         }
     },
@@ -228,7 +228,7 @@
                 ((Small_Key_Gerudo_Training_Ground, 3) or can_weirdshot or can_gtg_vine_clip) and can_use(Megaton_Hammer) and
                 (can_use(Hookshot) or can_use(Bow) or can_use(Slingshot) or Bombs or (logic_gtg_mq_eye_statue_jumpslash and is_adult))",
             "Gerudo Training Ground MQ Eye Statue Chest": "can_use(Bow)",
-            "Gerudo Training Ground MQ Flame Circle Chest": "has_projectile",
+            "Gerudo Training Ground MQ Flame Circle Chest": "can_use_projectile",
             "Gerudo Training Ground MQ Eye Statue Proximity Wonderitem": "
                 can_use(Hover_Boots) or can_use(Longshot) or logic_gtg_eye_statue_wonderitem",
             "Gerudo Training Ground MQ Second Iron Knuckle": "can_kill_iron_knuckle"

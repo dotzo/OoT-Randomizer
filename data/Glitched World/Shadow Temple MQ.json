@@ -44,7 +44,7 @@
         },
         "exits": {
             "Shadow Temple Whispering Walls Back": "can_play(Song_of_Time) or 
-                (can_take_damage and Bombs and is_advanced)"
+                (can_live_dmg(0.5,False) and Bombs and glitch_clipping)"
         }
     },
     {
@@ -107,13 +107,11 @@
         "exits": {
             "Shadow Temple Upper Huge Pit": "
                 has_explosives and
-                (((Small_Key_Shadow_Temple, 2) and not (shadow_temple_shortcuts or
-                 (is_advanced and can_jumpslash))) or
+                (((Small_Key_Shadow_Temple, 2) and not (shadow_temple_shortcuts or glitch_clipping)) or
                     (Small_Key_Shadow_Temple, 5))",
-            "Shadow Temple Boat Dock": "shadow_temple_shortcuts or
-                    (is_advanced and can_jumpslash)",
-            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and (
-                    (is_adult and can_take_damage and has_bombchus) or
+            "Shadow Temple Boat Dock": "shadow_temple_shortcuts or glitch_clipping",
+            "Shadow Temple Boat Area Balcony": "glitch_shadow_boat_skull and glitch_clipipng and (
+                    (is_adult and can_live_dmg(0.5,False,False) and has_bombchus) or
                     (is_adult and glitch_shadow_boat_skull_adult_nothing and can_shield)
                 )"
         }
@@ -157,7 +155,7 @@
                 can_use(Nayrus_Love)",
             "Shadow Temple Invisible Blades Song of Time Blocks": "
                 can_play(Song_of_Time) or
-                (logic_shadow_mq_invisible_blades and damage_multiplier != 'ohko' and has_soul(Like_Like))"
+                (logic_shadow_mq_invisible_blades and can_live_dmg(0.5) and has_soul(Like_Like))"
         }
     },
     {
@@ -359,7 +357,7 @@
         "exits": {
             "Shadow Temple Across Chasm": "
                 Bow or (logic_shadow_statue and has_bombchus) or shadow_temple_shortcuts
-                or (can_use(Hover_Boots) and (can_mega or can_superslide or (logic_hovers_recoil and damage_multiplier != 'ohko')))"
+                or (can_use(Hover_Boots) and (can_mega or can_superslide or (adv_hovers_recoil and can_live_dmg(0.5,False))))"
         }
     },
     {
@@ -440,12 +438,12 @@
         },
         "exits": {
             "Bongo Bongo Boss Room": "Boss_Key_Shadow_Temple 
-            or (glitch_shadow_bk_skip_boss and has_explosives and can_take_damage and is_adult)
+            or (glitch_shadow_bk_skip_boss and has_explosives and can_live_dmg(0.5,False) and is_adult)
                 or at('Shadow Temple First Dead Hand',(
                     glitch_shadow_bk_skip_boat_key and can_use(Hover_Boots) and
                     Bombs and (can_hess or can_superslide)
                         ) or (
-                    glitch_shadow_bk_skip_deadhand and is_adult and can_take_damage and
+                    glitch_shadow_bk_skip_deadhand and is_adult and can_live_dmg(1.0) and
                     (((can_superslide or can_hess) and Bombs) or first_person_item) 
                     and has_explosives and (can_mega or Hover_Boots)
                     )
